@@ -1,29 +1,51 @@
 import { createGlobalStyle } from 'styled-components';
+import { COLORS } from '../constants/variables';
 
-const GlobalStyles = createGlobalStyle`
-  *,
-  *::after,
-  *::before{
+const GlobalStyle = createGlobalStyle`
+
+@font-face {
+	font-family:'druk-wide' ;
+	src: url('/assets/fonts/druk/druk-wide-bold.ttf');
+}
+@font-face {
+	font-family:'grotesk-light' ;
+	src: url('/assets/fonts/grotesk/grotesk-light.ttf');
+}
+@font-face {
+	font-family:'grotesk-medium' ;
+	src: url('/assets/fonts/grotesk/grotesk-medium.ttf');
+}
+@font-face {
+	font-family:'grotesk-regular' ;
+	src: url('/assets/fonts/grotesk/grotesk-regular.ttf');
+}
+
+*,*::after,*::before{
     box-sizing: border-box;
+}
+img{
+	max-width: 100%;
+	display: block;
+}
+ul {
+	list-style: none;
+	padding-left: 0;
+	margin-top: 0;
+	margin-bottom: 0;
   }
-  img{
-    display: block;
-    max-width: 100%;
+a {
+	text-decoration: none;
+	color: inherit;
   }
-  body{
-    margin: 0;
-    font-family: sans-serif;
-  }
-  a{
-    text-decoration: none;
-    color: inherit;
-  }
-  ul{
-    list-style: none;
-    margin-top: 0;
-    margin-bottom: 0;
-    padding-left: 0;
-  }
+body {
+	margin: 0;
+    max-width: 100vw;
+    margin-left: auto;
+    margin-right: auto;
+	padding: 1rem;
+	font-family: 'grotesk-light', sans-serif;
+	background-color: ${COLORS.background.body};
+}
 `;
 
-export { GlobalStyles };
+export { GlobalStyle };
