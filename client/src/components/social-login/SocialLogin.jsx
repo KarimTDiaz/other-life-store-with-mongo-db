@@ -43,7 +43,21 @@ const loginWithGoogle = async ({ setFetchInfo }) => {
 				body: JSON.stringify({
 					_id: result.user.uid,
 					userName: result.user.email,
-					email: result.user.email
+					email: result.user.email,
+					profileImage: '',
+					name: '',
+					surName: '',
+					gender: '',
+					direction: {
+						country: '',
+						city: '',
+						poblation: '',
+						address: '',
+						zipCode: 0
+					},
+					favorites: [],
+					products: [],
+					purchases: []
 				}),
 				headers: {
 					Accept: '*/*',

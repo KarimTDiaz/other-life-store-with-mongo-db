@@ -41,6 +41,7 @@ controller.createUser = async (req, res) => {
   } = req.body;
 
   const userCheck = await UserModel.findById(req.body._id);
+  /* const emailCheck = await UserModel.findById(req.body.email); */
   if (userCheck) return res.send({ message: 'El id se repite' });
 
   const userNameCheck = await UserModel.find({

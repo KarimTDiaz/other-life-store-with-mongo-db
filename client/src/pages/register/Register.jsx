@@ -15,6 +15,7 @@ import { URLS } from '../../constants/requests';
 import { registerSchema } from '../../constants/schemas.form';
 import { TITLES } from '../../constants/titles';
 import { AuthContext } from '../../contexts/Auth.context';
+import { FetchContext } from '../../contexts/Fetch.context';
 import {
 	ErrorText,
 	FormFieldRegister,
@@ -24,7 +25,6 @@ import {
 	RegisterText,
 	StyledRegisterContainer
 } from './styles';
-import { FetchContext } from '../../contexts/Fetch.context';
 
 const Register = () => {
 	const [error, setError] = useState('');
@@ -44,8 +44,6 @@ const Register = () => {
 
 	if (loading) return <h1>Loading...</h1>;
 	if (wrong) return <h1>Something went wrong</h1>;
-
-	console.log('DATITOS', fetchData);
 
 	return (
 		<StyledRegisterContainer>
@@ -121,6 +119,7 @@ const onSubmit = async (data, ev, setError, setFetchInfo, fetchData) => {
 			setError('Username has already been used');
 			return;
 		}
+
 		const user = await createUserWithEmailAndPassword(auth, email, password);
 		setFetchInfo({
 			url: URLS.NEW_USER,
@@ -128,22 +127,22 @@ const onSubmit = async (data, ev, setError, setFetchInfo, fetchData) => {
 				method: 'POST',
 				body: JSON.stringify({
 					_id: user.user.uid,
-					profileImage: String,
+					profileImage: '',
 					userName: data.userName,
-					name: String,
-					surName: String,
+					name: '',
+					surName: '',
 					email: data.email,
-					gender: String,
+					gender: '',
 					direction: {
-						country: String,
-						city: String,
-						poblation: String,
-						address: String,
-						zipCode: Number
+						country: '',
+						city: '',
+						poblation: '',
+						address: '',
+						zipCode: 0
 					},
-					favorites: Array,
-					products: Array,
-					purchases: Array
+					favorites: [],
+					products: [],
+					purchases: []
 				}),
 				headers: {
 					Accept: '*/*',
@@ -153,6 +152,7 @@ const onSubmit = async (data, ev, setError, setFetchInfo, fetchData) => {
 		});
 		ev.target.reset();
 	} catch (error) {
+		console.log(error.code);
 		setError(AUTH_ERRORS[error.code].message);
 	}
 };

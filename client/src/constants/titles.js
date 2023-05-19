@@ -6,3 +6,15 @@ export const TITLES = {
 		login: 'LOGIN TO YOUR ACCOUNT'
 	}
 };
+
+export const SUBTITLES = {
+	profile: {
+		USER: 'Username',
+		EMAIL: 'Email',
+		NAME: 'Name',
+		SURNAME: 'Surname',
+		GENDER: 'Gender',
+		ADRESS: 'Adress'
+	},
+	product: {}
+};
