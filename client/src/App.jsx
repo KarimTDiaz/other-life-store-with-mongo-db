@@ -1,7 +1,7 @@
 import { BrowserRouter } from 'react-router-dom';
-import { GlobalStyle } from './styles/GlobalStyles';
-import Router from './router/Router';
 import { AuthProvider } from './providers/Auth.provider';
+import Router from './router/Router';
+import { GlobalStyle } from './styles/GlobalStyles';
 
 const App = () => {
 	return (

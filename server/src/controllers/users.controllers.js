@@ -27,7 +27,6 @@ controller.deleteUser = async (req, res) => {
 
 controller.createUser = async (req, res) => {
   const {
-    _id,
     profileImage,
     userName,
     name,
@@ -41,7 +40,7 @@ controller.createUser = async (req, res) => {
   } = req.body;
 
   const newUser = new UserModel({
-    _id,
+    _id: v4(),
     profileImage,
     userName,
     name,
@@ -53,7 +52,10 @@ controller.createUser = async (req, res) => {
     products,
     purchases
   });
+  if (newUser.email === req.body.email) return;
+
   await newUser.save();
+
   res.send('User created');
 };
 

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { FONT_FAMILY, FONT_SIZE } from '../../constants/variables';
 
 const FormTitle = styled.h1`
+	margin-bottom: 2.5rem;
 	text-align: center;
 	font-family: ${FONT_FAMILY.secondary};
 	font-size: ${FONT_SIZE.s};

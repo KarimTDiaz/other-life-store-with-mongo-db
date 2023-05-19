@@ -9,13 +9,11 @@ const HeaderTopLight = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	padding: 1rem;
 `;
 const HeaderTopDark = styled.div`
 	display: flex;
 	justify-content: center;
-	position: fixed;
-	top: 0;
-	left: 0;
 	width: 100vw;
 	padding: 1rem;
 	background-color: ${COLORS.textDark};

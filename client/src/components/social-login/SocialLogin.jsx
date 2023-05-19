@@ -5,21 +5,22 @@ import {
 } from 'firebase/auth';
 import { auth } from '../../config/firebase.config';
 import { ICONS } from '../../constants/icons';
+import { URLS } from '../../constants/requests';
 import Button from '../button/Button';
 import { SocialLoginContainer } from './styles';
 
-const SocialLogin = () => {
+const SocialLogin = ({ setFetchInfo }) => {
 	return (
 		<SocialLoginContainer>
 			<Button
-				action={() => loginWithGoogle()}
+				action={() => loginWithGoogle({ setFetchInfo })}
 				type='social'
 				src={ICONS.socials.google}
 			>
 				Continue with Google
 			</Button>
 			<Button
-				action={() => loginWithFacebook()}
+				action={() => loginWithFacebook({ setFetchInfo })}
 				type='social'
 				src={ICONS.socials.facebook}
 			>
@@ -29,12 +30,27 @@ const SocialLogin = () => {
 	);
 };
 
-const loginWithGoogle = async () => {
+const loginWithGoogle = async ({ setFetchInfo }) => {
 	const provider = new GoogleAuthProvider();
 	try {
 		const result = await signInWithPopup(auth, provider);
 		const credential = GoogleAuthProvider.credentialFromResult(result);
 		console.log(credential);
+		console.log(result);
+		setFetchInfo({
+			url: URLS.NEW_USER,
+			options: {
+				method: 'POST',
+				body: JSON.stringify({
+					userName: result.user.displayName,
+					email: result.user.email
+				}),
+				headers: {
+					Accept: '*/*',
+					'Content-Type': 'application/json'
+				}
+			}
+		});
 	} catch (err) {
 		console.log(err);
 	}

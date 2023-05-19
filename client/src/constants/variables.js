@@ -43,5 +43,5 @@ export const BORDER_RADIUS = {
 };
 
 export const BOX_SHADOWS = {
-	formCards: '0px 0px 33px 3px rgba(0, 0, 0, 0.43);'
+	formCards: '0px 0px 33px 3px rgba(0, 0, 0, 0.10);'
 };

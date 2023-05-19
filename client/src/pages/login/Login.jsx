@@ -29,7 +29,7 @@ const Login = () => {
 		register,
 		handleSubmit,
 		formState: { errors }
-	} = useForm({ resolver: yupResolver(loginSchema) });
+	} = useForm({ mode: 'onBlur', resolver: yupResolver(loginSchema) });
 	const navigate = useNavigate();
 	return (
 		<StyledLoginContainer>
@@ -40,25 +40,27 @@ const Login = () => {
 			>
 				<Title>{TITLES.formTitles.login}</Title>
 				<FormFieldLogin>
-					<LoginLabel htmlFor='email'>Enter yor email</LoginLabel>
 					<LoginInput
 						type='email'
 						id='email'
+						placeholder=' '
 						error={errors.email}
 						onFocus={() => setError('')}
 						{...register('email')}
 						required
 					/>
+					<LoginLabel htmlFor='email'>Email</LoginLabel>
 					<ErrorText>{errors.email?.message}</ErrorText>
 				</FormFieldLogin>
 				<FormFieldLogin>
-					<LoginLabel htmlFor='password'>Enter yor password</LoginLabel>
 					<LoginInput
 						type='password'
 						id='password'
+						placeholder=' '
 						{...register('password')}
 						required
 					/>
+					<LoginLabel htmlFor='password'>Password</LoginLabel>
 					<ErrorText>{errors.password?.message}</ErrorText>
 				</FormFieldLogin>
 				<Button type={BUTTONS.SQUARED} src={ICONS.login}>
@@ -72,7 +74,6 @@ const Login = () => {
 	);
 };
 const onSubmit = async (data, ev, setError, navigate) => {
-	ev.preventDefault();
 	const { email, password } = data;
 	try {
 		await signInWithEmailAndPassword(auth, email, password);

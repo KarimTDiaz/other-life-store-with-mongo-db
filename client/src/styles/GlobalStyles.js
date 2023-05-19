@@ -42,7 +42,6 @@ body {
     max-width: 100vw;
     margin-left: auto;
     margin-right: auto;
-	padding: 1rem;
 	font-family: 'grotesk-light', sans-serif;
 	background-color: ${COLORS.background.body};
 }

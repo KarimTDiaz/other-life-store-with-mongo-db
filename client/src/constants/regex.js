@@ -3,3 +3,5 @@ export const REGEX_EMAIL =
 
 export const REGEX_PASSWORD =
 	/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{};:,<.>]).{8,}$/;
+
+export const REGEX_USERNAME = /^[a-z0A-Z-0-9\s]{3,25}$/;
