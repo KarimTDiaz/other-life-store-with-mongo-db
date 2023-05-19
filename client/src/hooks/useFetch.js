@@ -5,23 +5,18 @@ const fetchData = async (fetchInfo, setFetchStatus) => {
 
 	try {
 		const request = await fetch(url, options);
-		const data = await request.json();
-		setFetchStatus({ data, loading: false, wrong: undefined });
+		const fetchData = await request.json();
+		setFetchStatus({ fetchData, loading: false, wrong: undefined });
 	} catch (err) {
 		setFetchStatus({ data: undefined, loading: false, wrong: err });
 	}
 };
 
-export const useFetch = () => {
-	const [fetchInfo, setFetchInfo] = useState({
-		url: 'http://127.0.0.1:3000/other-life-store',
-		options: {
-			method: 'GET'
-		}
-	});
+export const useFetch = initialFetch => {
+	const [fetchInfo, setFetchInfo] = useState(initialFetch);
 
 	const [fetchStatus, setFetchStatus] = useState({
-		data: undefined,
+		fetchData: undefined,
 		loading: true,
 		wrong: undefined
 	});

@@ -36,13 +36,13 @@ const loginWithGoogle = async ({ setFetchInfo }) => {
 		const result = await signInWithPopup(auth, provider);
 		const credential = GoogleAuthProvider.credentialFromResult(result);
 		console.log(credential);
-		console.log(result);
 		setFetchInfo({
 			url: URLS.NEW_USER,
 			options: {
 				method: 'POST',
 				body: JSON.stringify({
-					userName: result.user.displayName,
+					_id: result.user.uid,
+					userName: result.user.email,
 					email: result.user.email
 				}),
 				headers: {
@@ -61,6 +61,7 @@ const loginWithFacebook = async () => {
 		const result = await signInWithPopup(auth, provider);
 		const credential = FacebookAuthProvider.credentialFromResult(result);
 		console.log(credential);
+		console.log(result);
 	} catch (err) {
 		console.log(err);
 	}

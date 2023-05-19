@@ -45,6 +45,10 @@ body {
 	font-family: 'grotesk-light', sans-serif;
 	background-color: ${COLORS.background.body};
 }
+
+::placeholder{
+	color:transparent
+}
 `;
 
 export { GlobalStyle };

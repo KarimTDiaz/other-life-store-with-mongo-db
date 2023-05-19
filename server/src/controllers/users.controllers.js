@@ -27,6 +27,7 @@ controller.deleteUser = async (req, res) => {
 
 controller.createUser = async (req, res) => {
   const {
+    _id,
     profileImage,
     userName,
     name,
@@ -39,8 +40,18 @@ controller.createUser = async (req, res) => {
     purchases
   } = req.body;
 
+  const userCheck = await UserModel.findById(req.body._id);
+  if (userCheck) return res.send({ message: 'El id se repite' });
+
+  const userNameCheck = await UserModel.find({
+    userName: { $eq: req.body.userName }
+  });
+
+  if (userNameCheck.length !== 0)
+    return res.send({ message: 'El userName se repite' });
+
   const newUser = new UserModel({
-    _id: v4(),
+    _id,
     profileImage,
     userName,
     name,
@@ -52,11 +63,10 @@ controller.createUser = async (req, res) => {
     products,
     purchases
   });
-  if (newUser.email === req.body.email) return;
 
   await newUser.save();
 
-  res.send('User created');
+  res.send({ message: 'User created' });
 };
 
 controller.updateUser = async (req, res) => {

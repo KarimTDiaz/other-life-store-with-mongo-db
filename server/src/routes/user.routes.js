@@ -3,7 +3,7 @@ const userRoutes = express.Router();
 const controller = require('../controllers/users.controllers');
 
 // OBTENER TODOS LOS USUARIOS
-userRoutes.get('/', controller.allUsers);
+userRoutes.get('/users', controller.allUsers);
 
 userRoutes.get('/:id', controller.getSingleUser);
 

@@ -15,7 +15,6 @@ import { URLS } from '../../constants/requests';
 import { registerSchema } from '../../constants/schemas.form';
 import { TITLES } from '../../constants/titles';
 import { AuthContext } from '../../contexts/Auth.context';
-import { useFetch } from '../../hooks/useFetch';
 import {
 	ErrorText,
 	FormFieldRegister,
@@ -25,12 +24,13 @@ import {
 	RegisterText,
 	StyledRegisterContainer
 } from './styles';
+import { FetchContext } from '../../contexts/Fetch.context';
 
 const Register = () => {
 	const [error, setError] = useState('');
 	const navigate = useNavigate();
 	const { currentUser } = useContext(AuthContext);
-	const { loading, wrong, setFetchInfo } = useFetch();
+	const { fetchData, loading, wrong, setFetchInfo } = useContext(FetchContext);
 
 	const {
 		register,
@@ -42,11 +42,16 @@ const Register = () => {
 		if (currentUser) navigate('/');
 	}, [currentUser]);
 
+	if (loading) return <h1>Loading...</h1>;
+	if (wrong) return <h1>Something went wrong</h1>;
+
+	console.log('DATITOS', fetchData);
+
 	return (
 		<StyledRegisterContainer>
 			<FormRegister
 				onSubmit={handleSubmit((data, ev) => {
-					onSubmit(data, ev, setError, setFetchInfo);
+					onSubmit(data, ev, setError, setFetchInfo, fetchData);
 				})}
 			>
 				<Title>{TITLES.formTitles.register}</Title>
@@ -54,8 +59,9 @@ const Register = () => {
 					<RegisterInput
 						type='text'
 						id='userName'
-						placeholder=' '
+						placeholder='User Name'
 						error={errors.name}
+						onFocus={() => setError('')}
 						{...register('userName')}
 						required
 					/>
@@ -66,7 +72,7 @@ const Register = () => {
 					<RegisterInput
 						type='email'
 						id='email'
-						placeholder='  '
+						placeholder='Email'
 						error={errors.email}
 						onFocus={() => setError('')}
 						{...register('email')}
@@ -79,7 +85,7 @@ const Register = () => {
 					<RegisterInput
 						type='password'
 						id='password'
-						placeholder='  '
+						placeholder='Password'
 						error={errors.password}
 						{...register('password')}
 						required
@@ -104,16 +110,40 @@ const Register = () => {
 	);
 };
 
-const onSubmit = async (data, ev, setError, setFetchInfo) => {
+const onSubmit = async (data, ev, setError, setFetchInfo, fetchData) => {
 	const { email, password } = data;
+	console.log(data);
 	try {
-		await createUserWithEmailAndPassword(auth, email, password);
+		const userNameCheck = fetchData.find(
+			user => user.userName === data.userName
+		);
+		if (userNameCheck) {
+			setError('Username has already been used');
+			return;
+		}
+		const user = await createUserWithEmailAndPassword(auth, email, password);
 		setFetchInfo({
 			url: URLS.NEW_USER,
 			options: {
 				method: 'POST',
 				body: JSON.stringify({
-					...data
+					_id: user.user.uid,
+					profileImage: String,
+					userName: data.userName,
+					name: String,
+					surName: String,
+					email: data.email,
+					gender: String,
+					direction: {
+						country: String,
+						city: String,
+						poblation: String,
+						address: String,
+						zipCode: Number
+					},
+					favorites: Array,
+					products: Array,
+					purchases: Array
 				}),
 				headers: {
 					Accept: '*/*',

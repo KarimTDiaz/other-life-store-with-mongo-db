@@ -21,7 +21,7 @@ const HeaderTopDark = styled.div`
 const HeaderIcons = styled.div`
 	display: flex;
 	align-items: center;
-	gap: 1.5rem;
+	gap: 1rem;
 `;
 
 const CartContainer = styled.div`

@@ -49,13 +49,7 @@ const RegisterLabel = styled.label`
 	color: ${COLORS.background.modal};
 	pointer-events: none;
 	transition: 0.3s ease all;
-	${RegisterInput}:focus ~ & {
-		top: -18px;
-		left: 0;
-		font-size: ${FONT_SIZE.xxxxs};
-		color: ${COLORS.textDark};
-	}
-	${RegisterInput}:not(:placeholder-shown) ~ & {
+	${RegisterInput}:focus ~ &, ${RegisterInput}:not(:placeholder-shown) ~ & {
 		top: -18px;
 		left: 0;
 		font-size: ${FONT_SIZE.xxxxs};
