@@ -10,4 +10,18 @@ const FormTitle = styled.h1`
 	-webkit-text-stroke: 1.5px black;
 `;
 
-export { FormTitle };
+const PageTitle = styled.h1`
+	text-align: center;
+	font-family: ${FONT_FAMILY.secondary};
+	font-size: ${FONT_SIZE.l};
+	color: transparent;
+	-webkit-text-stroke: 1.5px black;
+`;
+
+const SubTitle = styled.h3`
+	margin: 0;
+	font-family: ${FONT_FAMILY.primary.regular};
+	font-size: ${FONT_SIZE.xs};
+`;
+
+export { FormTitle, PageTitle, SubTitle };

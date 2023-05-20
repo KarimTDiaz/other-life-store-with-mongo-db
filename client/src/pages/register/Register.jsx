@@ -13,7 +13,7 @@ import { BUTTONS } from '../../constants/buttons';
 import { ICONS } from '../../constants/icons';
 import { URLS } from '../../constants/requests';
 import { registerSchema } from '../../constants/schemas.form';
-import { TITLES } from '../../constants/titles';
+import { TITLES, TITLES_TYPES } from '../../constants/titles';
 import { AuthContext } from '../../contexts/Auth.context';
 import { FetchContext } from '../../contexts/Fetch.context';
 import {
@@ -30,7 +30,7 @@ const Register = () => {
 	const [error, setError] = useState('');
 	const navigate = useNavigate();
 	const { currentUser } = useContext(AuthContext);
-	const { fetchData, loading, wrong, setFetchInfo } = useContext(FetchContext);
+	const { fetchData, load, wrong, setFetchInfo } = useContext(FetchContext);
 
 	const {
 		register,
@@ -42,17 +42,17 @@ const Register = () => {
 		if (currentUser) navigate('/');
 	}, [currentUser]);
 
-	if (loading) return <h1>Loading...</h1>;
+	if (load) return <h1>Loading...</h1>;
 	if (wrong) return <h1>Something went wrong</h1>;
 
 	return (
 		<StyledRegisterContainer>
 			<FormRegister
 				onSubmit={handleSubmit((data, ev) => {
-					onSubmit(data, ev, setError, setFetchInfo, fetchData);
+					onSubmit(data, ev, setError, setFetchInfo, fetchData, navigate);
 				})}
 			>
-				<Title>{TITLES.formTitles.register}</Title>
+				<Title type={TITLES_TYPES.FORM}>{TITLES.formTitles.register}</Title>
 				<FormFieldRegister>
 					<RegisterInput
 						type='text'
@@ -108,9 +108,15 @@ const Register = () => {
 	);
 };
 
-const onSubmit = async (data, ev, setError, setFetchInfo, fetchData) => {
+const onSubmit = async (
+	data,
+	ev,
+	setError,
+	setFetchInfo,
+	fetchData,
+	navigate
+) => {
 	const { email, password } = data;
-	console.log(data);
 	try {
 		const userNameCheck = fetchData.find(
 			user => user.userName === data.userName

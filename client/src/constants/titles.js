@@ -18,3 +18,9 @@ export const SUBTITLES = {
 	},
 	product: {}
 };
+
+export const TITLES_TYPES = {
+	FORM: 'form',
+	PAGE: 'page',
+	SUBTITLE: 'subtitle'
+};

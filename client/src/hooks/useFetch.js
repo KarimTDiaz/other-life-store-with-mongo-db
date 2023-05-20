@@ -1,28 +1,29 @@
 import { useEffect, useState } from 'react';
 
-const fetchData = async (fetchInfo, setFetchStatus) => {
+const fetchData = async (fetchInfo, setFetchStatus, signal) => {
 	const { url, options } = fetchInfo;
 
 	try {
-		const request = await fetch(url, options);
+		const request = await fetch(url, options, signal);
 		const fetchData = await request.json();
-		setFetchStatus({ fetchData, loading: false, wrong: undefined });
+		setFetchStatus({ fetchData, load: false, wrong: undefined });
 	} catch (err) {
-		setFetchStatus({ data: undefined, loading: false, wrong: err });
+		setFetchStatus({ fetchData: undefined, load: false, wrong: err });
 	}
 };
 
 export const useFetch = initialFetch => {
-	const [fetchInfo, setFetchInfo] = useState(initialFetch);
-
 	const [fetchStatus, setFetchStatus] = useState({
 		fetchData: undefined,
-		loading: true,
+		load: true,
 		wrong: undefined
 	});
+	const [fetchInfo, setFetchInfo] = useState(initialFetch);
 
 	useEffect(() => {
-		fetchData(fetchInfo, setFetchStatus);
+		const controller = new AbortController();
+		fetchData(fetchInfo, setFetchStatus, controller.signal);
+		return () => controller;
 	}, [fetchInfo]);
 
 	return { ...fetchStatus, setFetchInfo };

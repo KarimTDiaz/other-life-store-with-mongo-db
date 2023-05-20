@@ -4,7 +4,7 @@ import { AuthContext } from '../contexts/Auth.context';
 
 export const AuthProvider = ({ children }) => {
 	const [currentUser, setCurrentUser] = useState(null);
-	const [loading, setLoading] = useState(true);
+	const [authLoading, setAuthLoading] = useState(true);
 	useEffect(() => {
 		const unsuscribe = auth.onAuthStateChanged(user => {
 			if (user) {
@@ -16,12 +16,12 @@ export const AuthProvider = ({ children }) => {
 				console.log('Usuario no autenticado');
 				setCurrentUser(null);
 			}
-			setLoading(false);
+			setAuthLoading(false);
 		});
 		return () => unsuscribe();
 	}, []);
 	return (
-		<AuthContext.Provider value={{ currentUser, setCurrentUser, loading }}>
+		<AuthContext.Provider value={{ currentUser, setCurrentUser, authLoading }}>
 			{children}
 		</AuthContext.Provider>
 	);

@@ -15,6 +15,10 @@ export const ICONS = {
 		src: '/assets/icons/user.svg',
 		alt: 'Icono de usuario'
 	},
+	userBell: {
+		src: '/assets/icons/user-bell.svg',
+		alt: 'Icono de usuario con notificaion'
+	},
 	cart: {
 		src: '/assets/icons/cart-shopping.svg',
 		alt: 'Icono de carrito de compra'

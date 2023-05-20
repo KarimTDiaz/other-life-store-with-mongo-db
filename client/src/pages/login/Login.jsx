@@ -12,7 +12,7 @@ import { AUTH_ERRORS } from '../../constants/auth.errors';
 import { BUTTONS } from '../../constants/buttons';
 import { ICONS } from '../../constants/icons';
 import { loginSchema } from '../../constants/schemas.form';
-import { TITLES } from '../../constants/titles';
+import { TITLES, TITLES_TYPES } from '../../constants/titles';
 import {
 	ErrorText,
 	FormFieldLogin,
@@ -25,12 +25,12 @@ import {
 
 const Login = () => {
 	const [error, setError] = useState('');
+	const navigate = useNavigate();
 	const {
 		register,
 		handleSubmit,
 		formState: { errors }
 	} = useForm({ mode: 'onBlur', resolver: yupResolver(loginSchema) });
-	const navigate = useNavigate();
 	return (
 		<StyledLoginContainer>
 			<FormLogin
@@ -38,7 +38,7 @@ const Login = () => {
 					onSubmit(data, ev, setError, navigate)
 				)}
 			>
-				<Title>{TITLES.formTitles.login}</Title>
+				<Title type={TITLES_TYPES.FORM}>{TITLES.formTitles.login}</Title>
 				<FormFieldLogin>
 					<LoginInput
 						type='email'
