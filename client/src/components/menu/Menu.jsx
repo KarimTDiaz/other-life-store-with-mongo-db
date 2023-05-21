@@ -1,10 +1,10 @@
+import { signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../../config/firebase.config';
-import { signOut } from 'firebase/auth';
 import { ICONS } from '../../constants/icons';
 import { MENU_LINKS } from '../../constants/menu';
-import { MenuItem, MenuLink, StyledMenu } from './styles';
 import Button from '../button/Button';
+import { MenuItem, MenuLink, StyledMenu } from './styles';
 
 const Menu = ({ open }) => {
 	const navigate = useNavigate();
@@ -30,7 +30,7 @@ const Menu = ({ open }) => {
 	);
 };
 
-const handleSignOut = async navigate => {
+const handleSignOut = async (navigate, setFetchInfo) => {
 	await signOut(auth);
 	navigate('/');
 };

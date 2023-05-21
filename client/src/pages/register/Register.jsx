@@ -1,11 +1,12 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import Button from '../../components/button/Button';
 import ErrorPopUp from '../../components/error-pop-up/ErrorPopUp';
 import SocialLogin from '../../components/social-login/SocialLogin';
+import Text from '../../components/text/Text';
 import Title from '../../components/title/Title';
 import { auth } from '../../config/firebase.config';
 import { AUTH_ERRORS } from '../../constants/auth.errors';
@@ -13,11 +14,11 @@ import { BUTTONS } from '../../constants/buttons';
 import { ICONS } from '../../constants/icons';
 import { URLS } from '../../constants/requests';
 import { registerSchema } from '../../constants/schemas.form';
+import { TEXTS_TYPES } from '../../constants/texts';
 import { TITLES, TITLES_TYPES } from '../../constants/titles';
 import { AuthContext } from '../../contexts/Auth.context';
-import { FetchContext } from '../../contexts/Fetch.context';
+import { useFetch } from '../../hooks/useFetch';
 import {
-	ErrorText,
 	FormFieldRegister,
 	FormRegister,
 	RegisterInput,
@@ -28,9 +29,13 @@ import {
 
 const Register = () => {
 	const [error, setError] = useState('');
-	const navigate = useNavigate();
 	const { currentUser } = useContext(AuthContext);
-	const { fetchData, load, wrong, setFetchInfo } = useContext(FetchContext);
+	const {
+		fetchData: allUsers,
+		load,
+		wrong,
+		setFetchInfo
+	} = useFetch({ url: URLS.ALL_USERS });
 
 	const {
 		register,
@@ -38,9 +43,7 @@ const Register = () => {
 		formState: { errors }
 	} = useForm({ mode: 'onBlur', resolver: yupResolver(registerSchema) });
 
-	useEffect(() => {
-		if (currentUser) navigate('/');
-	}, [currentUser]);
+	if (currentUser) return <Navigate to='/' />;
 
 	if (load) return <h1>Loading...</h1>;
 	if (wrong) return <h1>Something went wrong</h1>;
@@ -49,7 +52,7 @@ const Register = () => {
 		<StyledRegisterContainer>
 			<FormRegister
 				onSubmit={handleSubmit((data, ev) => {
-					onSubmit(data, ev, setError, setFetchInfo, fetchData, navigate);
+					onSubmit(data, ev, setError, setFetchInfo, allUsers);
 				})}
 			>
 				<Title type={TITLES_TYPES.FORM}>{TITLES.formTitles.register}</Title>
@@ -58,13 +61,13 @@ const Register = () => {
 						type='text'
 						id='userName'
 						placeholder='User Name'
-						error={errors.name}
+						error={errors.userName}
 						onFocus={() => setError('')}
 						{...register('userName')}
 						required
 					/>
 					<RegisterLabel htmlFor='userName'>User Name</RegisterLabel>
-					<ErrorText>{errors.userName?.message}</ErrorText>
+					<Text type={TEXTS_TYPES.ERROR}>{errors.userName?.message}</Text>
 				</FormFieldRegister>
 				<FormFieldRegister>
 					<RegisterInput
@@ -77,7 +80,7 @@ const Register = () => {
 						required
 					/>
 					<RegisterLabel htmlFor='email'>Email</RegisterLabel>
-					<ErrorText>{errors.email?.message}</ErrorText>
+					<Text type={TEXTS_TYPES.ERROR}>{errors.email?.message}</Text>
 				</FormFieldRegister>
 				<FormFieldRegister>
 					<RegisterInput
@@ -89,7 +92,7 @@ const Register = () => {
 						required
 					/>
 					<RegisterLabel htmlFor='password'>Password</RegisterLabel>
-					<ErrorText>{errors.password?.message}</ErrorText>
+					<Text type={TEXTS_TYPES.ERROR}>{errors.password?.message}</Text>
 				</FormFieldRegister>
 				<Button type={BUTTONS.SQUARED}>CREATE ACCOUNT</Button>
 				{error && <ErrorPopUp>{error}</ErrorPopUp>}
@@ -108,26 +111,17 @@ const Register = () => {
 	);
 };
 
-const onSubmit = async (
-	data,
-	ev,
-	setError,
-	setFetchInfo,
-	fetchData,
-	navigate
-) => {
+const onSubmit = async (data, ev, setError, setFetchInfo, allUsers) => {
 	const { email, password } = data;
-	try {
-		const userNameCheck = fetchData.find(
-			user => user.userName === data.userName
-		);
-		if (userNameCheck) {
-			setError('Username has already been used');
-			return;
-		}
 
+	const userNameCheck = allUsers.find(user => user.userName === data.userName);
+	if (userNameCheck) {
+		setError('Username has already been used');
+		return;
+	}
+	try {
 		const user = await createUserWithEmailAndPassword(auth, email, password);
-		setFetchInfo({
+		await setFetchInfo({
 			url: URLS.NEW_USER,
 			options: {
 				method: 'POST',

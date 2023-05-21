@@ -69,7 +69,7 @@ controller.createUser = async (req, res) => {
 
   await newUser.save();
 
-  res.send({ message: 'User created' });
+  res.send({ message: 'user created' });
 };
 
 controller.updateUser = async (req, res) => {

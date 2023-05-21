@@ -4,7 +4,7 @@ import { BUTTONS } from '../../constants/buttons';
 import { ICONS, ICONS_SIZES } from '../../constants/icons';
 import { URLS } from '../../constants/requests';
 import { AuthContext } from '../../contexts/Auth.context';
-import { FetchContext } from '../../contexts/Fetch.context';
+import { useFetch } from '../../hooks/useFetch';
 import Button from '../button/Button';
 import Icon from '../icon/Icon';
 import Logo from '../logo/Logo';
@@ -23,13 +23,14 @@ const Header = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
 	const { currentUser, authLoading } = useContext(AuthContext);
-	const { fetchData, load, wrong, setFetchInfo } = useContext(FetchContext);
+	const { fetchData, load, wrong, setFetchInfo } = useFetch();
 
 	useEffect(() => {
-		if (currentUser)
-			setFetchInfo({
-				url: URLS.ALL_USERS + '/' + currentUser.uid
-			});
+		if (!currentUser) return;
+		console.log(currentUser);
+		setFetchInfo({
+			url: URLS.SINGLE_USER + '/' + currentUser.uid
+		});
 	}, [currentUser]);
 
 	if (location.pathname !== '/')
@@ -40,6 +41,8 @@ const Header = () => {
 				</HeaderTopDark>
 			</StyledHeader>
 		);
+	if (load) return <h1>Loading</h1>;
+	if (wrong) return <h1>wrong</h1>;
 
 	return (
 		<StyledHeader>
@@ -53,25 +56,25 @@ const Header = () => {
 					>
 						Register/Login
 					</Button>
-				) : currentUser && fetchData ? (
-					<>
-						<Menu open={open} />
-						<HeaderIcons>
-							<Icon
-								action={() => {
-									setOpen(!open);
-								}}
-								src={fetchData.name ? ICONS.user : ICONS.userBell}
-								size={ICONS_SIZES.big}
-							/>
-							<CartContainer>
-								<Icon src={ICONS.cart} size={ICONS_SIZES.big} />
-								<CartCounter>(0)</CartCounter>
-							</CartContainer>
-						</HeaderIcons>
-					</>
 				) : (
-					<h1>loading...</h1>
+					currentUser && (
+						<>
+							<Menu open={open} />
+							<HeaderIcons>
+								<Icon
+									action={() => {
+										setOpen(!open);
+									}}
+									src={fetchData.name ? ICONS.user : ICONS.userBell}
+									size={ICONS_SIZES.big}
+								/>
+								<CartContainer>
+									<Icon src={ICONS.cart} size={ICONS_SIZES.big} />
+									<CartCounter>(0)</CartCounter>
+								</CartContainer>
+							</HeaderIcons>
+						</>
+					)
 				)}
 			</HeaderTopLight>
 		</StyledHeader>

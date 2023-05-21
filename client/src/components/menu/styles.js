@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
 import { COLORS, FONT_FAMILY, FONT_SIZE } from '../../constants/variables';
 
 const StyledMenu = styled.ul`

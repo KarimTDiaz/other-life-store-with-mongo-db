@@ -3,7 +3,8 @@ export const TITLES = {
 	mainSubTitle: 'More than a 2nd Hand Records Shop',
 	formTitles: {
 		register: 'CREATE AN ACCOUNT',
-		login: 'LOGIN TO YOUR ACCOUNT'
+		login: 'LOGIN TO YOUR ACCOUNT',
+		editUser: 'EDIT PROFILE'
 	}
 };
 
@@ -14,7 +15,11 @@ export const SUBTITLES = {
 		NAME: 'Name',
 		SURNAME: 'Surname',
 		GENDER: 'Gender',
-		ADRESS: 'Adress'
+		ADDRESS: 'Address',
+		CITY: 'City',
+		POBLATION: 'Poblation',
+		COUNTRY: 'Country',
+		ZIP: 'Zip Code'
 	},
 	product: {}
 };

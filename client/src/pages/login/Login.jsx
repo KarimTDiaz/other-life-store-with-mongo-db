@@ -6,15 +6,16 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../../components/button/Button';
 import ErrorPopUp from '../../components/error-pop-up/ErrorPopUp';
 import SocialLogin from '../../components/social-login/SocialLogin';
+import Text from '../../components/text/Text';
 import Title from '../../components/title/Title';
 import { auth } from '../../config/firebase.config';
 import { AUTH_ERRORS } from '../../constants/auth.errors';
 import { BUTTONS } from '../../constants/buttons';
 import { ICONS } from '../../constants/icons';
 import { loginSchema } from '../../constants/schemas.form';
+import { TEXTS_TYPES } from '../../constants/texts';
 import { TITLES, TITLES_TYPES } from '../../constants/titles';
 import {
-	ErrorText,
 	FormFieldLogin,
 	FormLogin,
 	LoginInput,
@@ -50,7 +51,7 @@ const Login = () => {
 						required
 					/>
 					<LoginLabel htmlFor='email'>Email</LoginLabel>
-					<ErrorText>{errors.email?.message}</ErrorText>
+					<Text type={TEXTS_TYPES.ERROR}>{errors.email?.message}</Text>
 				</FormFieldLogin>
 				<FormFieldLogin>
 					<LoginInput
@@ -61,7 +62,7 @@ const Login = () => {
 						required
 					/>
 					<LoginLabel htmlFor='password'>Password</LoginLabel>
-					<ErrorText>{errors.password?.message}</ErrorText>
+					<Text type={TEXTS_TYPES.ERROR}>{errors.password?.message}</Text>
 				</FormFieldLogin>
 				<Button type={BUTTONS.SQUARED} src={ICONS.login}>
 					Log In

@@ -20,8 +20,8 @@ const PageTitle = styled.h1`
 
 const SubTitle = styled.h3`
 	margin: 0;
-	font-family: ${FONT_FAMILY.primary.regular};
-	font-size: ${FONT_SIZE.xs};
+	font-family: ${FONT_FAMILY.primary.thin};
+	font-size: ${FONT_SIZE.xxs};
 `;
 
 export { FormTitle, PageTitle, SubTitle };

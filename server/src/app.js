@@ -19,7 +19,7 @@ app.use(cors());
 app.use(express.json());
 
 // Uso de rutas
-app.use('/other-life-store', userRoutes);
+app.use('/other-life-store/users', userRoutes);
 
 // Funcion para inicializar el servidor conectando a la db
 

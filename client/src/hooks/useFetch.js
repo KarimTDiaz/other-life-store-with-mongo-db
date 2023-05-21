@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 const fetchData = async (fetchInfo, setFetchStatus, signal) => {
+	if (!fetchInfo) return;
 	const { url, options } = fetchInfo;
 
 	try {
@@ -23,7 +24,7 @@ export const useFetch = initialFetch => {
 	useEffect(() => {
 		const controller = new AbortController();
 		fetchData(fetchInfo, setFetchStatus, controller.signal);
-		return () => controller;
+		return () => controller.abort();
 	}, [fetchInfo]);
 
 	return { ...fetchStatus, setFetchInfo };

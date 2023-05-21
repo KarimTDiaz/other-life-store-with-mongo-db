@@ -7,7 +7,7 @@ import {
 	FONT_SIZE
 } from '../../constants/variables';
 
-const StyledLoginContainer = styled.div`
+const StyledProfileContainer = styled.div`
 	max-width: 450px;
 	padding: 1rem;
 	margin-left: auto;
@@ -15,20 +15,21 @@ const StyledLoginContainer = styled.div`
 	background-color: ${COLORS.background.body};
 `;
 
-const FormLogin = styled.form`
+const FormProfile = styled.form`
 	padding: 1.5rem 2rem;
 	border-radius: ${BORDER_RADIUS.formCards};
 	box-shadow: ${BOX_SHADOWS.formCards};
 `;
 
-const FormFieldLogin = styled.div`
+const FormFieldProfile = styled.div`
 	position: relative;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	margin-bottom: 1.5rem;
 `;
-const LoginInput = styled.input`
+
+const ProfileInput = styled.input`
 	padding: 0.5rem;
 	font-family: ${FONT_FAMILY.primary.regular};
 	background: none;
@@ -40,7 +41,7 @@ const LoginInput = styled.input`
 		border-color: ${COLORS.textDark};
 	}
 `;
-const LoginLabel = styled.label`
+const ProfileLabel = styled.label`
 	position: absolute;
 	left: 10px;
 	top: 7px;
@@ -48,30 +49,28 @@ const LoginLabel = styled.label`
 	color: ${COLORS.background.modal};
 	pointer-events: none;
 	transition: 0.3s ease all;
-	${LoginInput}:focus ~ & {
-		top: -18px;
-		left: 0;
-		font-size: ${FONT_SIZE.xxxxs};
-		color: ${COLORS.textDark};
-	}
-	${LoginInput}:not(:placeholder-shown) ~ & {
+	${ProfileInput}:focus ~ &, ${ProfileInput}:not(:placeholder-shown) ~ & {
 		top: -18px;
 		left: 0;
 		font-size: ${FONT_SIZE.xxxxs};
 		color: ${COLORS.textDark};
 	}
 `;
-
-const LoginText = styled.p`
+const ProfileText = styled.p`
 	font-family: ${FONT_FAMILY.primary.regular};
 	text-align: center;
 `;
-
+const ErrorText = styled.span`
+	font-size: ${FONT_SIZE.xxxxs};
+	color: ${COLORS.error};
+	pointer-events: none;
+`;
 export {
-	StyledLoginContainer,
-	FormLogin,
-	FormFieldLogin,
-	LoginLabel,
-	LoginInput,
-	LoginText
+	StyledProfileContainer,
+	FormProfile,
+	FormFieldProfile,
+	ProfileLabel,
+	ProfileInput,
+	ProfileText,
+	ErrorText
 };

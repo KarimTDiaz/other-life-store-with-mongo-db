@@ -6,6 +6,7 @@ const StyledProfileContainer = styled.div`
 `;
 
 const StyledProfileCard = styled.div`
+	position: relative;
 	padding: 1rem;
 	background-color: ${COLORS.textLight};
 	border-radius: ${BORDER_RADIUS.formCards};
@@ -15,6 +16,7 @@ const StyledProfileCard = styled.div`
 const ProfileField = styled.div`
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
 	gap: 1rem;
 	position: relative;
 	margin-bottom: 2rem;
@@ -27,5 +29,22 @@ const ProfileField = styled.div`
 		background-color: ${COLORS.decoration};
 	}
 `;
+const ProfileImageContainer = styled.div`
+	display: flex;
+	justify-content: center;
+	padding: 1rem;
+	margin-bottom: 2rem;
+`;
 
-export { StyledProfileContainer, StyledProfileCard, ProfileField };
+const ProfileImage = styled.img`
+	background-color: yellow;
+	border-radius: 50%;
+`;
+
+export {
+	StyledProfileContainer,
+	StyledProfileCard,
+	ProfileField,
+	ProfileImageContainer,
+	ProfileImage
+};

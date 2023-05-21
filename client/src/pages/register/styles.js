@@ -60,11 +60,6 @@ const RegisterText = styled.p`
 	font-family: ${FONT_FAMILY.primary.regular};
 	text-align: center;
 `;
-const ErrorText = styled.span`
-	font-size: ${FONT_SIZE.xxxxs};
-	color: ${COLORS.error};
-	pointer-events: none;
-`;
 
 export {
 	StyledRegisterContainer,
@@ -72,6 +67,5 @@ export {
 	FormFieldRegister,
 	RegisterLabel,
 	RegisterInput,
-	RegisterText,
-	ErrorText
+	RegisterText
 };

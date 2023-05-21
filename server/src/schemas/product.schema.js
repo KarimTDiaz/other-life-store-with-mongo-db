@@ -11,7 +11,7 @@ const ProductSchema = mongoose.Schema({
   mediaCondition: String,
   description: String,
   price: Number,
-  seller: String,
+  seller: Object,
   likes: Number
 });
 

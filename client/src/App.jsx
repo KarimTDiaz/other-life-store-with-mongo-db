@@ -1,6 +1,5 @@
 import { BrowserRouter } from 'react-router-dom';
 import { AuthProvider } from './providers/Auth.provider';
-import { FetchProvider } from './providers/Fetch.provider';
 import Router from './router/Router';
 import { GlobalStyle } from './styles/GlobalStyles';
 
@@ -9,11 +8,9 @@ const App = () => {
 		<>
 			<GlobalStyle />
 			<BrowserRouter>
-				<FetchProvider>
-					<AuthProvider>
-						<Router />
-					</AuthProvider>
-				</FetchProvider>
+				<AuthProvider>
+					<Router />
+				</AuthProvider>
 			</BrowserRouter>
 		</>
 	);
