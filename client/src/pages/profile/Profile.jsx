@@ -113,7 +113,7 @@ const Profile = () => {
 							</Text>
 						</ProfileField>
 						<Button
-							action={() => navigate('/edit-profile')}
+							action={() => navigate('/edit-profile', { state: singleUser })}
 							type={BUTTONS.SQUARED}
 							src={ICONS.login}
 						>

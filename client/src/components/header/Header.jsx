@@ -27,12 +27,11 @@ const Header = () => {
 
 	useEffect(() => {
 		if (!currentUser) return;
-		console.log(currentUser);
 		setFetchInfo({
 			url: URLS.SINGLE_USER + '/' + currentUser.uid
 		});
 	}, [currentUser]);
-
+	console.log(fetchData);
 	if (location.pathname !== '/')
 		return (
 			<StyledHeader>
@@ -41,8 +40,8 @@ const Header = () => {
 				</HeaderTopDark>
 			</StyledHeader>
 		);
-	if (load) return <h1>Loading</h1>;
-	if (wrong) return <h1>wrong</h1>;
+	if (load) return <h1>LOADING</h1>;
+	if (wrong) return <h1>WRONG</h1>;
 
 	return (
 		<StyledHeader>
@@ -56,25 +55,25 @@ const Header = () => {
 					>
 						Register/Login
 					</Button>
+				) : currentUser && fetchData ? (
+					<>
+						<Menu open={open} />
+						<HeaderIcons>
+							<Icon
+								action={() => {
+									setOpen(!open);
+								}}
+								src={fetchData.name ? ICONS.user : ICONS.userBell}
+								size={ICONS_SIZES.big}
+							/>
+							<CartContainer>
+								<Icon src={ICONS.cart} size={ICONS_SIZES.big} />
+								<CartCounter>(0)</CartCounter>
+							</CartContainer>
+						</HeaderIcons>
+					</>
 				) : (
-					currentUser && (
-						<>
-							<Menu open={open} />
-							<HeaderIcons>
-								<Icon
-									action={() => {
-										setOpen(!open);
-									}}
-									src={fetchData.name ? ICONS.user : ICONS.userBell}
-									size={ICONS_SIZES.big}
-								/>
-								<CartContainer>
-									<Icon src={ICONS.cart} size={ICONS_SIZES.big} />
-									<CartCounter>(0)</CartCounter>
-								</CartContainer>
-							</HeaderIcons>
-						</>
-					)
+					<h1></h1>
 				)}
 			</HeaderTopLight>
 		</StyledHeader>

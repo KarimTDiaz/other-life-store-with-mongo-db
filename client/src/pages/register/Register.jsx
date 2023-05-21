@@ -2,7 +2,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import Button from '../../components/button/Button';
 import ErrorPopUp from '../../components/error-pop-up/ErrorPopUp';
 import SocialLogin from '../../components/social-login/SocialLogin';
@@ -30,6 +30,7 @@ import {
 const Register = () => {
 	const [error, setError] = useState('');
 	const { currentUser } = useContext(AuthContext);
+	const navigate = useNavigate();
 	const {
 		fetchData: allUsers,
 		load,
