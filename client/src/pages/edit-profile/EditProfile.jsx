@@ -1,7 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { v4 } from 'uuid';
 import Button from '../../components/button/Button';
 import ProfileImage from '../../components/profile-image/ProfileImage';
@@ -23,6 +23,8 @@ import {
 } from './styles';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { storage } from '../../config/firebase.config';
+import { AuthContext } from '../../contexts/Auth.context';
+import { array } from 'yup';
 
 const EditProfile = () => {
 	const {
@@ -32,7 +34,7 @@ const EditProfile = () => {
 	} = useForm({ mode: 'onBlur', resolver: yupResolver(editUserSchema) });
 
 	const {
-		finalData: allUsers,
+		finalData: userData,
 		load,
 		wrong,
 		setFetchInfo
@@ -173,6 +175,9 @@ const EditProfile = () => {
 				</FormFieldProfile>
 				<Button type={BUTTONS.SQUARED}>Update Profile</Button>
 			</FormProfile>
+			<Button action={() => navigate('/profile')} type={BUTTONS.THIN}>
+				Come Back
+			</Button>
 		</StyledProfileContainer>
 	);
 };
@@ -182,7 +187,6 @@ const handleFile = (event, setFile) => {
 };
 
 const onSubmit = async (data, ev, file, setFetchInfo, id, navigate, state) => {
-	let profileImage = state.profileImage;
 	try {
 		if (file) {
 			const nameNoExtension = file.name.substring(
@@ -193,7 +197,7 @@ const onSubmit = async (data, ev, file, setFetchInfo, id, navigate, state) => {
 			const directory = id;
 			const storageRef = ref(storage, `${directory}/${finalName}`);
 			const upload = await uploadBytes(storageRef, file);
-			profileImage = await getDownloadURL(storageRef);
+			data.profileImage = await getDownloadURL(storageRef);
 		}
 
 		await setFetchInfo({
@@ -201,8 +205,7 @@ const onSubmit = async (data, ev, file, setFetchInfo, id, navigate, state) => {
 			options: {
 				method: 'PATCH',
 				body: JSON.stringify({
-					...data,
-					profileImage
+					...data
 				}),
 				headers: {
 					Accept: '*/*',
@@ -215,3 +218,7 @@ const onSubmit = async (data, ev, file, setFetchInfo, id, navigate, state) => {
 	}
 };
 export default EditProfile;
+
+//firebasestorage.googleapis.com/v0/b/other-life-store.appspot.com/o/MpMfQXkChcOyr9nhnzQUG96RZKB2%2FR-11782904-1522305360-2704-9dcc4dca-150f-42e3-908e-7f1353d91bed?alt=media&token=9c822cc4-7b68-4808-b47e-d83ba046c8c8
+
+https: 'https://firebasestorage.googleapis.com/v0/b/other-life-store.appspot.com/o/MpMfQXkChcOyr9nhnzQUG96RZKB2%2FR-226764-1332464848-c087e561-4365-43df-8fe2-f629f643b5c6?alt=media&token=1085a941-5572-4b38-a183-b18d30a5e19b';

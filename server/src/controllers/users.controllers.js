@@ -72,9 +72,12 @@ controller.createUser = async (req, res) => {
 
 controller.updateUser = async (req, res) => {
   const user = await UserModel.findById(req.params.id);
-  console.log(user);
-  await UserModel.updateOne({ _id: user._id }, { $set: { ...req.body } });
-  res.send('User Updated');
+  const userUpdated = await UserModel.updateOne(
+    { _id: user._id },
+    { $set: { ...req.body } }
+  );
+  console.log(userUpdated);
+  res.send(userUpdated);
 };
 
 module.exports = controller;

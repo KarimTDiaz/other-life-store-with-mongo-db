@@ -24,7 +24,6 @@ const Header = () => {
 	const location = useLocation();
 	const { currentUser, authLoading } = useContext(AuthContext);
 	const { finalData, load, wrong, setFetchInfo } = useFetch();
-	console.log(location.state);
 
 	useEffect(() => {
 		if (!currentUser || location.state) return;
