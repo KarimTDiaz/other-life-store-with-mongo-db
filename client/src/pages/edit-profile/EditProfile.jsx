@@ -1,7 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { v4 } from 'uuid';
 import Button from '../../components/button/Button';
 import ProfileImage from '../../components/profile-image/ProfileImage';
@@ -21,6 +21,8 @@ import {
 	ProfileLabel,
 	StyledProfileContainer
 } from './styles';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { storage } from '../../config/firebase.config';
 
 const EditProfile = () => {
 	const {
@@ -28,20 +30,23 @@ const EditProfile = () => {
 		handleSubmit,
 		formState: { errors }
 	} = useForm({ mode: 'onBlur', resolver: yupResolver(editUserSchema) });
+
 	const {
 		finalData: allUsers,
 		load,
 		wrong,
 		setFetchInfo
 	} = useFetch({ url: URLS.ALL_USERS });
+
 	const [file, setFile] = useState(null);
+	const navigate = useNavigate();
 	const { state } = useLocation();
-	console.log(state._id);
+
 	return (
 		<StyledProfileContainer>
 			<FormProfile
 				onSubmit={handleSubmit((data, ev) => {
-					onSubmit(data, ev, file, setFetchInfo, state._id);
+					onSubmit(data, ev, file, setFetchInfo, state._id, navigate, state);
 				})}
 			>
 				<Title type={TITLES_TYPES.FORM}>{TITLES.formTitles.editUser}</Title>
@@ -172,27 +177,32 @@ const EditProfile = () => {
 	);
 };
 const handleFile = (event, setFile) => {
-	const file = event.target.files[0];
-	setFile(file);
+	const newFile = event.target.files[0];
+	setFile(newFile);
 };
 
-const onSubmit = async (data, ev, file, setFetchInfo, id) => {
+const onSubmit = async (data, ev, file, setFetchInfo, id, navigate, state) => {
+	let profileImage = state.profileImage;
 	try {
-		/* const nameNoExtension = file.name.substring(0, file.name.lastIndexOf('.'));
-		const finalName = `${nameNoExtension}-${v4()}`;
-		const directory = id;
-		const storageRef = ref(storage, `${directory}/${finalName}`);
-		const upload = await uploadBytes(storageRef, file);
-		const profileImage = await getDownloadURL(storageRef);
+		if (file) {
+			const nameNoExtension = file.name.substring(
+				0,
+				file.name.lastIndexOf('.')
+			);
+			const finalName = `${nameNoExtension}-${v4()}`;
+			const directory = id;
+			const storageRef = ref(storage, `${directory}/${finalName}`);
+			const upload = await uploadBytes(storageRef, file);
+			profileImage = await getDownloadURL(storageRef);
+		}
 
-		const formData = { ...data, profileImage: profileImage }; */
-		console.log(data);
 		await setFetchInfo({
-			url: URLS.EDIT_USER + '/' + id,
+			url: URLS.EDIT_USER + id,
 			options: {
 				method: 'PATCH',
 				body: JSON.stringify({
-					...data
+					...data,
+					profileImage
 				}),
 				headers: {
 					Accept: '*/*',

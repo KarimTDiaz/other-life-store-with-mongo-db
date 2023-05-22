@@ -116,8 +116,8 @@ const Register = () => {
 };
 
 const onSubmit = async (data, ev, setError, setFetchInfo, allUsers) => {
-	const { email, password, userName } = data;
-
+	const { email, password } = data;
+	console.log(data);
 	const userNameCheck = allUsers.find(user => user.userName === data.userName);
 	if (userNameCheck) {
 		setError('Username has already been used');
@@ -125,6 +125,7 @@ const onSubmit = async (data, ev, setError, setFetchInfo, allUsers) => {
 	}
 	try {
 		const user = await createUserWithEmailAndPassword(auth, email, password);
+		console.log(user);
 		await setFetchInfo({
 			url: URLS.NEW_USER,
 			options: {
@@ -132,10 +133,10 @@ const onSubmit = async (data, ev, setError, setFetchInfo, allUsers) => {
 				body: JSON.stringify({
 					_id: user.user.uid,
 					profileImage: STORAGE_FILES.DEFAULT_IMG,
-					userName: userName,
+					userName: data.userName,
 					name: '',
 					surName: '',
-					email: email,
+					email: data.email,
 					gender: '',
 					direction: {
 						country: '',

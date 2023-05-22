@@ -32,14 +32,15 @@ const Profile = () => {
 
 	if (load) return <h1>Loading...</h1>;
 	if (wrong) return <h1>error</h1>;
-	console.log(singleUser);
 	return (
 		<>
 			{currentUser && singleUser ? (
 				<StyledProfileContainer>
 					<StyledProfileCard>
 						<Title type={TITLES_TYPES.PAGE}>PROFILE</Title>
-						<ProfileImage src={singleUser.profileImage} />
+						<ProfileImage
+							src={singleUser.profileImage || currentUser.photoURL}
+						/>
 						<ProfileField>
 							<Title type={TITLES_TYPES.SUBTITLE}>
 								{SUBTITLES.profile.USER}:
@@ -76,7 +77,9 @@ const Profile = () => {
 							<Title type={TITLES_TYPES.SUBTITLE}>
 								{SUBTITLES.profile.ADDRESS}:
 							</Title>
-							<Text type={TEXTS_TYPES.FIELD}>{}</Text>
+							<Text type={TEXTS_TYPES.FIELD}>
+								{singleUser.direction.address}
+							</Text>
 						</ProfileField>
 						<ProfileField>
 							<Title type={TITLES_TYPES.SUBTITLE}>
@@ -97,7 +100,7 @@ const Profile = () => {
 								{SUBTITLES.profile.COUNTRY}:
 							</Title>
 							<Text type={TEXTS_TYPES.FIELD}>
-								{singleUser.direction.zipCode}
+								{singleUser.direction.country}
 							</Text>
 						</ProfileField>
 						<ProfileField>

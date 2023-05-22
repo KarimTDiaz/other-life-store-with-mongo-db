@@ -6,7 +6,6 @@ controller.allUsers = async (req, res) => {
   try {
     const allUsers = await UserModel.find();
     res.status(200).send(allUsers);
-    console.log(allUsers);
   } catch (err) {
     res.status(500).send({ error: 'Error al leer la Database' });
   }
@@ -16,7 +15,6 @@ controller.getSingleUser = async (req, res) => {
   try {
     const user = await UserModel.findById(req.params.id);
     res.status(200).send(user);
-    console.log(user);
   } catch (err) {
     res.status(500).send({ error: 'Error al leer la Database' });
   }
@@ -73,10 +71,9 @@ controller.createUser = async (req, res) => {
 };
 
 controller.updateUser = async (req, res) => {
-  console.log(req.params.id);
   const user = await UserModel.findById(req.params.id);
   console.log(user);
-  /*   await UserModel.updateOne({ _id: user.id }, { $set: { ...req.body } }); */
+  await UserModel.updateOne({ _id: user._id }, { $set: { ...req.body } });
   res.send('User Updated');
 };
 

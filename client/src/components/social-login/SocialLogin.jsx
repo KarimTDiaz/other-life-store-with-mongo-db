@@ -8,12 +8,14 @@ import { ICONS } from '../../constants/icons';
 import { URLS } from '../../constants/requests';
 import Button from '../button/Button';
 import { SocialLoginContainer } from './styles';
+import { useNavigate } from 'react-router-dom';
 
 const SocialLogin = ({ setFetchInfo }) => {
+	const navigate = useNavigate();
 	return (
 		<SocialLoginContainer>
 			<Button
-				action={() => loginWithGoogle({ setFetchInfo })}
+				action={() => loginWithGoogle({ setFetchInfo, navigate })}
 				type='social'
 				src={ICONS.socials.google}
 			>
@@ -30,7 +32,7 @@ const SocialLogin = ({ setFetchInfo }) => {
 	);
 };
 
-const loginWithGoogle = async ({ setFetchInfo }) => {
+const loginWithGoogle = async ({ setFetchInfo, navigate }) => {
 	const provider = new GoogleAuthProvider();
 	try {
 		const result = await signInWithPopup(auth, provider);
@@ -66,6 +68,7 @@ const loginWithGoogle = async ({ setFetchInfo }) => {
 				}
 			}
 		});
+		navigate('/');
 	} catch (err) {
 		console.log(err);
 	}
