@@ -36,7 +36,8 @@ const loginWithGoogle = async ({ setFetchInfo }) => {
 		const result = await signInWithPopup(auth, provider);
 		const credential = GoogleAuthProvider.credentialFromResult(result);
 		console.log(credential);
-		setFetchInfo({
+		console.log(result);
+		await setFetchInfo({
 			url: URLS.NEW_USER,
 			options: {
 				method: 'POST',
@@ -74,8 +75,6 @@ const loginWithFacebook = async () => {
 	try {
 		const result = await signInWithPopup(auth, provider);
 		const credential = FacebookAuthProvider.credentialFromResult(result);
-		console.log(credential);
-		console.log(result);
 	} catch (err) {
 		console.log(err);
 	}

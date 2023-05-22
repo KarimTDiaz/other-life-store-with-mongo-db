@@ -67,14 +67,16 @@ controller.createUser = async (req, res) => {
     purchases
   });
 
-  await newUser.save();
+  const userCreated = await newUser.save();
 
-  res.send({ message: 'user created' });
+  res.send(userCreated);
 };
 
 controller.updateUser = async (req, res) => {
+  console.log(req.params.id);
   const user = await UserModel.findById(req.params.id);
-  await ProductModel.updateOne({ _id: user.id }, { $set: { ...req.body } });
+  console.log(user);
+  /*   await UserModel.updateOne({ _id: user.id }, { $set: { ...req.body } }); */
   res.send('User Updated');
 };
 

@@ -1,11 +1,11 @@
 import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/button/Button';
+import ProfileImage from '../../components/profile-image/ProfileImage';
 import Text from '../../components/text/Text';
 import Title from '../../components/title/Title';
 import { BUTTONS } from '../../constants/buttons';
 import { ICONS } from '../../constants/icons';
-import { logoUrl } from '../../constants/logoUrl';
 import { URLS } from '../../constants/requests';
 import { TEXTS_TYPES } from '../../constants/texts';
 import { SUBTITLES, TITLES_TYPES } from '../../constants/titles';
@@ -13,8 +13,6 @@ import { AuthContext } from '../../contexts/Auth.context';
 import { useFetch } from '../../hooks/useFetch';
 import {
 	ProfileField,
-	ProfileImage,
-	ProfileImageContainer,
 	StyledProfileCard,
 	StyledProfileContainer
 } from './styles';
@@ -23,7 +21,7 @@ const Profile = () => {
 	const { currentUser, authLoading } = useContext(AuthContext);
 	const navigate = useNavigate();
 
-	const { fetchData: singleUser, load, wrong, setFetchInfo } = useFetch();
+	const { finalData: singleUser, load, wrong, setFetchInfo } = useFetch();
 
 	useEffect(() => {
 		if (!currentUser) return;
@@ -34,16 +32,14 @@ const Profile = () => {
 
 	if (load) return <h1>Loading...</h1>;
 	if (wrong) return <h1>error</h1>;
-
+	console.log(singleUser);
 	return (
 		<>
-			{currentUser && (
+			{currentUser && singleUser ? (
 				<StyledProfileContainer>
 					<StyledProfileCard>
 						<Title type={TITLES_TYPES.PAGE}>PROFILE</Title>
-						<ProfileImageContainer>
-							<ProfileImage {...logoUrl.dark} />
-						</ProfileImageContainer>
+						<ProfileImage src={singleUser.profileImage} />
 						<ProfileField>
 							<Title type={TITLES_TYPES.SUBTITLE}>
 								{SUBTITLES.profile.USER}:
@@ -121,6 +117,8 @@ const Profile = () => {
 						</Button>
 					</StyledProfileCard>
 				</StyledProfileContainer>
+			) : (
+				<h1>loading</h1>
 			)}
 		</>
 	);

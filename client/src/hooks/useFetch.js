@@ -1,21 +1,25 @@
 import { useEffect, useState } from 'react';
 
 const fetchData = async (fetchInfo, setFetchStatus, signal) => {
-	if (!fetchInfo) return;
+	if (!fetchInfo) {
+		setFetchStatus({ finalData: undefined, load: false, wrong: undefined });
+		return;
+	}
+
 	const { url, options } = fetchInfo;
 
 	try {
-		const request = await fetch(url, options, signal);
-		const fetchData = await request.json();
-		setFetchStatus({ fetchData, load: false, wrong: undefined });
+		const response = await fetch(url, options, signal);
+		const finalData = await response.json();
+		setFetchStatus({ finalData, load: false, wrong: undefined });
 	} catch (err) {
-		setFetchStatus({ fetchData: undefined, load: false, wrong: err });
+		setFetchStatus({ finalData: undefined, load: false, wrong: err });
 	}
 };
 
 export const useFetch = initialFetch => {
 	const [fetchStatus, setFetchStatus] = useState({
-		fetchData: undefined,
+		finalData: undefined,
 		load: true,
 		wrong: undefined
 	});

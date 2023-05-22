@@ -29,22 +29,5 @@ const ProfileField = styled.div`
 		background-color: ${COLORS.decoration};
 	}
 `;
-const ProfileImageContainer = styled.div`
-	display: flex;
-	justify-content: center;
-	padding: 1rem;
-	margin-bottom: 2rem;
-`;
 
-const ProfileImage = styled.img`
-	background-color: yellow;
-	border-radius: 50%;
-`;
-
-export {
-	StyledProfileContainer,
-	StyledProfileCard,
-	ProfileField,
-	ProfileImageContainer,
-	ProfileImage
-};
+export { StyledProfileContainer, StyledProfileCard, ProfileField };

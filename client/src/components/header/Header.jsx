@@ -23,15 +23,16 @@ const Header = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
 	const { currentUser, authLoading } = useContext(AuthContext);
-	const { fetchData, load, wrong, setFetchInfo } = useFetch();
+	const { finalData, load, wrong, setFetchInfo } = useFetch();
+	console.log(location.state);
 
 	useEffect(() => {
-		if (!currentUser) return;
+		if (!currentUser || location.state) return;
 		setFetchInfo({
 			url: URLS.SINGLE_USER + '/' + currentUser.uid
 		});
-	}, [currentUser]);
-	console.log(fetchData);
+	}, [currentUser, location.state]);
+
 	if (location.pathname !== '/')
 		return (
 			<StyledHeader>
@@ -40,8 +41,9 @@ const Header = () => {
 				</HeaderTopDark>
 			</StyledHeader>
 		);
-	if (load) return <h1>LOADING</h1>;
-	if (wrong) return <h1>WRONG</h1>;
+
+	if (!currentUser && authLoading) return <h1>LOADING</h1>;
+	if (wrong && !location.state) return <h1>WRONG</h1>;
 
 	return (
 		<StyledHeader>
@@ -55,25 +57,25 @@ const Header = () => {
 					>
 						Register/Login
 					</Button>
-				) : currentUser && fetchData ? (
-					<>
-						<Menu open={open} />
-						<HeaderIcons>
-							<Icon
-								action={() => {
-									setOpen(!open);
-								}}
-								src={fetchData.name ? ICONS.user : ICONS.userBell}
-								size={ICONS_SIZES.big}
-							/>
-							<CartContainer>
-								<Icon src={ICONS.cart} size={ICONS_SIZES.big} />
-								<CartCounter>(0)</CartCounter>
-							</CartContainer>
-						</HeaderIcons>
-					</>
 				) : (
-					<h1></h1>
+					currentUser && (
+						<>
+							<Menu open={open} />
+							<HeaderIcons>
+								<Icon
+									action={() => {
+										setOpen(!open);
+									}}
+									src={finalData?.name ? ICONS.user : ICONS.userBell}
+									size={ICONS_SIZES.big}
+								/>
+								<CartContainer>
+									<Icon src={ICONS.cart} size={ICONS_SIZES.big} />
+									<CartCounter>(0)</CartCounter>
+								</CartContainer>
+							</HeaderIcons>
+						</>
+					)
 				)}
 			</HeaderTopLight>
 		</StyledHeader>

@@ -9,4 +9,5 @@ userRoutes.get('/:id', controller.getSingleUser);
 
 userRoutes.post('/new-user', controller.createUser);
 
+userRoutes.patch('/:id', controller.updateUser);
 module.exports = userRoutes;

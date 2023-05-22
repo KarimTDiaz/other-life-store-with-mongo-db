@@ -1,15 +1,19 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useLocation } from 'react-router-dom';
 import { v4 } from 'uuid';
 import Button from '../../components/button/Button';
+import ProfileImage from '../../components/profile-image/ProfileImage';
 import Text from '../../components/text/Text';
 import Title from '../../components/title/Title';
 import { COUNTRY_LIST } from '../../constants/allCountries';
 import { BUTTONS } from '../../constants/buttons';
+import { URLS } from '../../constants/requests';
 import { editUserSchema } from '../../constants/schemas.form';
 import { TEXTS_TYPES } from '../../constants/texts';
 import { TITLES, TITLES_TYPES } from '../../constants/titles';
+import { useFetch } from '../../hooks/useFetch';
 import {
 	FormFieldProfile,
 	FormProfile,
@@ -24,13 +28,31 @@ const EditProfile = () => {
 		handleSubmit,
 		formState: { errors }
 	} = useForm({ mode: 'onBlur', resolver: yupResolver(editUserSchema) });
+	const {
+		finalData: allUsers,
+		load,
+		wrong,
+		setFetchInfo
+	} = useFetch({ url: URLS.ALL_USERS });
+	const [file, setFile] = useState(null);
 	const { state } = useLocation();
-	const onSubmit = data => console.log(data);
-	console.log(state);
+	console.log(state._id);
 	return (
 		<StyledProfileContainer>
-			<FormProfile onSubmit={handleSubmit(onSubmit)}>
+			<FormProfile
+				onSubmit={handleSubmit((data, ev) => {
+					onSubmit(data, ev, file, setFetchInfo, state._id);
+				})}
+			>
 				<Title type={TITLES_TYPES.FORM}>{TITLES.formTitles.editUser}</Title>
+				<ProfileImage src={state.profileImage} />
+				<FormFieldProfile>
+					<ProfileInput
+						type='file'
+						id='profileImage'
+						onChange={ev => handleFile(ev, setFile)}
+					/>
+				</FormFieldProfile>
 				<FormFieldProfile>
 					<ProfileInput
 						defaultValue={state.userName}
@@ -149,5 +171,37 @@ const EditProfile = () => {
 		</StyledProfileContainer>
 	);
 };
+const handleFile = (event, setFile) => {
+	const file = event.target.files[0];
+	setFile(file);
+};
 
+const onSubmit = async (data, ev, file, setFetchInfo, id) => {
+	try {
+		/* const nameNoExtension = file.name.substring(0, file.name.lastIndexOf('.'));
+		const finalName = `${nameNoExtension}-${v4()}`;
+		const directory = id;
+		const storageRef = ref(storage, `${directory}/${finalName}`);
+		const upload = await uploadBytes(storageRef, file);
+		const profileImage = await getDownloadURL(storageRef);
+
+		const formData = { ...data, profileImage: profileImage }; */
+		console.log(data);
+		await setFetchInfo({
+			url: URLS.EDIT_USER + '/' + id,
+			options: {
+				method: 'PATCH',
+				body: JSON.stringify({
+					...data
+				}),
+				headers: {
+					Accept: '*/*',
+					'Content-Type': 'application/json'
+				}
+			}
+		});
+	} catch (error) {
+		console.log(error);
+	}
+};
 export default EditProfile;

@@ -14,6 +14,7 @@ import { BUTTONS } from '../../constants/buttons';
 import { ICONS } from '../../constants/icons';
 import { URLS } from '../../constants/requests';
 import { registerSchema } from '../../constants/schemas.form';
+import { STORAGE_FILES } from '../../constants/storage.files';
 import { TEXTS_TYPES } from '../../constants/texts';
 import { TITLES, TITLES_TYPES } from '../../constants/titles';
 import { AuthContext } from '../../contexts/Auth.context';
@@ -31,8 +32,9 @@ const Register = () => {
 	const [error, setError] = useState('');
 	const { currentUser } = useContext(AuthContext);
 	const navigate = useNavigate();
+
 	const {
-		fetchData: allUsers,
+		finalData: allUsers,
 		load,
 		wrong,
 		setFetchInfo
@@ -44,7 +46,8 @@ const Register = () => {
 		formState: { errors }
 	} = useForm({ mode: 'onBlur', resolver: yupResolver(registerSchema) });
 
-	if (currentUser) return <Navigate to='/' />;
+	if (currentUser && allUsers?.userName)
+		return <Navigate to='/' state={allUsers} />;
 
 	if (load) return <h1>Loading...</h1>;
 	if (wrong) return <h1>Something went wrong</h1>;
@@ -113,7 +116,7 @@ const Register = () => {
 };
 
 const onSubmit = async (data, ev, setError, setFetchInfo, allUsers) => {
-	const { email, password } = data;
+	const { email, password, userName } = data;
 
 	const userNameCheck = allUsers.find(user => user.userName === data.userName);
 	if (userNameCheck) {
@@ -128,11 +131,11 @@ const onSubmit = async (data, ev, setError, setFetchInfo, allUsers) => {
 				method: 'POST',
 				body: JSON.stringify({
 					_id: user.user.uid,
-					profileImage: '',
-					userName: data.userName,
+					profileImage: STORAGE_FILES.DEFAULT_IMG,
+					userName: userName,
 					name: '',
 					surName: '',
-					email: data.email,
+					email: email,
 					gender: '',
 					direction: {
 						country: '',
