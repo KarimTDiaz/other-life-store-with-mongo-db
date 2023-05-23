@@ -1,7 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { v4 } from 'uuid';
 import Button from '../../components/button/Button';
 import ProfileImage from '../../components/profile-image/ProfileImage';
@@ -24,7 +24,7 @@ import {
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { storage } from '../../config/firebase.config';
 import { AuthContext } from '../../contexts/Auth.context';
-import { array } from 'yup';
+import { ErrorText } from '../../components/text/styles';
 
 const EditProfile = () => {
 	const {
@@ -34,25 +34,29 @@ const EditProfile = () => {
 	} = useForm({ mode: 'onBlur', resolver: yupResolver(editUserSchema) });
 
 	const {
-		finalData: userData,
+		finalData: allUsers,
 		load,
 		wrong,
 		setFetchInfo
 	} = useFetch({ url: URLS.ALL_USERS });
 
+	const { currentUser } = useContext(AuthContext);
 	const [file, setFile] = useState(null);
+	const [error, setError] = useState('');
 	const navigate = useNavigate();
-	const { state } = useLocation();
+	console.log(allUsers);
+	if (!currentUser) return <h1>lOADING...</h1>;
 
+	const currentCountry = COUNTRY_LIST.indexOf(currentUser.direction.country);
 	return (
 		<StyledProfileContainer>
 			<FormProfile
-				onSubmit={handleSubmit((data, ev) => {
-					onSubmit(data, ev, file, setFetchInfo, state._id, navigate, state);
+				onSubmit={handleSubmit(data => {
+					onSubmit(data, file, setFetchInfo, currentUser, allUsers, setError);
 				})}
 			>
 				<Title type={TITLES_TYPES.FORM}>{TITLES.formTitles.editUser}</Title>
-				<ProfileImage src={state.profileImage} />
+				<ProfileImage src={currentUser.profileImage} />
 				<FormFieldProfile>
 					<ProfileInput
 						type='file'
@@ -62,7 +66,7 @@ const EditProfile = () => {
 				</FormFieldProfile>
 				<FormFieldProfile>
 					<ProfileInput
-						defaultValue={state.userName}
+						defaultValue={currentUser.userName}
 						type='text'
 						id='userName'
 						placeholder='User Name'
@@ -72,10 +76,9 @@ const EditProfile = () => {
 					<ProfileLabel htmlFor='userName'>User Name</ProfileLabel>
 					<Text type={TEXTS_TYPES.ERROR}>{errors.userName?.message}</Text>
 				</FormFieldProfile>
-
 				<FormFieldProfile>
 					<ProfileInput
-						defaultValue={state.name}
+						defaultValue={currentUser.name}
 						type='text'
 						id='name'
 						placeholder='Name'
@@ -85,10 +88,9 @@ const EditProfile = () => {
 					<ProfileLabel htmlFor='name'>Name</ProfileLabel>
 					<Text type={TEXTS_TYPES.ERROR}>{errors.name?.message}</Text>
 				</FormFieldProfile>
-
 				<FormFieldProfile>
 					<ProfileInput
-						defaultValue={state.surName}
+						defaultValue={currentUser.surName}
 						type='text'
 						id='surName'
 						placeholder='Surname'
@@ -98,10 +100,9 @@ const EditProfile = () => {
 					<ProfileLabel htmlFor='surName'>Surname</ProfileLabel>
 					<Text type={TEXTS_TYPES.ERROR}>{errors.surName?.message}</Text>
 				</FormFieldProfile>
-
 				<FormFieldProfile>
 					<ProfileInput
-						defaultValue={state.direction.address}
+						defaultValue={currentUser.direction.address}
 						type='text'
 						id='address'
 						placeholder='Address'
@@ -113,10 +114,9 @@ const EditProfile = () => {
 						{errors.direction?.address?.message}
 					</Text>
 				</FormFieldProfile>
-
 				<FormFieldProfile>
 					<ProfileInput
-						defaultValue={state.direction.city}
+						defaultValue={currentUser.direction.city}
 						type='text'
 						id='city'
 						placeholder='City'
@@ -130,7 +130,7 @@ const EditProfile = () => {
 				</FormFieldProfile>
 				<FormFieldProfile>
 					<ProfileInput
-						defaultValue={state.direction.poblation}
+						defaultValue={currentUser.direction.poblation}
 						type='text'
 						id='poblation'
 						placeholder='Poblation'
@@ -144,7 +144,7 @@ const EditProfile = () => {
 				</FormFieldProfile>
 				<FormFieldProfile>
 					<ProfileInput
-						defaultValue={state.direction.zipCode}
+						defaultValue={currentUser.direction.zipCode}
 						type='text'
 						id='zipCode'
 						placeholder='Zip Code'
@@ -159,7 +159,7 @@ const EditProfile = () => {
 				<FormFieldProfile>
 					<label htmlFor='country'>Country</label>
 					<select
-						defaultValue={state.direction.country}
+						defaultValue={COUNTRY_LIST[currentCountry]}
 						{...register('direction.country')}
 						id='country'
 					>
@@ -173,6 +173,7 @@ const EditProfile = () => {
 						{errors.direction?.country?.message}
 					</Text>
 				</FormFieldProfile>
+				{error && <ErrorText>{error}</ErrorText>}
 				<Button type={BUTTONS.SQUARED}>Update Profile</Button>
 			</FormProfile>
 			<Button action={() => navigate('/profile')} type={BUTTONS.THIN}>
@@ -181,12 +182,27 @@ const EditProfile = () => {
 		</StyledProfileContainer>
 	);
 };
+
 const handleFile = (event, setFile) => {
 	const newFile = event.target.files[0];
 	setFile(newFile);
 };
 
-const onSubmit = async (data, ev, file, setFetchInfo, id, navigate, state) => {
+const onSubmit = async (
+	data,
+	file,
+	setFetchInfo,
+	currentUser,
+	allUsers,
+	setError
+) => {
+	const userNameCheck = allUsers.find(user => user.userName === data.userName);
+
+	if (userNameCheck) {
+		setError('Username has already been used');
+		return;
+	}
+
 	try {
 		if (file) {
 			const nameNoExtension = file.name.substring(
@@ -194,14 +210,14 @@ const onSubmit = async (data, ev, file, setFetchInfo, id, navigate, state) => {
 				file.name.lastIndexOf('.')
 			);
 			const finalName = `${nameNoExtension}-${v4()}`;
-			const directory = id;
+			const directory = currentUser.uid;
 			const storageRef = ref(storage, `${directory}/${finalName}`);
 			const upload = await uploadBytes(storageRef, file);
 			data.profileImage = await getDownloadURL(storageRef);
 		}
 
-		await setFetchInfo({
-			url: URLS.EDIT_USER + id,
+		setFetchInfo({
+			url: URLS.EDIT_USER + currentUser.id,
 			options: {
 				method: 'PATCH',
 				body: JSON.stringify({
@@ -211,14 +227,11 @@ const onSubmit = async (data, ev, file, setFetchInfo, id, navigate, state) => {
 					Accept: '*/*',
 					'Content-Type': 'application/json'
 				}
-			}
+			},
+			redirectTo: '/profile'
 		});
 	} catch (error) {
 		console.log(error);
 	}
 };
 export default EditProfile;
-
-//firebasestorage.googleapis.com/v0/b/other-life-store.appspot.com/o/MpMfQXkChcOyr9nhnzQUG96RZKB2%2FR-11782904-1522305360-2704-9dcc4dca-150f-42e3-908e-7f1353d91bed?alt=media&token=9c822cc4-7b68-4808-b47e-d83ba046c8c8
-
-https: 'https://firebasestorage.googleapis.com/v0/b/other-life-store.appspot.com/o/MpMfQXkChcOyr9nhnzQUG96RZKB2%2FR-226764-1332464848-c087e561-4365-43df-8fe2-f629f643b5c6?alt=media&token=1085a941-5572-4b38-a183-b18d30a5e19b';

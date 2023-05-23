@@ -30,8 +30,8 @@ export const AuthProvider = ({ children }) => {
 					await getUserInfoFromMongo(
 						currentUser,
 						setCurrentUser,
-						attemps,
-						setAttemps
+						attempts,
+						setAttempts
 					);
 					break;
 				default:

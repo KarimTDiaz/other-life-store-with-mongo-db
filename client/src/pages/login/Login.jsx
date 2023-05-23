@@ -23,6 +23,7 @@ import {
 	LoginText,
 	StyledLoginContainer
 } from './styles';
+import { useFetch } from '../../hooks/useFetch';
 
 const Login = () => {
 	const [error, setError] = useState('');
@@ -32,6 +33,7 @@ const Login = () => {
 		handleSubmit,
 		formState: { errors }
 	} = useForm({ mode: 'onBlur', resolver: yupResolver(loginSchema) });
+	const { setFetchInfo } = useFetch();
 	return (
 		<StyledLoginContainer>
 			<FormLogin
@@ -69,7 +71,7 @@ const Login = () => {
 				</Button>
 				{error && <ErrorPopUp>{error}</ErrorPopUp>}
 				<LoginText>OR</LoginText>
-				<SocialLogin />
+				<SocialLogin setFetchInfo={setFetchInfo} />
 			</FormLogin>
 		</StyledLoginContainer>
 	);

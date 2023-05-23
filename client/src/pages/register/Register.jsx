@@ -46,7 +46,6 @@ const Register = () => {
 	} = useForm({ mode: 'onBlur', resolver: yupResolver(registerSchema) });
 
 	if (currentUser) return <Navigate to='/' />;
-	console.log(currentUser);
 
 	if (load) return <h1>Loading...</h1>;
 	if (wrong) return <h1>Something went wrong</h1>;
