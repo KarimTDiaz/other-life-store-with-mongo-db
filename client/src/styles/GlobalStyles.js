@@ -44,6 +44,7 @@ body {
     margin-right: auto;
 	font-family: 'grotesk-light', sans-serif;
 	background-color: ${COLORS.background.body};
+	background-color:#f2f2f2;
 }
 
 ::placeholder{

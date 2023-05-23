@@ -40,9 +40,9 @@ controller.createUser = async (req, res) => {
     purchases
   } = req.body;
 
-  const userCheck = await UserModel.findById(req.body._id);
+  /*   const userCheck = await UserModel.findById(req.body._id);
   /* const emailCheck = await UserModel.findById(req.body.email); */
-  if (userCheck) return res.send({ message: 'El id se repite' });
+  /*   if (userCheck) return res.send({ message: 'El id se repite' }); */
 
   const userNameCheck = await UserModel.find({
     userName: { $eq: req.body.userName }
@@ -66,7 +66,7 @@ controller.createUser = async (req, res) => {
   });
 
   const userCreated = await newUser.save();
-
+  console.log(userCreated);
   res.send(userCreated);
 };
 

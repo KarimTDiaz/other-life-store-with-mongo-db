@@ -1,10 +1,8 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { BUTTONS } from '../../constants/buttons';
 import { ICONS, ICONS_SIZES } from '../../constants/icons';
-import { URLS } from '../../constants/requests';
 import { AuthContext } from '../../contexts/Auth.context';
-import { useFetch } from '../../hooks/useFetch';
 import Button from '../button/Button';
 import Icon from '../icon/Icon';
 import Logo from '../logo/Logo';
@@ -22,15 +20,9 @@ const Header = () => {
 	const [open, setOpen] = useState(false);
 	const navigate = useNavigate();
 	const location = useLocation();
-	const { currentUser, authLoading } = useContext(AuthContext);
-	const { finalData, load, wrong, setFetchInfo } = useFetch();
+	const { currentUser } = useContext(AuthContext);
 
-	useEffect(() => {
-		if (!currentUser || location.state) return;
-		setFetchInfo({
-			url: URLS.SINGLE_USER + '/' + currentUser.uid
-		});
-	}, [currentUser, location.state]);
+	console.log(currentUser);
 
 	if (location.pathname !== '/')
 		return (
@@ -41,14 +33,11 @@ const Header = () => {
 			</StyledHeader>
 		);
 
-	if (!currentUser && authLoading) return <h1>LOADING</h1>;
-	if (wrong && !location.state) return <h1>WRONG</h1>;
-
 	return (
 		<StyledHeader>
 			<HeaderTopLight>
 				<Logo theme='dark' />
-				{!currentUser && !authLoading ? (
+				{!currentUser && (
 					<Button
 						action={() => navigate('/register')}
 						type={BUTTONS.BORDERED}
@@ -56,25 +45,24 @@ const Header = () => {
 					>
 						Register/Login
 					</Button>
-				) : (
-					currentUser && (
-						<>
-							<Menu open={open} />
-							<HeaderIcons>
-								<Icon
-									action={() => {
-										setOpen(!open);
-									}}
-									src={finalData?.name ? ICONS.user : ICONS.userBell}
-									size={ICONS_SIZES.big}
-								/>
-								<CartContainer>
-									<Icon src={ICONS.cart} size={ICONS_SIZES.big} />
-									<CartCounter>(0)</CartCounter>
-								</CartContainer>
-							</HeaderIcons>
-						</>
-					)
+				)}
+				{currentUser && (
+					<>
+						<Menu open={open} />
+						<HeaderIcons>
+							<Icon
+								action={() => {
+									setOpen(!open);
+								}}
+								src={currentUser?.name ? ICONS.user : ICONS.userBell}
+								size={ICONS_SIZES.big}
+							/>
+							<CartContainer>
+								<Icon src={ICONS.cart} size={ICONS_SIZES.big} />
+								<CartCounter>(0)</CartCounter>
+							</CartContainer>
+						</HeaderIcons>
+					</>
 				)}
 			</HeaderTopLight>
 		</StyledHeader>

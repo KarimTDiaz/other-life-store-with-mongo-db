@@ -7,7 +7,7 @@ const StyledButtonBordered = styled.button`
 	gap: 0.5rem;
 	padding: 0.2rem 1rem;
 	background-color: ${COLORS.textDark};
-	border-radius: 20px;
+	border-radius: 5px;
 	border: none;
 `;
 const StyledButtonSquared = styled.button`

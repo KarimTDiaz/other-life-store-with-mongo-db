@@ -30,9 +30,8 @@ import {
 
 const Register = () => {
 	const [error, setError] = useState('');
-	const { currentUser } = useContext(AuthContext);
 	const navigate = useNavigate();
-
+	const { currentUser } = useContext(AuthContext);
 	const {
 		finalData: allUsers,
 		load,
@@ -46,8 +45,8 @@ const Register = () => {
 		formState: { errors }
 	} = useForm({ mode: 'onBlur', resolver: yupResolver(registerSchema) });
 
-	if (currentUser && allUsers?.userName)
-		return <Navigate to='/' state={allUsers} />;
+	if (currentUser) return <Navigate to='/' />;
+	console.log(currentUser);
 
 	if (load) return <h1>Loading...</h1>;
 	if (wrong) return <h1>Something went wrong</h1>;
@@ -56,7 +55,7 @@ const Register = () => {
 		<StyledRegisterContainer>
 			<FormRegister
 				onSubmit={handleSubmit((data, ev) => {
-					onSubmit(data, ev, setError, setFetchInfo, allUsers);
+					onSubmit(data, ev, setError, setFetchInfo, allUsers, navigate);
 				})}
 			>
 				<Title type={TITLES_TYPES.FORM}>{TITLES.formTitles.register}</Title>
@@ -115,17 +114,24 @@ const Register = () => {
 	);
 };
 
-const onSubmit = async (data, ev, setError, setFetchInfo, allUsers) => {
+const onSubmit = async (
+	data,
+	ev,
+	setError,
+	setFetchInfo,
+	allUsers,
+	navigate
+) => {
 	const { email, password } = data;
-	console.log(data);
+
 	const userNameCheck = allUsers.find(user => user.userName === data.userName);
+
 	if (userNameCheck) {
 		setError('Username has already been used');
 		return;
 	}
 	try {
 		const user = await createUserWithEmailAndPassword(auth, email, password);
-		console.log(user);
 		await setFetchInfo({
 			url: URLS.NEW_USER,
 			options: {
@@ -155,9 +161,7 @@ const onSubmit = async (data, ev, setError, setFetchInfo, allUsers) => {
 				}
 			}
 		});
-		ev.target.reset();
 	} catch (error) {
-		console.log(error.code);
 		setError(AUTH_ERRORS[error.code].message);
 	}
 };

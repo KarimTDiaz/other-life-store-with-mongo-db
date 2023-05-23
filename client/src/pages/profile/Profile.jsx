@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/button/Button';
 import ProfileImage from '../../components/profile-image/ProfileImage';
@@ -20,57 +20,51 @@ import {
 const Profile = () => {
 	const { currentUser, authLoading } = useContext(AuthContext);
 	const navigate = useNavigate();
-
-	const { finalData: singleUser, load, wrong, setFetchInfo } = useFetch();
-
-	useEffect(() => {
-		if (!currentUser) return;
-		setFetchInfo({
-			url: URLS.SINGLE_USER + '/' + currentUser.uid
-		});
-	}, [currentUser]);
-
-	if (load) return <h1>Loading...</h1>;
-	if (wrong) return <h1>error</h1>;
+	const {
+		finalData: allUsers,
+		load,
+		wrong,
+		setFetchInfo
+	} = useFetch({ url: URLS.ALL_USERS });
 	return (
 		<>
-			{currentUser && singleUser ? (
+			{currentUser && (
 				<StyledProfileContainer>
 					<StyledProfileCard>
 						<Title type={TITLES_TYPES.PAGE}>PROFILE</Title>
 						<ProfileImage
-							src={singleUser.profileImage || currentUser.photoURL}
+							src={currentUser.profileImage || currentUser.photoURL}
 						/>
 						<ProfileField>
 							<Title type={TITLES_TYPES.SUBTITLE}>
 								{SUBTITLES.profile.USER}:
 							</Title>
-							<Text type={TEXTS_TYPES.FIELD}>{singleUser.userName}</Text>
+							<Text type={TEXTS_TYPES.FIELD}>{currentUser.userName}</Text>
 						</ProfileField>
 						<ProfileField>
 							<Title type={TITLES_TYPES.SUBTITLE}>
 								{SUBTITLES.profile.EMAIL}:
 							</Title>
-							<Text type={TEXTS_TYPES.FIELD}>{singleUser.email}</Text>
+							<Text type={TEXTS_TYPES.FIELD}>{currentUser.email}</Text>
 						</ProfileField>
 						<ProfileField>
 							<Title type={TITLES_TYPES.SUBTITLE}>
 								{SUBTITLES.profile.NAME}:
 							</Title>
-							<Text type={TEXTS_TYPES.FIELD}>{singleUser.name}</Text>
+							<Text type={TEXTS_TYPES.FIELD}>{currentUser.name}</Text>
 						</ProfileField>
 						<ProfileField>
 							<Title type={TITLES_TYPES.SUBTITLE}>
 								{SUBTITLES.profile.SURNAME}:
 							</Title>
-							<Text type={TEXTS_TYPES.FIELD}>{singleUser.surName}</Text>
+							<Text type={TEXTS_TYPES.FIELD}>{currentUser.surName}</Text>
 						</ProfileField>
 						<ProfileField>
 							<Title type={TITLES_TYPES.SUBTITLE}>
 								{SUBTITLES.profile.GENDER}:
 							</Title>
 							<Text type={TEXTS_TYPES.FIELD}>
-								{singleUser.name} {singleUser.surName}
+								{currentUser.name} {currentUser.surName}
 							</Text>
 						</ProfileField>
 						<ProfileField>
@@ -78,21 +72,21 @@ const Profile = () => {
 								{SUBTITLES.profile.ADDRESS}:
 							</Title>
 							<Text type={TEXTS_TYPES.FIELD}>
-								{singleUser.direction.address}
+								{currentUser.direction.address}
 							</Text>
 						</ProfileField>
 						<ProfileField>
 							<Title type={TITLES_TYPES.SUBTITLE}>
 								{SUBTITLES.profile.CITY}:
 							</Title>
-							<Text type={TEXTS_TYPES.FIELD}>{singleUser.direction.city}</Text>
+							<Text type={TEXTS_TYPES.FIELD}>{currentUser.direction.city}</Text>
 						</ProfileField>
 						<ProfileField>
 							<Title type={TITLES_TYPES.SUBTITLE}>
 								{SUBTITLES.profile.POBLATION}:
 							</Title>
 							<Text type={TEXTS_TYPES.FIELD}>
-								{singleUser.direction.poblation}
+								{currentUser.direction.poblation}
 							</Text>
 						</ProfileField>
 						<ProfileField>
@@ -100,7 +94,7 @@ const Profile = () => {
 								{SUBTITLES.profile.COUNTRY}:
 							</Title>
 							<Text type={TEXTS_TYPES.FIELD}>
-								{singleUser.direction.country}
+								{currentUser.direction.country}
 							</Text>
 						</ProfileField>
 						<ProfileField>
@@ -108,11 +102,11 @@ const Profile = () => {
 								{SUBTITLES.profile.ZIP}:
 							</Title>
 							<Text type={TEXTS_TYPES.FIELD}>
-								{singleUser.direction.zipCode}
+								{currentUser.direction.zipCode}
 							</Text>
 						</ProfileField>
 						<Button
-							action={() => navigate('/edit-profile', { state: singleUser })}
+							action={() => navigate('/edit-profile')}
 							type={BUTTONS.SQUARED}
 							src={ICONS.login}
 						>
@@ -120,8 +114,6 @@ const Profile = () => {
 						</Button>
 					</StyledProfileCard>
 				</StyledProfileContainer>
-			) : (
-				<h1>loading</h1>
 			)}
 		</>
 	);
