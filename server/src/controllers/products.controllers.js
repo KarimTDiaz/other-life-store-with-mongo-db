@@ -58,7 +58,7 @@ controller.createProduct = async (req, res) => {
   await userCreatingProduct.products.push(newProduct);
   await userCreatingProduct.save();
   await newProduct.save();
-  res.send('Product Created');
+  res.send(newProduct);
 };
 
 module.exports = controller;

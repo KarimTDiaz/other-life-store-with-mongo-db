@@ -11,6 +11,7 @@ import { URLS } from '../../constants/requests';
 import { AuthContext } from '../../contexts/Auth.context';
 import Button from '../button/Button';
 import { SocialLoginContainer } from './styles';
+import { STORAGE_FILES } from '../../constants/storage.files';
 
 const SocialLogin = ({ setFetchInfo }) => {
 	const navigate = useNavigate();
@@ -42,7 +43,6 @@ const loginWithGoogle = async ({ setFetchInfo, navigate }) => {
 		const result = await signInWithPopup(auth, provider);
 		const credential = GoogleAuthProvider.credentialFromResult(result);
 		console.log(credential);
-		console.log(result);
 		await setFetchInfo({
 			url: URLS.NEW_USER,
 			options: {
@@ -51,7 +51,7 @@ const loginWithGoogle = async ({ setFetchInfo, navigate }) => {
 					_id: result.user.uid,
 					userName: result.user.email,
 					email: result.user.email,
-					profileImage: '',
+					profileImage: STORAGE_FILES.DEFAULT_IMG,
 					name: '',
 					surName: '',
 					gender: '',

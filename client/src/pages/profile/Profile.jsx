@@ -6,11 +6,10 @@ import Text from '../../components/text/Text';
 import Title from '../../components/title/Title';
 import { BUTTONS } from '../../constants/buttons';
 import { ICONS } from '../../constants/icons';
-import { URLS } from '../../constants/requests';
 import { TEXTS_TYPES } from '../../constants/texts';
 import { SUBTITLES, TITLES_TYPES } from '../../constants/titles';
 import { AuthContext } from '../../contexts/Auth.context';
-import { useFetch } from '../../hooks/useFetch';
+
 import {
 	ProfileField,
 	StyledProfileCard,
@@ -18,23 +17,16 @@ import {
 } from './styles';
 
 const Profile = () => {
-	const { currentUser, authLoading } = useContext(AuthContext);
+	const { currentUser } = useContext(AuthContext);
 	const navigate = useNavigate();
-	const {
-		finalData: allUsers,
-		load,
-		wrong,
-		setFetchInfo
-	} = useFetch({ url: URLS.ALL_USERS });
+
 	return (
 		<>
 			{currentUser && (
 				<StyledProfileContainer>
 					<StyledProfileCard>
 						<Title type={TITLES_TYPES.PAGE}>PROFILE</Title>
-						<ProfileImage
-							src={currentUser.profileImage || currentUser.photoURL}
-						/>
+						<ProfileImage src={currentUser.profileImage} />
 						<ProfileField>
 							<Title type={TITLES_TYPES.SUBTITLE}>
 								{SUBTITLES.profile.USER}:

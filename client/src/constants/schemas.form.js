@@ -35,14 +35,33 @@ export const editUserSchema = yup.object().shape({
 			REGEX_USERNAME,
 			'Only letters or numbers allowed, no spaces, max 16'
 		),
-	name: yup.string().required('This field is required').min(3).max(12),
-	surName: yup.string().required('This field is required').min(3).max(20),
+	name: yup
+		.string()
+		.required('Your name is required')
+		.min(3, 'Minimum of 3 characteres')
+		.max(12, 'Maximum of 12 characteres'),
+	surName: yup
+		.string()
+		.required('Surname is required')
+		.min(3, 'Minimum of 3 characteres')
+		.max(20, 'Maximum of 20 characteres'),
 	direction: yup
 		.object()
 		.shape({
-			address: yup.string().required('Address is required').max(100),
-			city: yup.string().required('City is required').min(3).max(25),
-			poblation: yup.string().required('Poblation is required').min(3).max(25),
+			address: yup
+				.string()
+				.required('Address is required')
+				.max(100, 'Maximum of 100 characteres'),
+			city: yup
+				.string()
+				.required('City is required')
+				.min(3, 'Minimum of 3 characteres')
+				.max(25, 'Maximum of 20 characteres'),
+			poblation: yup
+				.string()
+				.required('Poblation is required')
+				.min(3, 'Minimum of 3 characteres')
+				.max(25, 'Maximum of 25 characteres'),
 			zipCode: yup.number().required('Zip code is required'),
 			country: yup.string().required('Country is required')
 		})
@@ -50,10 +69,22 @@ export const editUserSchema = yup.object().shape({
 });
 
 export const createProductSchema = yup.object({
-	title: yup.string().required(),
-	artist: yup.string().required(),
-	styles: yup.string().required(),
-	mediaCondition: yup.string().required(),
-	description: yup.string().required(),
-	price: yup.number().required()
+	title: yup
+		.string()
+		.required('This field is required')
+		.min(3, 'Minimum of 3 characteres')
+		.max(100, 'Maximum of 100 characteres'),
+	artist: yup
+		.string()
+		.required('This field is required')
+		.min(3, 'Minimum of 3 characteres')
+		.max(50, 'Maximum of 50 characteres'),
+	styles: yup.string().required('This field is required'),
+	mediaCondition: yup.string().required('This field is required'),
+	description: yup
+		.string()
+		.required('This field is required')
+		.min(3, 'Minimum of 3 characteres')
+		.max(100, 'Maximum of 100 characteres'),
+	price: yup.number().required('This field is required')
 });

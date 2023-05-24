@@ -19,18 +19,28 @@ import {
 	FormFieldAddProduct,
 	StyledAddProductContainer
 } from './styles';
+import { TEXTS_TYPES } from '../../constants/texts';
+import Text from '../../components/text/Text';
+import Button from '../../components/button/Button';
+import { BUTTONS } from '../../constants/buttons';
+import { ICONS } from '../../constants/icons';
 
 const AddProduct = () => {
 	const [file, setFile] = useState('');
+	const [selectValues, setSelectValues] = useState({
+		styles: '',
+		media: ''
+	});
+
 	const { setFetchInfo } = useFetch();
 	const { currentUser } = useContext(AuthContext);
+
 	const {
 		register,
 		handleSubmit,
 		formState: { errors }
 	} = useForm({ mode: 'onBlur', resolver: yupResolver(createProductSchema) });
 
-	console.log(currentUser);
 	return (
 		<StyledAddProductContainer>
 			<FormAddProduct
@@ -54,7 +64,7 @@ const AddProduct = () => {
 						{...register('title')}
 					/>
 					<AddProductLabel htmlFor='title'>Title</AddProductLabel>
-					{/* <Text type={TEXTS_TYPES.ERROR}>{errors.userName?.message}</Text> */}
+					<Text type={TEXTS_TYPES.ERROR}>{errors.title?.message}</Text>
 				</FormFieldAddProduct>
 				<FormFieldAddProduct>
 					<AddProductInput
@@ -64,27 +74,43 @@ const AddProduct = () => {
 						{...register('artist')}
 					/>
 					<AddProductLabel htmlFor='artist'>Artist</AddProductLabel>
-					{/* <Text type={TEXTS_TYPES.ERROR}>{errors.userName?.message}</Text> */}
+					<Text type={TEXTS_TYPES.ERROR}>{errors.artist?.message}</Text>
 				</FormFieldAddProduct>
 				<FormFieldAddProduct>
 					<label htmlFor='styles'>Styles</label>
-					<select id='styles' {...register('styles')}>
+					<select
+						value={selectValues.styles}
+						id='styles'
+						{...register('styles')}
+						onChange={e =>
+							setSelectValues({ ...selectValues, styles: e.target.value })
+						}
+					>
 						{ALL_GENRES.map(genre => (
 							<option key={v4()} value={genre}>
 								{genre}
 							</option>
 						))}
 					</select>
+					<Text type={TEXTS_TYPES.ERROR}>{errors.styles?.message}</Text>
 				</FormFieldAddProduct>
 				<FormFieldAddProduct>
 					<label htmlFor='mediaCondition'>Media Condition</label>
-					<select id='mediaCondition' {...register('mediaCondition')}>
+					<select
+						value={selectValues.media}
+						id='mediaCondition'
+						{...register('mediaCondition')}
+						onChange={e =>
+							setSelectValues({ ...selectValues, media: e.target.value })
+						}
+					>
 						{MEDIA_CONDITION.map(media => (
 							<option key={v4()} value={media}>
 								{media}
 							</option>
 						))}
 					</select>
+					<Text type={TEXTS_TYPES.ERROR}>{errors.country?.message}</Text>
 				</FormFieldAddProduct>
 				<FormFieldAddProduct>
 					<AddProductInput
@@ -94,7 +120,7 @@ const AddProduct = () => {
 						{...register('description')}
 					/>
 					<AddProductLabel htmlFor='description'>Description</AddProductLabel>
-					{/* <Text type={TEXTS_TYPES.ERROR}>{errors.userName?.message}</Text> */}
+					<Text type={TEXTS_TYPES.ERROR}>{errors.description?.message}</Text>
 				</FormFieldAddProduct>
 				<FormFieldAddProduct>
 					<AddProductInput
@@ -104,9 +130,11 @@ const AddProduct = () => {
 						{...register('price')}
 					/>
 					<AddProductLabel htmlFor='price'>Price</AddProductLabel>
-					{/* <Text type={TEXTS_TYPES.ERROR}>{errors.userName?.message}</Text> */}
+					<Text type={TEXTS_TYPES.ERROR}>{errors.price?.message}</Text>
 				</FormFieldAddProduct>
-				<button>send</button>
+				<Button type={BUTTONS.SQUARED} src={ICONS.addRecordLight}>
+					UPLOAD RECORD
+				</Button>
 			</FormAddProduct>
 		</StyledAddProductContainer>
 	);

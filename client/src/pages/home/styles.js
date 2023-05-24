@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 import { FONT_FAMILY, FONT_SIZE } from '../../constants/variables';
 
+const HomeContainer = styled.div`
+	padding: 1rem;
+`;
+
 const MainTitle = styled.h1`
 	margin: 0;
-	padding-top: 3rem;
 	color: transparent;
 	text-align: center;
 	font-size: ${FONT_SIZE.xxxl};
@@ -18,9 +21,10 @@ const MainTitle = styled.h1`
 
 const MainSubTitle = styled.h2`
 	margin: 0;
+	margin-bottom: 5rem;
 	padding: 0 1rem;
 	font-family: ${FONT_FAMILY.primary.thin};
 	text-align: center;
 `;
 
-export { MainTitle, MainSubTitle };
+export { HomeContainer, MainTitle, MainSubTitle };

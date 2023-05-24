@@ -5,7 +5,7 @@ import {
 	ref,
 	uploadBytes
 } from 'firebase/storage';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { v4 } from 'uuid';
@@ -49,10 +49,14 @@ const EditProfile = () => {
 	const [file, setFile] = useState(null);
 	const [error, setError] = useState('');
 	const navigate = useNavigate();
+	const [currentCountry, setCurrentCountry] = useState('');
+
+	useEffect(() => {
+		if (!currentUser) return;
+		setCurrentCountry(currentUser.direction.country);
+	}, [currentUser]);
 
 	if (!currentUser) return <h1>lOADING...</h1>;
-
-	const currentCountry = COUNTRY_LIST.indexOf(currentUser.direction.country);
 
 	return (
 		<StyledProfileContainer>
@@ -165,9 +169,10 @@ const EditProfile = () => {
 				<FormFieldProfile>
 					<label htmlFor='country'>Country</label>
 					<select
-						defaultValue={COUNTRY_LIST[currentCountry]}
+						value={currentCountry}
 						{...register('direction.country')}
 						id='country'
+						onChange={e => setCurrentCountry(e.target.value)}
 					>
 						{COUNTRY_LIST.map(country => (
 							<option key={v4()} value={country}>
@@ -252,4 +257,5 @@ const onSubmit = async (
 		console.log(error);
 	}
 };
+
 export default EditProfile;

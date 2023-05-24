@@ -1,13 +1,21 @@
-country value en edit profile.
-username en edit profile.
-previsualizar la imagen que subes en edit profile.
-aplicar estilos a subida imagen.
-sacar fuera la logica de subir imagenes
+Comprobar username en edit profile.
 
-hacer protected routes
+Previsualizar la imagen que subes en edit profile.
 
-quitar disabled de buttons
+Aplicar estilos a subida imagen.
 
-el size del profile image sacarlo a una constante
+Sacar fuera la logica de subir imagenes
 
-meter padding en el profile con respecto a la imagen
+Hacer protected routes
+
+Quitar disabled de buttons
+
+El size del profile image sacarlo a una constante
+
+Meter padding en el profile con respecto a la imagen
+
+Hacer disabled en el boton de crear producto hasta que no elija una imagen
+
+poner alt al record preview
+
+Hacer objeto con titulos de records previews

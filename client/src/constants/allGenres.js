@@ -1,4 +1,5 @@
 export const ALL_GENRES = [
+	'Select genre',
 	'Rock',
 	'Pop',
 	'Hip Hop',

@@ -65,7 +65,6 @@ controller.createUser = async (req, res) => {
   });
 
   const userCreated = await newUser.save();
-  console.log(userCreated);
   res.send(userCreated);
 };
 

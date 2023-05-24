@@ -11,6 +11,7 @@ import {
 	UserProductsContainer,
 	UserProductsHeader
 } from './styles';
+import RecordsGrid from '../../components/records-grid/RecordsGrid';
 const UserProducts = () => {
 	const { currentUser } = useContext(AuthContext);
 	const navigate = useNavigate();
@@ -26,6 +27,7 @@ const UserProducts = () => {
 					</Button>
 				</ProductButtonsContainer>
 			</UserProductsHeader>
+			<RecordsGrid records={currentUser.products} />
 		</UserProductsContainer>
 	);
 };

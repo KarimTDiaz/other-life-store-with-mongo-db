@@ -44,6 +44,10 @@ export const ICONS = {
 	addRecord: {
 		src: '/assets/icons/plus-solid.svg',
 		alt: 'Icono de añadir producto'
+	},
+	addRecordLight: {
+		src: '/assets/icons/plus.svg',
+		alt: 'Icono de añadir producto en blanco'
 	}
 };
 
