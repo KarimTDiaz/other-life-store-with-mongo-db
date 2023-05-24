@@ -20,6 +20,7 @@ const io = new Server(server, {
 });
 
 const userRoutes = require('./routes/user.routes');
+const productRoutes = require('./routes/product.routes');
 
 // Middlewares para cliente
 app.use(cors());
@@ -30,6 +31,7 @@ require('dotenv').config();
 
 // Uso de rutas
 app.use('/other-life-store/users', userRoutes);
+app.use('/other-life-store/products', productRoutes);
 
 // Configura la conexión a MongoDB
 const uri = MONGODB_URL;

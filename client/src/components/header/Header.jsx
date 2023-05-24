@@ -22,13 +22,11 @@ const Header = () => {
 	const location = useLocation();
 	const { currentUser } = useContext(AuthContext);
 
-	console.log(currentUser);
-
 	if (location.pathname !== '/')
 		return (
 			<StyledHeader>
 				<HeaderTopDark>
-					<Logo theme='light' />
+					<Logo theme='light' action={() => navigate('/')} />
 				</HeaderTopDark>
 			</StyledHeader>
 		);
@@ -36,7 +34,7 @@ const Header = () => {
 	return (
 		<StyledHeader>
 			<HeaderTopLight>
-				<Logo theme='dark' />
+				<Logo theme='dark' action={() => navigate('/')} />
 				{!currentUser && (
 					<Button
 						action={() => navigate('/register')}

@@ -1,0 +1,13 @@
+country value en edit profile.
+username en edit profile.
+previsualizar la imagen que subes en edit profile.
+aplicar estilos a subida imagen.
+sacar fuera la logica de subir imagenes
+
+hacer protected routes
+
+quitar disabled de buttons
+
+el size del profile image sacarlo a una constante
+
+meter padding en el profile con respecto a la imagen

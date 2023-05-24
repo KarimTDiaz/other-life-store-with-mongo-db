@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { v4 } = require('uuid');
 
 // Schemes
 const ProductSchema = mongoose.Schema({
@@ -6,13 +7,14 @@ const ProductSchema = mongoose.Schema({
   productImage: String,
   title: String,
   artist: String,
-  released: String,
   styles: String,
   mediaCondition: String,
   description: String,
   price: Number,
-  seller: Object,
-  likes: Number
+  likes: Number,
+  sellerEmail: String,
+  sellerId: String,
+  sellerUserName: String
 });
 
 // Models

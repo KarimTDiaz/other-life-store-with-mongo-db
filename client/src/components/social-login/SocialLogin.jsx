@@ -3,15 +3,19 @@ import {
 	GoogleAuthProvider,
 	signInWithPopup
 } from 'firebase/auth';
+import { useContext } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { auth } from '../../config/firebase.config';
 import { ICONS } from '../../constants/icons';
 import { URLS } from '../../constants/requests';
+import { AuthContext } from '../../contexts/Auth.context';
 import Button from '../button/Button';
 import { SocialLoginContainer } from './styles';
-import { useNavigate } from 'react-router-dom';
 
 const SocialLogin = ({ setFetchInfo }) => {
 	const navigate = useNavigate();
+	const { currentUser } = useContext(AuthContext);
+	if (currentUser) return <Navigate to='/' />;
 	return (
 		<SocialLoginContainer>
 			<Button
@@ -68,7 +72,6 @@ const loginWithGoogle = async ({ setFetchInfo, navigate }) => {
 				}
 			}
 		});
-		navigate('/');
 	} catch (err) {
 		console.log(err);
 	}

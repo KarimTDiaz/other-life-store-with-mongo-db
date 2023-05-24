@@ -1,10 +1,12 @@
 import { Route, Routes } from 'react-router-dom';
 import Layout from '../layouts/Layout';
+import AddProduct from '../pages/add-product/AddProduct';
 import EditProfile from '../pages/edit-profile/EditProfile';
 import Home from '../pages/home/Home';
 import Login from '../pages/login/Login';
 import Profile from '../pages/profile/Profile';
 import Register from '../pages/register/Register';
+import UserProducts from '../pages/user-products/UserProducts';
 
 const Router = () => {
 	return (
@@ -15,6 +17,8 @@ const Router = () => {
 				<Route path='/login' element={<Login />} />
 				<Route path='/profile' element={<Profile />} />
 				<Route path='/edit-profile' element={<EditProfile />} />
+				<Route path='/your-products' element={<UserProducts />} />
+				<Route path='/add-product' element={<AddProduct />} />
 			</Route>
 		</Routes>
 	);

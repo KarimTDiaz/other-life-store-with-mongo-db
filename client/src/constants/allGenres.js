@@ -1,0 +1,22 @@
+export const ALL_GENRES = [
+	'Rock',
+	'Pop',
+	'Hip Hop',
+	'Jazz',
+	'Electrónica',
+	'Reggae',
+	'Clásica',
+	'R&B',
+	'Country',
+	'Salsa',
+	'Blues',
+	'Funk',
+	'Reguetón',
+	'Indie',
+	'Metal',
+	'Soul',
+	'Punk',
+	'Folk',
+	'Gospel',
+	'Disco'
+];

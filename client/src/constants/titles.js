@@ -4,7 +4,8 @@ export const TITLES = {
 	formTitles: {
 		register: 'CREATE AN ACCOUNT',
 		login: 'LOGIN TO YOUR ACCOUNT',
-		editUser: 'EDIT PROFILE'
+		editUser: 'EDIT PROFILE',
+		sellRecord: 'SELL RECORD'
 	}
 };
 

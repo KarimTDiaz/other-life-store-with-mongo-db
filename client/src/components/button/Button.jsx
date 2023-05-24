@@ -1,13 +1,15 @@
 import { BUTTONS } from '../../constants/buttons';
-import { ICONS_SIZES } from '../../constants/icons';
+import { ICONS, ICONS_SIZES } from '../../constants/icons';
 import Icon from '../icon/Icon';
 import {
 	ButtonText,
 	ButtonTextDark,
+	StyledButtonAdd,
 	StyledButtonBordered,
 	StyledButtonSocial,
 	StyledButtonSquared,
-	StyledButtonThin
+	StyledButtonThin,
+	StyledButtonUser
 } from './styles';
 
 const Button = ({ action, type, src, disabled, children }) => {
@@ -40,13 +42,21 @@ const Button = ({ action, type, src, disabled, children }) => {
 					<Icon src={src} size={ICONS_SIZES.small} />
 				</StyledButtonThin>
 			);
-		default:
+		case BUTTONS.USER:
 			return (
-				<StyledButtonThin onClick={action}>
+				<StyledButtonUser>
 					{children}
-					<Icon src={src} size={ICONS_SIZES.small} />
-				</StyledButtonThin>
+					<Icon src={ICONS.userVinyl} size={ICONS_SIZES.small} />
+				</StyledButtonUser>
 			);
+		case BUTTONS.ADD:
+			return (
+				<StyledButtonAdd onClick={action}>
+					{children}
+					<Icon src={ICONS.addRecord} size={ICONS_SIZES.regular} />
+				</StyledButtonAdd>
+			);
+		default:
 	}
 };
 

@@ -1,5 +1,4 @@
 const UserModel = require('../schemas/user.schema');
-const { v4 } = require('uuid');
 const controller = {};
 
 controller.allUsers = async (req, res) => {
@@ -71,9 +70,8 @@ controller.createUser = async (req, res) => {
 };
 
 controller.updateUser = async (req, res) => {
-  const user = await UserModel.findById(req.params.id);
   const userUpdated = await UserModel.updateOne(
-    { _id: user._id },
+    { _id: req.params.id },
     { $set: { ...req.body } }
   );
   console.log(userUpdated);

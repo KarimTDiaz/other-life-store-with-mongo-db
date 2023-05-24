@@ -36,6 +36,14 @@ export const ICONS = {
 	error: {
 		src: '/assets/icons/error.svg',
 		alt: 'Icono de Advertencia'
+	},
+	userVinyl: {
+		src: '/assets/icons/user-vinyl.svg',
+		alt: 'Icono de Vinilo'
+	},
+	addRecord: {
+		src: '/assets/icons/plus-solid.svg',
+		alt: 'Icono de añadir producto'
 	}
 };
 

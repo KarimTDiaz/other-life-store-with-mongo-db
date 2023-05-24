@@ -7,7 +7,7 @@ import {
 	FONT_SIZE
 } from '../../constants/variables';
 
-const StyledProfileContainer = styled.div`
+const StyledAddProductContainer = styled.div`
 	max-width: 450px;
 	padding: 1rem;
 	margin-left: auto;
@@ -15,13 +15,13 @@ const StyledProfileContainer = styled.div`
 	background-color: ${COLORS.background.body};
 `;
 
-const FormProfile = styled.form`
+const FormAddProduct = styled.form`
 	padding: 1.5rem 2rem;
 	border-radius: ${BORDER_RADIUS.formCards};
 	box-shadow: ${BOX_SHADOWS.formCards};
 `;
 
-const FormFieldProfile = styled.div`
+const FormFieldAddProduct = styled.div`
 	position: relative;
 	display: flex;
 	flex-direction: column;
@@ -29,7 +29,7 @@ const FormFieldProfile = styled.div`
 	margin-bottom: 1.5rem;
 `;
 
-const ProfileInput = styled.input`
+const AddProductInput = styled.input`
 	padding: 0.5rem;
 	font-family: ${FONT_FAMILY.primary.regular};
 	background: none;
@@ -41,7 +41,7 @@ const ProfileInput = styled.input`
 		border-color: ${COLORS.textDark};
 	}
 `;
-const ProfileLabel = styled.label`
+const AddProductLabel = styled.label`
 	position: absolute;
 	left: 10px;
 	top: 7px;
@@ -49,23 +49,23 @@ const ProfileLabel = styled.label`
 	color: ${COLORS.background.modal};
 	pointer-events: none;
 	transition: 0.3s ease all;
-	${ProfileInput}:focus ~ &, ${ProfileInput}:not(:placeholder-shown) ~ & {
+	${AddProductInput}:focus ~ &, ${AddProductInput}:not(:placeholder-shown) ~ & {
 		top: -18px;
 		left: 0;
 		font-size: ${FONT_SIZE.xxxxs};
 		color: ${COLORS.textDark};
 	}
 `;
-const ProfileText = styled.p`
+const AddProductText = styled.p`
 	font-family: ${FONT_FAMILY.primary.regular};
 	text-align: center;
 `;
 
 export {
-	StyledProfileContainer,
-	FormProfile,
-	FormFieldProfile,
-	ProfileLabel,
-	ProfileInput,
-	ProfileText
+	StyledAddProductContainer,
+	FormAddProduct,
+	FormFieldAddProduct,
+	AddProductLabel,
+	AddProductInput,
+	AddProductText
 };

@@ -1,5 +1,10 @@
 import styled from 'styled-components';
-import { COLORS, FONT_FAMILY, FONT_SIZE } from '../../constants/variables';
+import {
+	BORDER_RADIUS,
+	COLORS,
+	FONT_FAMILY,
+	FONT_SIZE
+} from '../../constants/variables';
 
 const StyledButtonBordered = styled.button`
 	display: flex;
@@ -37,6 +42,21 @@ const StyledButtonThin = styled.button`
 	border: none;
 	background-color: transparent;
 `;
+const StyledButtonUser = styled(StyledButtonThin)`
+	width: max-content;
+	padding: 0.2rem 1rem;
+	font-family: ${FONT_FAMILY.primary.regular};
+	background-color: yellow;
+	border-radius: ${BORDER_RADIUS.formCards};
+	border: 1px solid ${COLORS.textDark};
+`;
+
+const StyledButtonAdd = styled(StyledButtonThin)`
+	width: max-content;
+	font-family: ${FONT_FAMILY.primary.regular};
+	border-radius: ${BORDER_RADIUS.formCards};
+	border: 1px solid ${COLORS.textDark};
+`;
 const ButtonText = styled.p`
 	margin: 0;
 	color: ${COLORS.textLight};
@@ -52,6 +72,8 @@ export {
 	StyledButtonSquared,
 	StyledButtonSocial,
 	StyledButtonThin,
+	StyledButtonUser,
+	StyledButtonAdd,
 	ButtonText,
 	ButtonTextDark
 };

@@ -43,8 +43,17 @@ export const editUserSchema = yup.object().shape({
 			address: yup.string().required('Address is required').max(100),
 			city: yup.string().required('City is required').min(3).max(25),
 			poblation: yup.string().required('Poblation is required').min(3).max(25),
-			zipCode: yup.string().required('Zip code is required'),
+			zipCode: yup.number().required('Zip code is required'),
 			country: yup.string().required('Country is required')
 		})
 		.required()
+});
+
+export const createProductSchema = yup.object({
+	title: yup.string().required(),
+	artist: yup.string().required(),
+	styles: yup.string().required(),
+	mediaCondition: yup.string().required(),
+	description: yup.string().required(),
+	price: yup.number().required()
 });
