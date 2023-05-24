@@ -30,6 +30,7 @@ const AddProduct = () => {
 		formState: { errors }
 	} = useForm({ mode: 'onBlur', resolver: yupResolver(createProductSchema) });
 
+	console.log(currentUser);
 	return (
 		<StyledAddProductContainer>
 			<FormAddProduct
@@ -140,7 +141,8 @@ const onSubmit = async (data, file, setFetchInfo, currentUser) => {
 				Accept: '*/*',
 				'Content-Type': 'application/json'
 			}
-		}
+		},
+		redirectTo: '/your-products'
 	});
 };
 

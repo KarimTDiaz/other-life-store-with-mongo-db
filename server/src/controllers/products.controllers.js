@@ -55,8 +55,8 @@ controller.createProduct = async (req, res) => {
     sellerId,
     sellerUserName
   });
-  await userCreatingProduct.favorites.push(newProduct);
-  console.log(userCreatingProduct.favorites);
+  await userCreatingProduct.products.push(newProduct);
+  await userCreatingProduct.save();
   await newProduct.save();
   res.send('Product Created');
 };
