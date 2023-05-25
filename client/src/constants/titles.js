@@ -28,5 +28,6 @@ export const SUBTITLES = {
 export const TITLES_TYPES = {
 	FORM: 'form',
 	PAGE: 'page',
-	SUBTITLE: 'subtitle'
+	SUBTITLE: 'subtitle',
+	SECTION: 'section'
 };

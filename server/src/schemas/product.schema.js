@@ -13,8 +13,7 @@ const ProductSchema = mongoose.Schema({
   price: Number,
   likes: Number,
   sellerEmail: String,
-  sellerId: String,
-  sellerUserName: String
+  sellerId: String
 });
 
 // Models

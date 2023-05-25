@@ -9,5 +9,12 @@ const ErrorText = styled.span`
 	color: ${COLORS.error};
 	pointer-events: none;
 `;
+const PreviewText = styled.p`
+	width: 70%;
+	margin: 0;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+`;
 
-export { FieldText, ErrorText };
+export { FieldText, ErrorText, PreviewText };

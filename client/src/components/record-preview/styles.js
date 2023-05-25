@@ -7,7 +7,11 @@ const RecordPreviewImageContainer = styled.div`
 	margin-bottom: 0.5rem;
 `;
 
-const RecordPreviewImage = styled.img``;
+const RecordPreviewImage = styled.img`
+	object-fit: cover;
+	object-position: center;
+	width: 100%;
+`;
 
 const RecordPreviewData = styled.div``;
 

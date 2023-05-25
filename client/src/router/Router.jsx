@@ -7,6 +7,7 @@ import Login from '../pages/login/Login';
 import Profile from '../pages/profile/Profile';
 import Register from '../pages/register/Register';
 import UserProducts from '../pages/user-products/UserProducts';
+import ProtectedRoute from './ProtectedRoute';
 
 const Router = () => {
 	return (
@@ -16,7 +17,14 @@ const Router = () => {
 				<Route path='/register' element={<Register />} />
 				<Route path='/login' element={<Login />} />
 				<Route path='/profile' element={<Profile />} />
-				<Route path='/edit-profile' element={<EditProfile />} />
+				<Route
+					path='/edit-profile'
+					element={
+						<ProtectedRoute>
+							<EditProfile />
+						</ProtectedRoute>
+					}
+				/>
 				<Route path='/your-products' element={<UserProducts />} />
 				<Route path='/add-product' element={<AddProduct />} />
 			</Route>

@@ -3,12 +3,17 @@ import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { v4 } from 'uuid';
+import Button from '../../components/button/Button';
+import Text from '../../components/text/Text';
 import Title from '../../components/title/Title';
 import { storage } from '../../config/firebase.config';
 import { ALL_GENRES } from '../../constants/allGenres';
+import { BUTTONS } from '../../constants/buttons';
+import { ICONS } from '../../constants/icons';
 import { MEDIA_CONDITION } from '../../constants/mediaCondition';
 import { URLS } from '../../constants/requests';
 import { createProductSchema } from '../../constants/schemas.form';
+import { TEXTS_TYPES } from '../../constants/texts';
 import { TITLES, TITLES_TYPES } from '../../constants/titles';
 import { AuthContext } from '../../contexts/Auth.context';
 import { useFetch } from '../../hooks/useFetch';
@@ -19,11 +24,6 @@ import {
 	FormFieldAddProduct,
 	StyledAddProductContainer
 } from './styles';
-import { TEXTS_TYPES } from '../../constants/texts';
-import Text from '../../components/text/Text';
-import Button from '../../components/button/Button';
-import { BUTTONS } from '../../constants/buttons';
-import { ICONS } from '../../constants/icons';
 
 const AddProduct = () => {
 	const [file, setFile] = useState('');
@@ -162,8 +162,7 @@ const onSubmit = async (data, file, setFetchInfo, currentUser) => {
 				_id: v4(),
 				likes: 0,
 				sellerEmail: currentUser.email,
-				sellerId: currentUser.uid,
-				sellerUserName: currentUser.userName
+				sellerId: currentUser.uid
 			}),
 			headers: {
 				Accept: '*/*',

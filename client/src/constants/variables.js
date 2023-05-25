@@ -33,7 +33,8 @@ export const FONT_SIZE = {
 	xl: '2.5rem',
 	xxl: '2.8125rem',
 	xxxl: '3.75rem',
-	xxxxl: '5rem'
+	xxxxl: '5rem',
+	xxxxxl: '7rem'
 };
 
 export const PADDING = {};

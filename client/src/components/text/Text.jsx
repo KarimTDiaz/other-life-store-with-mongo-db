@@ -1,5 +1,5 @@
 import { TEXTS_TYPES } from '../../constants/texts';
-import { ErrorText, FieldText } from './styles';
+import { ErrorText, FieldText, PreviewText } from './styles';
 
 const Text = ({ type, children }) => {
 	switch (type) {
@@ -7,6 +7,8 @@ const Text = ({ type, children }) => {
 			return <FieldText>{children}</FieldText>;
 		case TEXTS_TYPES.ERROR:
 			return <ErrorText>{children}</ErrorText>;
+		case TEXTS_TYPES.PREVIEW:
+			return <PreviewText>{children}</PreviewText>;
 	}
 };
 

@@ -2,19 +2,23 @@ import styled from 'styled-components';
 import { COLORS, FONT_FAMILY, FONT_SIZE } from '../../constants/variables';
 
 const StyledHeader = styled.header`
-	margin-bottom: 2rem;
+	@media screen and (min-width: 640px) {
+		margin-bottom: 2rem;
+	}
 `;
 
 const HeaderTopLight = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 1rem;
+	padding: 1rem 1rem 0 1rem;
+	@media screen and (min-width: 768px) {
+		padding: 2rem 2rem 0 2rem;
+	}
 `;
 const HeaderTopDark = styled.div`
 	display: flex;
 	justify-content: center;
-	width: 100vw;
 	padding: 1rem;
 	background-color: ${COLORS.textDark};
 `;

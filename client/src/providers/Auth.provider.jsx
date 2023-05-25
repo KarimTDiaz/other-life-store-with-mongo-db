@@ -6,6 +6,7 @@ import { AuthContext } from '../contexts/Auth.context';
 export const AuthProvider = ({ children }) => {
 	const [currentUser, setCurrentUser] = useState(null);
 	const [attempts, setAttempts] = useState(0);
+	const [loadingFirebase, setLoadingFirebase] = useState(true);
 
 	useEffect(() => {
 		const unsubscribe = auth.onAuthStateChanged(async user => {
@@ -16,6 +17,7 @@ export const AuthProvider = ({ children }) => {
 				// El usuario no está autenticado
 				setCurrentUser(null);
 			}
+			setLoadingFirebase(false);
 		});
 
 		return () => unsubscribe();
@@ -47,7 +49,7 @@ export const AuthProvider = ({ children }) => {
 	}, [currentUser]); // Agrega currentUser como dependencia del useEffect
 
 	return (
-		<AuthContext.Provider value={{ currentUser }}>
+		<AuthContext.Provider value={{ currentUser, loadingFirebase }}>
 			{children}
 		</AuthContext.Provider>
 	);

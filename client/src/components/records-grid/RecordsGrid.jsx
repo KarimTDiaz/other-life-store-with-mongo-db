@@ -6,7 +6,7 @@ import { StyledRecordsGrid } from './styles';
 const RecordsGrid = ({ records }) => {
 	return (
 		<>
-			<Title type={TITLES_TYPES.SUBTITLE}>Latest Additions</Title>
+			<Title type={TITLES_TYPES.SECTION}>Latest Additions</Title>
 			<StyledRecordsGrid>
 				{records.map(record => (
 					<RecordPreview key={record._id} record={record} />

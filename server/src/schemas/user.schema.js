@@ -17,7 +17,8 @@ const UserSchema = mongoose.Schema({
   },
   favorites: Array,
   products: Array,
-  purchases: Array
+  purchases: Array,
+  cart: Array
 });
 
 // Models

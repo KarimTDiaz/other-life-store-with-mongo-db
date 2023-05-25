@@ -25,4 +25,8 @@ const SubTitle = styled.h3`
 	font-weight: 100;
 `;
 
-export { FormTitle, PageTitle, SubTitle };
+const SectionTitle = styled(SubTitle)`
+	font-size: ${FONT_SIZE.m};
+`;
+
+export { FormTitle, PageTitle, SubTitle, SectionTitle };

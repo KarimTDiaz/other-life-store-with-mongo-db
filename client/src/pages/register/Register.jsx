@@ -152,7 +152,8 @@ const onSubmit = async (
 					},
 					favorites: [],
 					products: [],
-					purchases: []
+					purchases: [],
+					cart: []
 				}),
 				headers: {
 					Accept: '*/*',

@@ -1,4 +1,4 @@
-import RecordPreview from '../../components/record-preview/RecordPreview';
+import MarqueePhotos from '../../components/marquee/Marquee';
 import RecordsGrid from '../../components/records-grid/RecordsGrid';
 import { URLS } from '../../constants/requests';
 import { TITLES } from '../../constants/titles';
@@ -19,6 +19,7 @@ const Home = () => {
 	return (
 		<>
 			<HomeContainer>
+				<MarqueePhotos />
 				<MainTitle>{TITLES.mainTitle}</MainTitle>
 				<MainSubTitle>{TITLES.mainSubTitle}</MainSubTitle>
 				<RecordsGrid records={allProducts} />

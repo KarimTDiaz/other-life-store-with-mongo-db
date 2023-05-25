@@ -18,14 +18,14 @@ const RecordPreview = ({ record }) => {
 			</RecordPreviewImageContainer>
 			<RecordPreviewData>
 				<RecordPreviewField>
-					<Text type={TEXTS_TYPES.FIELD}>{record.title}</Text>
+					<Text type={TEXTS_TYPES.PREVIEW}>{record.title}</Text>
 				</RecordPreviewField>
 				<RecordPreviewField>
-					<Text type={TEXTS_TYPES.FIELD}>{record.artist}</Text>
+					<Text type={TEXTS_TYPES.PREVIEW}>{record.artist}</Text>
 				</RecordPreviewField>
 				<RecordPreviewField>
 					<Title type={TITLES_TYPES.SUBTITLE}>Price:</Title>
-					<Text type={TEXTS_TYPES.FIELD}>{record.price} €</Text>
+					<Text type={TEXTS_TYPES.PREVIEW}>{record.price} €</Text>
 				</RecordPreviewField>
 			</RecordPreviewData>
 		</StyledRecordPreviewContainer>
