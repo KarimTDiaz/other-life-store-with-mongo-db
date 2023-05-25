@@ -16,14 +16,14 @@ const Button = ({ action, type, src, disabled, children }) => {
 	switch (type) {
 		case BUTTONS.BORDERED:
 			return (
-				<StyledButtonBordered onClick={action}>
+				<StyledButtonBordered onClick={action} disabled={disabled}>
 					<ButtonText>{children}</ButtonText>
 					<Icon src={src} size={ICONS_SIZES.small} />
 				</StyledButtonBordered>
 			);
 		case BUTTONS.SQUARED:
 			return (
-				<StyledButtonSquared onClick={action}>
+				<StyledButtonSquared onClick={action} disabled={disabled}>
 					<ButtonText>{children}</ButtonText>
 					{src && <Icon src={src} size={ICONS_SIZES.small} />}
 				</StyledButtonSquared>

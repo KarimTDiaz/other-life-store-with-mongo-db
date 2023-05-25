@@ -22,14 +22,25 @@ import {
 	ProfileLabel,
 	StyledProfileContainer
 } from './styles';
+import { STORAGE_FILES } from '../../constants/storage.files';
+import {
+	deleteObject,
+	getDownloadURL,
+	ref,
+	uploadBytes
+} from 'firebase/storage';
+import { storage } from '../../config/firebase.config';
+import { formatStringWithV4 } from '../../utils/format-string-with-v4';
+import { uploadUserFile } from '../../utils/uploadUserFile';
+import { STORAGE_FOLDERS } from '../../constants/storage.folders';
 
 const EditProfile = () => {
 	const { currentUser, loadingFirebase } = useContext(AuthContext);
-	const [profileImage, setProfileImage] = useState(currentUser.profileImage);
+	const [file, setFile] = useState('');
 	const [error, setError] = useState('');
 	const [currentCountry, setCurrentCountry] = useState('');
 	const navigate = useNavigate();
-
+	console.log(file);
 	const {
 		register,
 		handleSubmit,
@@ -54,21 +65,13 @@ const EditProfile = () => {
 		<StyledProfileContainer>
 			<FormProfile
 				onSubmit={handleSubmit(data => {
-					onSubmit(
-						data,
-						profileImage,
-						setFetchInfo,
-						currentUser,
-						allUsers,
-						setError
-					);
+					onSubmit(data, file, setFetchInfo, currentUser, allUsers, setError);
 				})}
 			>
 				<Title type={TITLES_TYPES.FORM}>{TITLES.formTitles.editUser}</Title>
 				<UploadPhoto
-					currentUser={currentUser}
-					profileImage={profileImage}
-					setProfileImage={setProfileImage}
+					defaultPreview={currentUser.profileImage}
+					setFile={setFile}
 				/>
 				<FormFieldProfile>
 					<ProfileInput
@@ -192,7 +195,7 @@ const EditProfile = () => {
 
 const onSubmit = async (
 	data,
-	profileImage,
+	file,
 	setFetchInfo,
 	currentUser,
 	allUsers,
@@ -208,15 +211,30 @@ const onSubmit = async (
 		setError('Username has already been used');
 		return;
 	}
-
 	try {
+		if (file) {
+			if (currentUser.profileImage !== STORAGE_FILES.DEFAULT_IMG) {
+				const deleteImageRef = ref(storage, currentUser.profileImage);
+				await deleteObject(deleteImageRef);
+				console.log('Foto eliminada correctamente');
+			}
+			const finalName = formatStringWithV4(file.name);
+			const folder = STORAGE_FOLDERS.USER;
+			const finalUrl = await uploadUserFile(
+				file,
+				currentUser,
+				finalName,
+				folder
+			);
+			data.profileImage = finalUrl;
+		}
+
 		setFetchInfo({
 			url: URLS.EDIT_USER + currentUser.uid,
 			options: {
 				method: 'PATCH',
 				body: JSON.stringify({
-					...data,
-					profileImage
+					...data
 				}),
 				headers: {
 					Accept: '*/*',

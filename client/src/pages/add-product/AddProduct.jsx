@@ -24,9 +24,10 @@ import {
 	FormFieldAddProduct,
 	StyledAddProductContainer
 } from './styles';
+import UploadPhoto from '../../components/upload-photo/UploadPhoto';
 
 const AddProduct = () => {
-	const [file, setFile] = useState('');
+	const [productImage, setProductImage] = useState('');
 	const [selectValues, setSelectValues] = useState({
 		styles: '',
 		media: ''
@@ -45,17 +46,15 @@ const AddProduct = () => {
 		<StyledAddProductContainer>
 			<FormAddProduct
 				onSubmit={handleSubmit(data => {
-					onSubmit(data, file, setFetchInfo, currentUser);
+					onSubmit(data, productImage, setFetchInfo, currentUser);
 				})}
 			>
 				<Title type={TITLES_TYPES.FORM}>{TITLES.formTitles.sellRecord}</Title>
-				<FormFieldAddProduct>
-					<AddProductInput
-						type='file'
-						id='productImage'
-						onChange={ev => handleFile(ev, setFile)}
-					/>
-				</FormFieldAddProduct>
+				{/* <UploadPhoto
+					state={productImage}
+					setState={setProductImage}
+					type='product'
+				/> */}
 				<FormFieldAddProduct>
 					<AddProductInput
 						type='text'
@@ -140,19 +139,7 @@ const AddProduct = () => {
 	);
 };
 
-const handleFile = (event, setFile) => {
-	const newFile = event.target.files[0];
-	setFile(newFile);
-};
-
-const onSubmit = async (data, file, setFetchInfo, currentUser) => {
-	const nameNoExtension = file.name.substring(0, file.name.lastIndexOf('.'));
-	const finalName = `${nameNoExtension}-${v4()}`;
-	const directory = currentUser.uid;
-	const storageRef = ref(storage, `${directory}/products-images/${finalName}`);
-	const upload = await uploadBytes(storageRef, file);
-	data.productImage = await getDownloadURL(storageRef);
-
+const onSubmit = async (data, productImage, setFetchInfo, currentUser) => {
 	await setFetchInfo({
 		url: URLS.NEW_PRODUCT + currentUser.uid,
 		options: {
@@ -162,7 +149,8 @@ const onSubmit = async (data, file, setFetchInfo, currentUser) => {
 				_id: v4(),
 				likes: 0,
 				sellerEmail: currentUser.email,
-				sellerId: currentUser.uid
+				sellerId: currentUser.uid,
+				productImage
 			}),
 			headers: {
 				Accept: '*/*',

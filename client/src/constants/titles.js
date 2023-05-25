@@ -22,7 +22,14 @@ export const SUBTITLES = {
 		COUNTRY: 'Country',
 		ZIP: 'Zip Code'
 	},
-	product: {}
+	recordsPreviews: {
+		TITLE: 'Title',
+		ARTIST: 'Artist',
+		GENRES: 'Genres',
+		CONDITION: 'Condition',
+		DESCRIPTION: 'Description',
+		PRICE: 'Price'
+	}
 };
 
 export const TITLES_TYPES = {

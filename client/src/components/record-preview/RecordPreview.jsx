@@ -14,7 +14,7 @@ const RecordPreview = ({ record }) => {
 	return (
 		<StyledRecordPreviewContainer>
 			<RecordPreviewImageContainer>
-				<RecordPreviewImage src={record.productImage} />
+				<RecordPreviewImage src={record.productImage} alt='Carátula de disco' />
 			</RecordPreviewImageContainer>
 			<RecordPreviewData>
 				<RecordPreviewField>

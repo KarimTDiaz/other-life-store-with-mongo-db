@@ -1,10 +1,6 @@
 Comprobar username en edit profile.
 
-Previsualizar la imagen que subes en edit profile.
-
 Aplicar estilos a subida imagen.
-
-Sacar fuera la logica de subir imagenes
 
 Hacer protected routes
 
@@ -16,10 +12,12 @@ Meter padding en el profile con respecto a la imagen
 
 Hacer disabled en el boton de crear producto hasta que no elija una imagen
 
-poner alt al record preview
-
-Hacer objeto con titulos de records previews
-
 hacer componentte loading
 
 Comprobaciones de no poder vender sin el perfil creado
+
+upload photo en add product
+
+photo producto hacer un type
+
+hacer una constante con las folders del storage
