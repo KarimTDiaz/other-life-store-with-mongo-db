@@ -1,5 +1,5 @@
-import ProfileImage from '../profile-image/ProfileImage';
 import { useState } from 'react';
+import ProfileImage from '../profile-image/ProfileImage';
 import { UploadContainer, UploadInput } from './styles';
 
 const UploadPhoto = ({ defaultPreview, setFile, type, file }) => {
@@ -13,7 +13,7 @@ const UploadPhoto = ({ defaultPreview, setFile, type, file }) => {
 				id='profileImage'
 				onChange={ev => {
 					handlePreview(ev.target.files[0], setImagePreview);
-					setFile(ev.target.files[0]);
+					handleImageUpload(ev, setFile);
 				}}
 			/>
 		</UploadContainer>
@@ -28,6 +28,59 @@ const handlePreview = (file, setImagePreview) => {
 	reader.readAsDataURL(file);
 };
 
+const resizeImage = file => {
+	return new Promise(resolve => {
+		const reader = new FileReader();
+		reader.readAsDataURL(file);
+		reader.onload = event => {
+			const img = new Image();
+			img.src = event.target.result;
+			img.onload = () => {
+				const MAX_WIDTH = 270;
+				const MAX_HEIGHT = 270;
+
+				let width = img.width;
+				let height = img.height;
+
+				if (width > height) {
+					if (width > MAX_WIDTH) {
+						height *= MAX_WIDTH / width;
+						width = MAX_WIDTH;
+					}
+				} else {
+					if (height > MAX_HEIGHT) {
+						width *= MAX_HEIGHT / height;
+						height = MAX_HEIGHT;
+					}
+				}
+
+				const canvas = document.createElement('canvas');
+				canvas.width = width;
+				canvas.height = height;
+
+				const ctx = canvas.getContext('2d');
+				ctx.drawImage(img, 0, 0, width, height);
+
+				canvas.toBlob(blob => {
+					resolve(blob);
+				}, file.type);
+			};
+		};
+	});
+};
+
+const handleImageUpload = async (event, setFile) => {
+	const file = event.target.files[0];
+
+	try {
+		const resizedImage = await resizeImage(file);
+		setFile(file);
+		// Sube la imagen redimensionada a Firebase aquí
+		console.log('Imagen redimensionada:', resizedImage);
+	} catch (error) {
+		console.log('Error al redimensionar imagen:', error);
+	}
+};
 // const handleFile = async (file, setState, currentUser, type) => {
 
 // 	const nameNoExtension = file.name.substring(0, file.name.lastIndexOf('.'));

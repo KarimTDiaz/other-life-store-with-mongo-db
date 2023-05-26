@@ -1,4 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import { deleteObject, ref } from 'firebase/storage';
 import { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -7,14 +8,19 @@ import Button from '../../components/button/Button';
 import Text from '../../components/text/Text';
 import Title from '../../components/title/Title';
 import UploadPhoto from '../../components/upload-photo/UploadPhoto';
+import { storage } from '../../config/firebase.config';
 import { COUNTRY_LIST } from '../../constants/allCountries';
 import { BUTTONS } from '../../constants/buttons';
 import { URLS } from '../../constants/requests';
 import { editUserSchema } from '../../constants/schemas.form';
+import { STORAGE_FILES } from '../../constants/storage.files';
+import { STORAGE_FOLDERS } from '../../constants/storage.folders';
 import { TEXTS_TYPES } from '../../constants/texts';
 import { TITLES, TITLES_TYPES } from '../../constants/titles';
 import { AuthContext } from '../../contexts/Auth.context';
 import { useFetch } from '../../hooks/useFetch';
+import { formatStringWithV4 } from '../../utils/format-string-with-v4';
+import { uploadUserFile } from '../../utils/uploadUserFile';
 import {
 	FormFieldProfile,
 	FormProfile,
@@ -22,17 +28,6 @@ import {
 	ProfileLabel,
 	StyledProfileContainer
 } from './styles';
-import { STORAGE_FILES } from '../../constants/storage.files';
-import {
-	deleteObject,
-	getDownloadURL,
-	ref,
-	uploadBytes
-} from 'firebase/storage';
-import { storage } from '../../config/firebase.config';
-import { formatStringWithV4 } from '../../utils/format-string-with-v4';
-import { uploadUserFile } from '../../utils/uploadUserFile';
-import { STORAGE_FOLDERS } from '../../constants/storage.folders';
 
 const EditProfile = () => {
 	const { currentUser, loadingFirebase } = useContext(AuthContext);
@@ -40,7 +35,7 @@ const EditProfile = () => {
 	const [error, setError] = useState('');
 	const [currentCountry, setCurrentCountry] = useState('');
 	const navigate = useNavigate();
-	console.log(file);
+
 	const {
 		register,
 		handleSubmit,
@@ -73,6 +68,7 @@ const EditProfile = () => {
 					defaultPreview={currentUser.profileImage}
 					setFile={setFile}
 				/>
+
 				<FormFieldProfile>
 					<ProfileInput
 						defaultValue={currentUser.userName}

@@ -21,3 +21,5 @@ upload photo en add product
 photo producto hacer un type
 
 hacer una constante con las folders del storage
+
+cambiar el nombre a uploaduserfile en utils
