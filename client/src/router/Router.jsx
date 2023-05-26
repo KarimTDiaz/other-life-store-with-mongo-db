@@ -8,6 +8,7 @@ import Profile from '../pages/profile/Profile';
 import Register from '../pages/register/Register';
 import UserProducts from '../pages/user-products/UserProducts';
 import ProtectedRoute from './ProtectedRoute';
+import ProductInfo from '../pages/product-info/ProductInfo';
 
 const Router = () => {
 	return (
@@ -27,6 +28,7 @@ const Router = () => {
 				/>
 				<Route path='/your-products' element={<UserProducts />} />
 				<Route path='/add-product' element={<AddProduct />} />
+				<Route path='/product-info' element={<ProductInfo />} />
 			</Route>
 		</Routes>
 	);

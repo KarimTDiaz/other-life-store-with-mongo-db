@@ -16,10 +16,6 @@ hacer componentte loading
 
 Comprobaciones de no poder vender sin el perfil creado
 
-upload photo en add product
-
-photo producto hacer un type
-
-hacer una constante con las folders del storage
-
 cambiar el nombre a uploaduserfile en utils
+
+hacer deletes y favorites

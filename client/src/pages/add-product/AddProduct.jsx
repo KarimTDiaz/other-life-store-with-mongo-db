@@ -25,9 +25,13 @@ import {
 	StyledAddProductContainer
 } from './styles';
 import UploadPhoto from '../../components/upload-photo/UploadPhoto';
+import { STORAGE_FILES } from '../../constants/storage.files';
+import { formatStringWithV4 } from '../../utils/format-string-with-v4';
+import { STORAGE_FOLDERS } from '../../constants/storage.folders';
+import { uploadUserFile } from '../../utils/uploadUserFile';
 
 const AddProduct = () => {
-	const [productImage, setProductImage] = useState('');
+	const [file, setFile] = useState('');
 	const [selectValues, setSelectValues] = useState({
 		styles: '',
 		media: ''
@@ -46,15 +50,15 @@ const AddProduct = () => {
 		<StyledAddProductContainer>
 			<FormAddProduct
 				onSubmit={handleSubmit(data => {
-					onSubmit(data, productImage, setFetchInfo, currentUser);
+					onSubmit(data, setFetchInfo, currentUser, file);
 				})}
 			>
 				<Title type={TITLES_TYPES.FORM}>{TITLES.formTitles.sellRecord}</Title>
-				{/* <UploadPhoto
-					state={productImage}
-					setState={setProductImage}
+				<UploadPhoto
+					defaultPreview={STORAGE_FILES.DEFAULT_IMG_PRODUCT}
+					setFile={setFile}
 					type='product'
-				/> */}
+				/>
 				<FormFieldAddProduct>
 					<AddProductInput
 						type='text'
@@ -139,7 +143,11 @@ const AddProduct = () => {
 	);
 };
 
-const onSubmit = async (data, productImage, setFetchInfo, currentUser) => {
+const onSubmit = async (data, setFetchInfo, currentUser, file) => {
+	const finalName = formatStringWithV4(file.name);
+	const folder = STORAGE_FOLDERS.PRODUCT;
+	const finalUrl = await uploadUserFile(file, currentUser, finalName, folder);
+	data.productImage = finalUrl;
 	await setFetchInfo({
 		url: URLS.NEW_PRODUCT + currentUser.uid,
 		options: {
@@ -149,8 +157,7 @@ const onSubmit = async (data, productImage, setFetchInfo, currentUser) => {
 				_id: v4(),
 				likes: 0,
 				sellerEmail: currentUser.email,
-				sellerId: currentUser.uid,
-				productImage
+				sellerId: currentUser.uid
 			}),
 			headers: {
 				Accept: '*/*',

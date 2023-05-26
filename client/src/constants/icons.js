@@ -48,6 +48,14 @@ export const ICONS = {
 	addRecordLight: {
 		src: '/assets/icons/plus.svg',
 		alt: 'Icono de añadir producto en blanco'
+	},
+	likeOff: {
+		src: '/assets/icons/heart-regular.svg',
+		alt: 'Icono de Like sin click'
+	},
+	likeOn: {
+		src: '/assets/icons/heart-solid.svg',
+		alt: 'Icono de Like'
 	}
 };
 

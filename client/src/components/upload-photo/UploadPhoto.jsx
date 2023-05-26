@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import ProfileImage from '../profile-image/ProfileImage';
 import { UploadContainer, UploadInput } from './styles';
+import ProductImage from '../product-image/ProductImage';
 
 const UploadPhoto = ({ defaultPreview, setFile, type, file }) => {
 	const [imagePreview, setImagePreview] = useState(defaultPreview);
 
 	return (
 		<UploadContainer>
-			<ProfileImage src={imagePreview} />
+			{type === 'user' && <ProfileImage src={imagePreview} />}
+			{type === 'product' && <ProductImage src={imagePreview} />}
 			<UploadInput
 				type='file'
 				id='profileImage'

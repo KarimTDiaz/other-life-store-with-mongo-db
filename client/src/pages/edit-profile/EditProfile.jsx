@@ -67,6 +67,7 @@ const EditProfile = () => {
 				<UploadPhoto
 					defaultPreview={currentUser.profileImage}
 					setFile={setFile}
+					type='user'
 				/>
 
 				<FormFieldProfile>

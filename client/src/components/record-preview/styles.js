@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
-const StyledRecordPreviewContainer = styled.div``;
+const StyledRecordPreviewContainer = styled.div`
+	position: relative;
+`;
+const RecordPreviewToClick = styled.div``;
 
 const RecordPreviewImageContainer = styled.div`
 	padding-top: 1rem;
@@ -24,6 +27,7 @@ const RecordPreviewField = styled.div`
 export {
 	StyledRecordPreviewContainer,
 	RecordPreviewImageContainer,
+	RecordPreviewToClick,
 	RecordPreviewImage,
 	RecordPreviewData,
 	RecordPreviewField

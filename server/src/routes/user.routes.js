@@ -10,4 +10,7 @@ userRoutes.get('/:id', controller.getSingleUser);
 userRoutes.post('/new-user', controller.createUser);
 
 userRoutes.patch('/edit-user/:id', controller.updateUser);
+
+userRoutes.patch('/like-product/:id', controller.likeProduct);
+
 module.exports = userRoutes;

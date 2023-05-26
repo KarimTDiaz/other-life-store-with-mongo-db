@@ -77,4 +77,15 @@ controller.updateUser = async (req, res) => {
   res.send(userUpdated);
 };
 
+controller.likeProduct = async (req, res) => {
+  try {
+    const userLikingProduct = await UserModel.findById(req.params.id);
+    await userLikingProduct.favorites.push(req.body._id);
+    await userLikingProduct.save();
+    res.end();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = controller;
