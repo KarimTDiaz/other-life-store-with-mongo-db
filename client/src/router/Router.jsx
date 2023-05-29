@@ -9,6 +9,7 @@ import Register from '../pages/register/Register';
 import UserProducts from '../pages/user-products/UserProducts';
 import ProtectedRoute from './ProtectedRoute';
 import ProductInfo from '../pages/product-info/ProductInfo';
+import Favorites from '../pages/favorites/Favorites';
 
 const Router = () => {
 	return (
@@ -29,6 +30,7 @@ const Router = () => {
 				<Route path='/your-products' element={<UserProducts />} />
 				<Route path='/add-product' element={<AddProduct />} />
 				<Route path='/product-info' element={<ProductInfo />} />
+				<Route path='/favorites' element={<Favorites />} />
 			</Route>
 		</Routes>
 	);

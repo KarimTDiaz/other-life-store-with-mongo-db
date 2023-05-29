@@ -6,6 +6,10 @@ productRoutes.get('/all', controller.allProducts);
 
 productRoutes.get('/:id', controller.getSingleProduct);
 
+productRoutes.get('/my-products/:id', controller.getMyProducts);
+
+productRoutes.get('/my-favorites/:id', controller.getMyFavorites);
+
 productRoutes.post('/new-product/:id', controller.createProduct);
 
 module.exports = productRoutes;

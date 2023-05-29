@@ -12,7 +12,6 @@ import Text from '../../components/text/Text';
 
 const ProductInfo = () => {
 	const { state } = useLocation();
-	console.log(state);
 	return (
 		<ProductInfoContainer>
 			<ProductImage src={state.productImage} />

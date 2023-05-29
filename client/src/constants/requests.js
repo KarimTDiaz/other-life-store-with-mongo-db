@@ -7,5 +7,7 @@ export const URLS = {
 	LIKE: API_URL + 'other-life-store/users/like-product/',
 	EDIT_USER: API_URL + 'other-life-store/users/edit-user/',
 	NEW_PRODUCT: API_URL + 'other-life-store/products/new-product/',
-	ALL_PRODUCTS: API_URL + 'other-life-store/products/all'
+	ALL_PRODUCTS: API_URL + 'other-life-store/products/all',
+	MY_PRODUCTS: API_URL + 'other-life-store/products/my-products/',
+	MY_FAVORITES: API_URL + 'other-life-store/products/my-favorites/'
 };

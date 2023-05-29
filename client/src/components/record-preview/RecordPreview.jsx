@@ -13,9 +13,9 @@ import {
 } from './styles';
 import LikeButton from '../like-button/LikeButton';
 
-const RecordPreview = ({ record }) => {
+const RecordPreview = ({ record, isLike }) => {
 	const navigate = useNavigate();
-	console.log(record);
+
 	return (
 		<StyledRecordPreviewContainer>
 			<RecordPreviewToClick
@@ -40,7 +40,7 @@ const RecordPreview = ({ record }) => {
 					</RecordPreviewField>
 				</RecordPreviewData>
 			</RecordPreviewToClick>
-			<LikeButton productId={record._id} />
+			<LikeButton productId={record._id} isLike={isLike} />
 		</StyledRecordPreviewContainer>
 	);
 };

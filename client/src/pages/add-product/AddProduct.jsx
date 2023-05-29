@@ -144,17 +144,19 @@ const AddProduct = () => {
 };
 
 const onSubmit = async (data, setFetchInfo, currentUser, file) => {
+	const id = v4();
 	const finalName = formatStringWithV4(file.name);
-	const folder = STORAGE_FOLDERS.PRODUCT;
+	const folder = STORAGE_FOLDERS.PRODUCT + id;
 	const finalUrl = await uploadUserFile(file, currentUser, finalName, folder);
 	data.productImage = finalUrl;
+
 	await setFetchInfo({
 		url: URLS.NEW_PRODUCT + currentUser.uid,
 		options: {
 			method: 'POST',
 			body: JSON.stringify({
 				...data,
-				_id: v4(),
+				_id: id,
 				likes: 0,
 				sellerEmail: currentUser.email,
 				sellerId: currentUser.uid

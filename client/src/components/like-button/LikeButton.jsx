@@ -5,8 +5,8 @@ import { AuthContext } from '../../contexts/Auth.context';
 import { useFetch } from '../../hooks/useFetch';
 import { URLS } from '../../constants/requests';
 
-const LikeButton = ({ productId }) => {
-	const [likeOn, setLikeOn] = useState(false);
+const LikeButton = ({ productId, isLike }) => {
+	const [likeOn, setLikeOn] = useState(isLike);
 	const { currentUser } = useContext(AuthContext);
 	const { setFetchInfo } = useFetch();
 

@@ -12,12 +12,18 @@ export const AuthProvider = ({ children }) => {
 		const unsubscribe = auth.onAuthStateChanged(async user => {
 			if (user) {
 				// El usuario está autenticado
-				await getUserInfoFromMongo(user, setCurrentUser, attempts, setAttempts);
+				await getUserInfoFromMongo(
+					user,
+					setCurrentUser,
+					attempts,
+					setAttempts,
+					setLoadingFirebase
+				);
 			} else {
 				// El usuario no está autenticado
 				setCurrentUser(null);
+				setLoadingFirebase(false);
 			}
-			setLoadingFirebase(false);
 		});
 
 		return () => unsubscribe();
@@ -59,7 +65,8 @@ const getUserInfoFromMongo = async (
 	user,
 	setCurrentUser,
 	attempts,
-	setAttempts
+	setAttempts,
+	setLoadingFirebase
 ) => {
 	try {
 		const response = await fetch(
@@ -72,6 +79,7 @@ const getUserInfoFromMongo = async (
 				...userInfo
 			});
 			setAttempts(0);
+			setLoadingFirebase(false);
 		} else {
 			throw new Error('Error al obtener la información del usuario');
 		}

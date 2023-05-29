@@ -57,8 +57,8 @@ const resizeImage = file => {
 				} */
 
 				const canvas = document.createElement('canvas');
-				canvas.width = width;
-				canvas.height = height;
+				canvas.width = 270;
+				canvas.height = 270;
 
 				const ctx = canvas.getContext('2d');
 				ctx.drawImage(img, 0, 0, width, height);

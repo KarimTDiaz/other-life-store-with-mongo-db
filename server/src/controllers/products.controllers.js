@@ -55,10 +55,29 @@ controller.createProduct = async (req, res) => {
     sellerId,
     sellerUserName
   });
-  await userCreatingProduct.products.push(newProduct);
+  await userCreatingProduct.products.push(newProduct._id);
   await userCreatingProduct.save();
   await newProduct.save();
   res.send(newProduct);
+};
+
+controller.getMyProducts = async (req, res) => {
+  const user = await UserModel.findById(req.params.id);
+  const products = await ProductModel.find();
+
+  const userProducts = products.filter(product =>
+    user.products.includes(product._id)
+  );
+  res.send(userProducts);
+};
+
+controller.getMyFavorites = async (req, res) => {
+  const user = await UserModel.findById(req.params.id);
+  const products = await ProductModel.find();
+  const userFavorites = products.filter(product =>
+    user.favorites.includes(product._id)
+  );
+  res.send(userFavorites);
 };
 
 module.exports = controller;
