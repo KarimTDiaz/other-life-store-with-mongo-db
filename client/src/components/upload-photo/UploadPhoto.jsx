@@ -1,7 +1,7 @@
 import { useState } from 'react';
+import ProductImage from '../product-image/ProductImage';
 import ProfileImage from '../profile-image/ProfileImage';
 import { UploadContainer, UploadInput } from './styles';
-import ProductImage from '../product-image/ProductImage';
 
 const UploadPhoto = ({ defaultPreview, setFile, type, file }) => {
 	const [imagePreview, setImagePreview] = useState(defaultPreview);
@@ -41,10 +41,10 @@ const resizeImage = file => {
 				const MAX_WIDTH = 270;
 				const MAX_HEIGHT = 270;
 
-				let width = img.width;
-				let height = img.height;
+				let width = 270;
+				let height = 270;
 
-				if (width > height) {
+				/* 	if (width > height) {
 					if (width > MAX_WIDTH) {
 						height *= MAX_WIDTH / width;
 						width = MAX_WIDTH;
@@ -54,7 +54,7 @@ const resizeImage = file => {
 						width *= MAX_HEIGHT / height;
 						height = MAX_HEIGHT;
 					}
-				}
+				} */
 
 				const canvas = document.createElement('canvas');
 				canvas.width = width;
