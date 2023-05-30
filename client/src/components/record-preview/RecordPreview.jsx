@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { TEXTS_TYPES } from '../../constants/texts';
 import { TITLES_TYPES } from '../../constants/titles';
+import LikeButton from '../like-button/LikeButton';
 import Text from '../text/Text';
 import Title from '../title/Title';
 import {
@@ -11,15 +12,18 @@ import {
 	RecordPreviewToClick,
 	StyledRecordPreviewContainer
 } from './styles';
-import LikeButton from '../like-button/LikeButton';
 
-const RecordPreview = ({ record, isLike }) => {
+const RecordPreview = ({ record, isLike, isYours, seller }) => {
 	const navigate = useNavigate();
 
 	return (
 		<StyledRecordPreviewContainer>
 			<RecordPreviewToClick
-				onClick={() => navigate('/product-info', { state: record })}
+				onClick={() =>
+					navigate('/product-info', {
+						state: { currentRecord: record, isYours: isYours, seller: seller }
+					})
+				}
 			>
 				<RecordPreviewImageContainer>
 					<RecordPreviewImage

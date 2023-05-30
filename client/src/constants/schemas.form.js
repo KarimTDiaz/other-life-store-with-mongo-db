@@ -72,12 +72,12 @@ export const createProductSchema = yup.object({
 	title: yup
 		.string()
 		.required('This field is required')
-		.min(3, 'Minimum of 3 characteres')
+		.min(1, 'Minimum of 1 characteres')
 		.max(100, 'Maximum of 100 characteres'),
 	artist: yup
 		.string()
 		.required('This field is required')
-		.min(3, 'Minimum of 3 characteres')
+		.min(2, 'Minimum of 2 characteres')
 		.max(50, 'Maximum of 50 characteres'),
 	styles: yup.string().required('This field is required'),
 	mediaCondition: yup.string().required('This field is required'),
@@ -85,6 +85,6 @@ export const createProductSchema = yup.object({
 		.string()
 		.required('This field is required')
 		.min(3, 'Minimum of 3 characteres')
-		.max(100, 'Maximum of 100 characteres'),
+		.max(300, 'Maximum of 100 characteres'),
 	price: yup.number().required('This field is required')
 });
