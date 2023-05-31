@@ -1,14 +1,4 @@
-Comprobar username en edit profile.
-
-Aplicar estilos a subida imagen.
-
-Hacer protected routes
-
-Quitar disabled de buttons
-
 El size del profile image sacarlo a una constante
-
-Meter padding en el profile con respecto a la imagen
 
 Hacer disabled en el boton de crear producto hasta que no elija una imagen
 
@@ -32,6 +22,24 @@ validation for male and female
 
 hacer lista de pistas en producto
 
-hacer titulo y artista juntos en product info
-
 meter año de release , formato y sello discografico
+
+hacer responsive , sobre todo menu
+
+hacer modales de asegurar borrar producto
+
+canvas min width
+
+border radius centralizar
+
+cambiar titulo grid
+
+animaciones
+
+colores del webkit troke
+
+corazon de like no poder hacer click si no estas registrado
+
+sacar botones de google
+
+box shadows buttons

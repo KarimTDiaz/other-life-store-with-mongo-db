@@ -7,9 +7,7 @@ const StyledError = styled.div`
 	align-items: center;
 	width: max-content;
 	padding: 0.2rem 0.5rem;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 1rem;
+	margin: 1rem auto 1rem auto;
 	border: 1px solid ${COLORS.error};
 	border-radius: ${BORDER_RADIUS.formCards};
 `;

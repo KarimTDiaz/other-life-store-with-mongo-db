@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { v4 } from 'uuid';
 import Button from '../../components/button/Button';
+import ErrorPopUp from '../../components/error-pop-up/ErrorPopUp';
 import Text from '../../components/text/Text';
 import Title from '../../components/title/Title';
 import UploadPhoto from '../../components/upload-photo/UploadPhoto';
@@ -180,7 +181,7 @@ const EditProfile = () => {
 						{errors.direction?.country?.message}
 					</Text>
 				</FormFieldProfile>
-				{error && <Text type={TEXTS_TYPES.ERROR}>{error}</Text>}
+				{error && <ErrorPopUp>{error}</ErrorPopUp>}
 				<Button type={BUTTONS.SQUARED}>Update Profile</Button>
 			</FormProfile>
 			<Button action={() => navigate('/profile')} type={BUTTONS.THIN}>
@@ -198,12 +199,11 @@ const onSubmit = async (
 	allUsers,
 	setError
 ) => {
-	const allUsersFilered = allUsers.filter(
-		user => user.userName !== data.userName
+	const userNameCheck = allUsers.find(
+		user =>
+			user.userName === data.userName && user.userName !== currentUser.userName
 	);
-	const userNameCheck = allUsersFilered.find(
-		user => user.userName === data.userName
-	);
+
 	if (userNameCheck) {
 		setError('Username has already been used');
 		return;

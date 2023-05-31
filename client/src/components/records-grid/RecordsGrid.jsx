@@ -12,21 +12,21 @@ const RecordsGrid = ({ records }) => {
 	const {
 		finalData: allUsers,
 		load,
-		wrong,
-		setFetchInfo
+		wrong
 	} = useFetch({ url: URLS.ALL_USERS });
 
 	if (load) return <h1>Loading...</h1>;
 	if (wrong) return <h1>Wrong...</h1>;
-	if (loadingFirebase || !records || !currentUser) return;
-	console.log(allUsers);
+	if (loadingFirebase || !records) return;
 	return (
 		<>
 			<Title type={TITLES_TYPES.SECTION}>Latest Additions</Title>
 			<StyledRecordsGrid>
 				{records.map(record => {
-					const isLike = currentUser.favorites.includes(record._id);
-					const isYours = currentUser.products.includes(record._id);
+					const isLike =
+						currentUser && currentUser.favorites.includes(record._id);
+					const isYours =
+						currentUser && currentUser.products.includes(record._id);
 					const seller = allUsers.find(
 						seller => seller._id === record.sellerId
 					);

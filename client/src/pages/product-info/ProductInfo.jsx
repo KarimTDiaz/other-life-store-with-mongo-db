@@ -7,26 +7,27 @@ import { BUTTONS } from '../../constants/buttons';
 import { TEXTS_TYPES } from '../../constants/texts';
 import { TITLES_TYPES } from '../../constants/titles';
 import {
+	PriceField,
 	ProductInfoContainer,
 	ProductInfoData,
-	ProductInfoField
+	ProductInfoField,
+	ProductInfoHead,
+	ProductInfoTitle
 } from './styles';
 
 const ProductInfo = () => {
 	const { state } = useLocation();
 	return (
 		<ProductInfoContainer>
-			<ProductInfoField>
-				<Title type={TITLES_TYPES.SUBTITLE}>Title:</Title>
-				<Text type={TEXTS_TYPES.FIELD}>{state.currentRecord.title}</Text>
-			</ProductInfoField>
-			<ProductInfoField>
-				<Title type={TITLES_TYPES.SUBTITLE}>Artist:</Title>
-				<Text type={TEXTS_TYPES.FIELD}>{state.currentRecord.artist}</Text>
-			</ProductInfoField>
+			<ProductInfoHead>
+				<ProductInfoTitle>{state.currentRecord.artist} -</ProductInfoTitle>
+				<ProductInfoTitle>{state.currentRecord.title}</ProductInfoTitle>
+			</ProductInfoHead>
 			<ProductImage src={state.currentRecord.productImage} />
-			<Button type={BUTTONS.USER}>{state.seller}</Button>
 			<ProductInfoData>
+				<ProductInfoField>
+					<Button type={BUTTONS.USER}>{state.seller}</Button>
+				</ProductInfoField>
 				<ProductInfoField>
 					<Title type={TITLES_TYPES.SUBTITLE}>Genres:</Title>
 					<Text type={TEXTS_TYPES.FIELD}>{state.currentRecord.styles}</Text>
@@ -44,11 +45,13 @@ const ProductInfo = () => {
 						{state.currentRecord.description}
 					</Text>
 				</ProductInfoField>
-				<ProductInfoField>
-					<Title type={TITLES_TYPES.SUBTITLE}>Price:</Title>
-					<Text type={TEXTS_TYPES.FIELD}>{state.currentRecord.price} €</Text>
-				</ProductInfoField>
+				<PriceField>
+					<Text type={TEXTS_TYPES.FIELD} price>
+						{state.currentRecord.price} €
+					</Text>
+				</PriceField>
 			</ProductInfoData>
+			{state.isYours && <Button type={BUTTONS.SQUARED}>Edit Record</Button>}
 		</ProductInfoContainer>
 	);
 };

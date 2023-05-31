@@ -1,7 +1,10 @@
 import { useState } from 'react';
+import { BUTTONS } from '../../constants/buttons';
+import { ICONS } from '../../constants/icons';
+import Button from '../button/Button';
 import ProductImage from '../product-image/ProductImage';
 import ProfileImage from '../profile-image/ProfileImage';
-import { UploadContainer, UploadInput } from './styles';
+import { UploadContainer, UploadInput, UploadLabel } from './styles';
 
 const UploadPhoto = ({ defaultPreview, setFile, type, file }) => {
 	const [imagePreview, setImagePreview] = useState(defaultPreview);
@@ -10,6 +13,11 @@ const UploadPhoto = ({ defaultPreview, setFile, type, file }) => {
 		<UploadContainer>
 			{type === 'user' && <ProfileImage src={imagePreview} />}
 			{type === 'product' && <ProductImage src={imagePreview} />}
+			<UploadLabel htmlFor='profileImage'>
+				<Button type={BUTTONS.BORDERED} src={ICONS.photo} pointer>
+					Upload Photo
+				</Button>
+			</UploadLabel>
 			<UploadInput
 				type='file'
 				id='profileImage'

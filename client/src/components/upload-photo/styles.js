@@ -8,6 +8,11 @@ const UploadContainer = styled.div`
 	margin-bottom: 1.5rem;
 `;
 
-const UploadInput = styled.input``;
-const UploadLabel = styled.label``;
-export { UploadContainer, UploadInput };
+const UploadInput = styled.input`
+	display: none;
+`;
+const UploadLabel = styled.label`
+	margin-left: auto;
+	margin-right: auto;
+`;
+export { UploadContainer, UploadInput, UploadLabel };

@@ -14,6 +14,7 @@ const StyledButtonBordered = styled.button`
 	background-color: ${COLORS.textDark};
 	border-radius: 5px;
 	border: none;
+	pointer-events: ${({ pointer }) => (pointer ? 'none' : 'all')};
 `;
 const StyledButtonSquared = styled.button`
 	display: flex;
@@ -22,8 +23,7 @@ const StyledButtonSquared = styled.button`
 	gap: 0.5rem;
 	width: 100%;
 	padding: 0.6rem 1rem;
-	background-color: ${({ disabled }) =>
-		disabled ? `${COLORS.background.modal}` : `${COLORS.textDark}`};
+	background-color: ${COLORS.textDark};
 	border-radius: 2px;
 	border: none;
 `;
@@ -44,10 +44,8 @@ const StyledButtonThin = styled.button`
 `;
 const StyledButtonUser = styled(StyledButtonThin)`
 	width: max-content;
-	padding: 0.2rem 1rem;
+	padding: 0.1rem 1rem;
 	font-family: ${FONT_FAMILY.primary.regular};
-	background-color: yellow;
-	border-radius: ${BORDER_RADIUS.formCards};
 	border: 1px solid ${COLORS.textDark};
 `;
 

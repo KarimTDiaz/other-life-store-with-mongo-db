@@ -12,18 +12,18 @@ import {
 	StyledButtonUser
 } from './styles';
 
-const Button = ({ action, type, src, disabled, children }) => {
+const Button = ({ action, type, src, children, pointer }) => {
 	switch (type) {
 		case BUTTONS.BORDERED:
 			return (
-				<StyledButtonBordered onClick={action} disabled={disabled}>
+				<StyledButtonBordered onClick={action} pointer={pointer}>
 					<ButtonText>{children}</ButtonText>
 					<Icon src={src} size={ICONS_SIZES.small} />
 				</StyledButtonBordered>
 			);
 		case BUTTONS.SQUARED:
 			return (
-				<StyledButtonSquared onClick={action} disabled={disabled}>
+				<StyledButtonSquared onClick={action}>
 					<ButtonText>{children}</ButtonText>
 					{src && <Icon src={src} size={ICONS_SIZES.small} />}
 				</StyledButtonSquared>

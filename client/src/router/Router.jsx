@@ -2,14 +2,14 @@ import { Route, Routes } from 'react-router-dom';
 import Layout from '../layouts/Layout';
 import AddProduct from '../pages/add-product/AddProduct';
 import EditProfile from '../pages/edit-profile/EditProfile';
+import Favorites from '../pages/favorites/Favorites';
 import Home from '../pages/home/Home';
 import Login from '../pages/login/Login';
+import ProductInfo from '../pages/product-info/ProductInfo';
 import Profile from '../pages/profile/Profile';
 import Register from '../pages/register/Register';
 import UserProducts from '../pages/user-products/UserProducts';
 import ProtectedRoute from './ProtectedRoute';
-import ProductInfo from '../pages/product-info/ProductInfo';
-import Favorites from '../pages/favorites/Favorites';
 
 const Router = () => {
 	return (
@@ -18,7 +18,14 @@ const Router = () => {
 				<Route index element={<Home />} />
 				<Route path='/register' element={<Register />} />
 				<Route path='/login' element={<Login />} />
-				<Route path='/profile' element={<Profile />} />
+				<Route
+					path='/profile'
+					element={
+						<ProtectedRoute>
+							<Profile />
+						</ProtectedRoute>
+					}
+				/>
 				<Route
 					path='/edit-profile'
 					element={
@@ -27,10 +34,31 @@ const Router = () => {
 						</ProtectedRoute>
 					}
 				/>
-				<Route path='/your-products' element={<UserProducts />} />
-				<Route path='/add-product' element={<AddProduct />} />
+				<Route
+					path='/your-products'
+					element={
+						<ProtectedRoute>
+							<UserProducts />
+						</ProtectedRoute>
+					}
+				/>
+				<Route
+					path='/add-product'
+					element={
+						<ProtectedRoute>
+							<AddProduct />
+						</ProtectedRoute>
+					}
+				/>
 				<Route path='/product-info' element={<ProductInfo />} />
-				<Route path='/favorites' element={<Favorites />} />
+				<Route
+					path='/favorites'
+					element={
+						<ProtectedRoute>
+							<Favorites />
+						</ProtectedRoute>
+					}
+				/>
 			</Route>
 		</Routes>
 	);

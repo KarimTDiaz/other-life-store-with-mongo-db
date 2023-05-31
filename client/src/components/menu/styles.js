@@ -4,7 +4,7 @@ import { COLORS, FONT_FAMILY, FONT_SIZE } from '../../constants/variables';
 
 const StyledMenu = styled.ul`
 	position: fixed;
-	top: 100px;
+	top: 80px;
 	left: 0;
 	z-index: 10;
 	width: 100vw;

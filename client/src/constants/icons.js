@@ -56,6 +56,10 @@ export const ICONS = {
 	likeOn: {
 		src: '/assets/icons/heart-solid.svg',
 		alt: 'Icono de Like'
+	},
+	photo: {
+		src: '/assets/icons/camera.svg',
+		alt: 'Icono de Cámara'
 	}
 };
 

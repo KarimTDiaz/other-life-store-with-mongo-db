@@ -8,12 +8,25 @@ const ProductInfoContainer = styled.div`
 `;
 
 const ProductInfoData = styled.div``;
+const ProductInfoHead = styled.div`
+	display: flex;
+	justify-content: center;
+	gap: 0.5rem;
+`;
+const ProductInfoTitle = styled.h2``;
 
 const ProductInfoField = styled.div`
-	display: flex;
-	align-items: baseline;
-	gap: 1rem;
-	margin-bottom: 0.5rem;
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	margin-bottom: 1rem;
 `;
+const PriceField = styled.div``;
 
-export { ProductInfoContainer, ProductInfoData, ProductInfoField };
+export {
+	ProductInfoContainer,
+	ProductInfoData,
+	ProductInfoField,
+	ProductInfoHead,
+	ProductInfoTitle,
+	PriceField
+};
