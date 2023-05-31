@@ -4,20 +4,27 @@ import { ICONS } from '../../constants/icons';
 import { AuthContext } from '../../contexts/Auth.context';
 import { useFetch } from '../../hooks/useFetch';
 import { URLS } from '../../constants/requests';
+import { useNavigate } from 'react-router-dom';
 
 const LikeButton = ({ productId, isLike }) => {
 	const [likeOn, setLikeOn] = useState(isLike);
+	const navigate = useNavigate();
 	const { currentUser } = useContext(AuthContext);
 	const { setFetchInfo } = useFetch();
-
 	return (
-		<StyledLike
-			onClick={() => {
-				setLikeOn(!likeOn);
-				handleFetch(currentUser.uid, setFetchInfo, productId);
-			}}
-			src={likeOn ? ICONS.likeOn.src : ICONS.likeOff.src}
-		/>
+		<>
+			<StyledLike
+				onClick={() => {
+					if (!currentUser) {
+						navigate('/register');
+						return;
+					}
+					setLikeOn(!likeOn);
+					handleFetch(currentUser.uid, setFetchInfo, productId);
+				}}
+				src={likeOn ? ICONS.likeOn.src : ICONS.likeOff.src}
+			/>
+		</>
 	);
 };
 
@@ -34,7 +41,6 @@ const handleFetch = async (userId, setFetchInfo, productId) => {
 				'Content-Type': 'application/json'
 			}
 		}
-		// redirectTo: '/your-products'
 	});
 };
 
