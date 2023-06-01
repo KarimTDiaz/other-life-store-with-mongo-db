@@ -28,6 +28,9 @@ const FormFieldProfile = styled.div`
 	justify-content: space-between;
 	margin-bottom: 1.5rem;
 `;
+const FormFieldGender = styled.div`
+	margin-bottom: 1.5rem;
+`;
 
 const ProfileInput = styled.input`
 	padding: 0.5rem;
@@ -65,6 +68,7 @@ export {
 	StyledProfileContainer,
 	FormProfile,
 	FormFieldProfile,
+	FormFieldGender,
 	ProfileLabel,
 	ProfileInput,
 	ProfileText

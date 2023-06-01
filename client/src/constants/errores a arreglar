@@ -16,11 +16,9 @@ TODOS LOS TITULOS EN CONSTANTES , FALTAN ALGUNO DE LOS DE PAGES
 
 poner cruz en pages para volver atras
 
-birthday validartion hook form
+lista de pistas producto hacer pop y que no deje crear mas hasta que no escribas
 
-validation for male and female
-
-hacer lista de pistas en producto
+hacer que en base a un genero puedas elegir estilos
 
 meter año de release , formato y sello discografico
 
@@ -30,18 +28,28 @@ hacer modales de asegurar borrar producto
 
 canvas min width
 
+sacar a utils funciones para los tracks
+
 border radius centralizar
 
 cambiar titulo grid
 
 animaciones
 
-colores del webkit troke
-
-corazon de like no poder hacer click si no estas registrado
+colores del webkit troke en variable
 
 sacar botones de google
 
 box shadows buttons
 
-likes desmarcar en back
+estilos selects de formularios
+
+sacar a una constante el create user object
+
+cambiar corazon por estrella
+
+mejorar menu
+
+preguntar el pop
+
+quitar el seller email y el likes del product

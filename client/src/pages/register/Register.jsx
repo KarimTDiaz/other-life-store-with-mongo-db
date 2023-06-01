@@ -143,6 +143,7 @@ const onSubmit = async (
 					surName: '',
 					email: data.email,
 					gender: '',
+					date: '',
 					direction: {
 						country: '',
 						city: '',

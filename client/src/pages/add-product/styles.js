@@ -22,10 +22,15 @@ const FormAddProduct = styled.form`
 `;
 
 const FormFieldAddProduct = styled.div`
-	position: relative;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	position: relative;
+	margin-bottom: 1.5rem;
+`;
+const FormFieldAddTrack = styled.div`
+	display: flex;
+	position: relative;
 	margin-bottom: 1.5rem;
 `;
 
@@ -40,6 +45,9 @@ const AddProductInput = styled.input`
 		outline: 0;
 		border-color: ${COLORS.textDark};
 	}
+`;
+const AddProductInputTrack = styled(AddProductInput)`
+	width: 300vw;
 `;
 const AddProductLabel = styled.label`
 	position: absolute;
@@ -65,7 +73,9 @@ export {
 	StyledAddProductContainer,
 	FormAddProduct,
 	FormFieldAddProduct,
+	FormFieldAddTrack,
 	AddProductLabel,
 	AddProductInput,
+	AddProductInputTrack,
 	AddProductText
 };

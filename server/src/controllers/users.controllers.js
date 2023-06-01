@@ -31,6 +31,7 @@ controller.createUser = async (req, res) => {
     userName,
     name,
     surName,
+    date,
     email,
     gender,
     direction,
@@ -57,6 +58,7 @@ controller.createUser = async (req, res) => {
     name,
     surName,
     email,
+    date,
     gender,
     direction,
     favorites,
@@ -80,7 +82,13 @@ controller.updateUser = async (req, res) => {
 controller.likeProduct = async (req, res) => {
   try {
     const userLikingProduct = await UserModel.findById(req.params.id);
-    await userLikingProduct.favorites.push(req.body._id);
+    const index = userLikingProduct.favorites.indexOf(req.body._id);
+    if (index !== -1) {
+      userLikingProduct.favorites.splice(index, 1);
+    } else {
+      await userLikingProduct.favorites.push(req.body._id);
+    }
+
     await userLikingProduct.save();
     res.end();
   } catch (error) {

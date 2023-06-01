@@ -1,34 +1,36 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { v4 } from 'uuid';
 import Button from '../../components/button/Button';
 import Text from '../../components/text/Text';
 import Title from '../../components/title/Title';
-import { storage } from '../../config/firebase.config';
+import UploadPhoto from '../../components/upload-photo/UploadPhoto';
 import { ALL_GENRES } from '../../constants/allGenres';
 import { BUTTONS } from '../../constants/buttons';
 import { ICONS } from '../../constants/icons';
 import { MEDIA_CONDITION } from '../../constants/mediaCondition';
 import { URLS } from '../../constants/requests';
 import { createProductSchema } from '../../constants/schemas.form';
+import { STORAGE_FILES } from '../../constants/storage.files';
+import { STORAGE_FOLDERS } from '../../constants/storage.folders';
 import { TEXTS_TYPES } from '../../constants/texts';
 import { TITLES, TITLES_TYPES } from '../../constants/titles';
 import { AuthContext } from '../../contexts/Auth.context';
 import { useFetch } from '../../hooks/useFetch';
+import { formatStringWithV4 } from '../../utils/format-string-with-v4';
+import { handleAddInput } from '../../utils/handleAddInput';
+import { handleRemoveInput } from '../../utils/handleRemoveInput';
+import { uploadUserFile } from '../../utils/uploadUserFile';
 import {
 	AddProductInput,
+	AddProductInputTrack,
 	AddProductLabel,
 	FormAddProduct,
 	FormFieldAddProduct,
+	FormFieldAddTrack,
 	StyledAddProductContainer
 } from './styles';
-import UploadPhoto from '../../components/upload-photo/UploadPhoto';
-import { STORAGE_FILES } from '../../constants/storage.files';
-import { formatStringWithV4 } from '../../utils/format-string-with-v4';
-import { STORAGE_FOLDERS } from '../../constants/storage.folders';
-import { uploadUserFile } from '../../utils/uploadUserFile';
 
 const AddProduct = () => {
 	const [file, setFile] = useState('');
@@ -36,7 +38,7 @@ const AddProduct = () => {
 		styles: '',
 		media: ''
 	});
-
+	const [inputs, setInputs] = useState([{ id: 0 }]);
 	const { setFetchInfo } = useFetch();
 	const { currentUser } = useContext(AuthContext);
 
@@ -97,6 +99,32 @@ const AddProduct = () => {
 					</select>
 					<Text type={TEXTS_TYPES.ERROR}>{errors.styles?.message}</Text>
 				</FormFieldAddProduct>
+				<FormFieldAddTrack>
+					<Button
+						type={BUTTONS.BORDERED}
+						src={ICONS.addRecordLight}
+						action={() => handleAddInput(inputs, setInputs)}
+					>
+						Add Track
+					</Button>
+				</FormFieldAddTrack>
+				{inputs.map(input => (
+					<FormFieldAddTrack key={v4()}>
+						<AddProductInputTrack
+							type='text'
+							id={input.id}
+							placeholder={`track${input.id}`}
+							{...register(`trackList[${input.id}]`)}
+						/>
+						<AddProductLabel htmlFor='artist'>{`Track${input.id}`}</AddProductLabel>
+						<Button
+							type={BUTTONS.SQUARED}
+							action={() => handleRemoveInput(input.id, inputs, setInputs)}
+						>
+							DELETE
+						</Button>
+					</FormFieldAddTrack>
+				))}
 				<FormFieldAddProduct>
 					<label htmlFor='mediaCondition'>Media Condition</label>
 					<select

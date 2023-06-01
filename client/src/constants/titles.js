@@ -16,6 +16,7 @@ export const SUBTITLES = {
 		NAME: 'Name',
 		SURNAME: 'Surname',
 		GENDER: 'Gender',
+		DATE: 'Date',
 		ADDRESS: 'Address',
 		CITY: 'City',
 		POBLATION: 'Poblation',

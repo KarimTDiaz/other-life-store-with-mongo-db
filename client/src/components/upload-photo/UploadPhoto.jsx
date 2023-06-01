@@ -46,30 +46,29 @@ const resizeImage = file => {
 			const img = new Image();
 			img.src = event.target.result;
 			img.onload = () => {
-				const MAX_WIDTH = 270;
-				const MAX_HEIGHT = 270;
-
-				let width = 270;
-				let height = 270;
-
-				/* 	if (width > height) {
-					if (width > MAX_WIDTH) {
-						height *= MAX_WIDTH / width;
-						width = MAX_WIDTH;
-					}
-				} else {
-					if (height > MAX_HEIGHT) {
-						width *= MAX_HEIGHT / height;
-						height = MAX_HEIGHT;
-					}
-				} */
+				const MAX_SIZE = 270;
 
 				const canvas = document.createElement('canvas');
-				canvas.width = 270;
-				canvas.height = 270;
-
 				const ctx = canvas.getContext('2d');
-				ctx.drawImage(img, 0, 0, width, height);
+
+				let width = img.width;
+				let height = img.height;
+
+				if (width > height) {
+					height = MAX_SIZE;
+					width = (height / img.height) * img.width;
+				} else {
+					width = MAX_SIZE;
+					height = (width / img.width) * img.height;
+				}
+
+				canvas.width = MAX_SIZE;
+				canvas.height = MAX_SIZE;
+
+				const xOffset = (MAX_SIZE - width) / 2;
+				const yOffset = (MAX_SIZE - height) / 2;
+
+				ctx.drawImage(img, xOffset, yOffset, width, height);
 
 				canvas.toBlob(blob => {
 					resolve(blob);

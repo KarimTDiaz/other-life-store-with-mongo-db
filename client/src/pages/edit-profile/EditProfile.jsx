@@ -19,10 +19,12 @@ import { STORAGE_FOLDERS } from '../../constants/storage.folders';
 import { TEXTS_TYPES } from '../../constants/texts';
 import { TITLES, TITLES_TYPES } from '../../constants/titles';
 import { AuthContext } from '../../contexts/Auth.context';
+import { CountryContext } from '../../contexts/Country.context';
 import { useFetch } from '../../hooks/useFetch';
 import { formatStringWithV4 } from '../../utils/format-string-with-v4';
 import { uploadUserFile } from '../../utils/uploadUserFile';
 import {
+	FormFieldGender,
 	FormFieldProfile,
 	FormProfile,
 	ProfileInput,
@@ -32,9 +34,9 @@ import {
 
 const EditProfile = () => {
 	const { currentUser, loadingFirebase } = useContext(AuthContext);
+	const { currentCountry, setCurrentCountry } = useContext(CountryContext);
 	const [file, setFile] = useState('');
 	const [error, setError] = useState('');
-	const [currentCountry, setCurrentCountry] = useState('');
 	const navigate = useNavigate();
 
 	const {
@@ -107,6 +109,56 @@ const EditProfile = () => {
 					<ProfileLabel htmlFor='surName'>Surname</ProfileLabel>
 					<Text type={TEXTS_TYPES.ERROR}>{errors.surName?.message}</Text>
 				</FormFieldProfile>
+				<FormFieldGender>
+					<legend>Select your gender</legend>
+					<label htmlFor='gender'>Male</label>
+					<ProfileInput
+						defaultChecked={currentUser.gender === 'Male'}
+						type='radio'
+						id='male'
+						value='Male'
+						error={errors.gender}
+						{...register('gender')}
+					/>
+					<label htmlFor='gender'>Female</label>
+					<ProfileInput
+						defaultChecked={currentUser.gender === 'Female'}
+						type='radio'
+						id='female'
+						value='Female'
+						error={errors.gender}
+						{...register('gender')}
+					/>
+					<Text type={TEXTS_TYPES.ERROR}>{errors.surName?.message}</Text>
+				</FormFieldGender>
+				<FormFieldProfile>
+					<ProfileInput
+						defaultValue={currentUser.date}
+						type='date'
+						id='date'
+						error={errors.date}
+						{...register('date')}
+					/>
+					<Text type={TEXTS_TYPES.ERROR}>{errors.date?.message}</Text>
+				</FormFieldProfile>
+				<FormFieldProfile>
+					<label htmlFor='country'>Country</label>
+					<select
+						{...register('direction.country')}
+						value={currentCountry}
+						id='country'
+						onChange={e => setCurrentCountry(e.target.value)}
+					>
+						{COUNTRY_LIST.map(country => (
+							<option key={v4()} value={country}>
+								{country}
+							</option>
+						))}
+					</select>
+					<Text type={TEXTS_TYPES.ERROR}>
+						{errors.direction?.country?.message}
+					</Text>
+				</FormFieldProfile>
 				<FormFieldProfile>
 					<ProfileInput
 						defaultValue={currentUser.direction.address}
@@ -163,24 +215,7 @@ const EditProfile = () => {
 						{errors.direction?.zipCode?.message}
 					</Text>
 				</FormFieldProfile>
-				<FormFieldProfile>
-					<label htmlFor='country'>Country</label>
-					<select
-						value={currentCountry}
-						{...register('direction.country')}
-						id='country'
-						onChange={e => setCurrentCountry(e.target.value)}
-					>
-						{COUNTRY_LIST.map(country => (
-							<option key={v4()} value={country}>
-								{country}
-							</option>
-						))}
-					</select>
-					<Text type={TEXTS_TYPES.ERROR}>
-						{errors.direction?.country?.message}
-					</Text>
-				</FormFieldProfile>
+
 				{error && <ErrorPopUp>{error}</ErrorPopUp>}
 				<Button type={BUTTONS.SQUARED}>Update Profile</Button>
 			</FormProfile>

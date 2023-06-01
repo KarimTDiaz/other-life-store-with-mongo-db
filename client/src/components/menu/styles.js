@@ -4,15 +4,16 @@ import { COLORS, FONT_FAMILY, FONT_SIZE } from '../../constants/variables';
 
 const StyledMenu = styled.ul`
 	position: fixed;
-	top: 80px;
+	top: 100px;
 	left: 0;
 	z-index: 10;
 	width: 100vw;
-	height: 100vh;
-	padding: 3.5rem;
+	height: ${({ open }) => (open ? '100vh' : '0')};
+	padding: ${({ open }) => (open ? '3.5rem' : '0')};
+	overflow: hidden;
 	background-color: ${COLORS.background.body};
-	transform: scaleY(${({ open }) => (open ? '100%' : '0')});
-	transition: transform 0.2s;
+	/* 	transform: scaleY(${({ open }) => (open ? '100%' : '0')}); */
+	transition: height 1s, padding 1s;
 	transform-origin: top;
 `;
 const MenuItem = styled.li`

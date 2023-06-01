@@ -9,6 +9,7 @@ const ProductSchema = mongoose.Schema({
   artist: String,
   styles: String,
   mediaCondition: String,
+  trackList: Array,
   description: String,
   price: Number,
   likes: Number,

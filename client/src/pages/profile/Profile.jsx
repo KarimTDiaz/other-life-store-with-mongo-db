@@ -55,9 +55,13 @@ const Profile = () => {
 							<Title type={TITLES_TYPES.SUBTITLE}>
 								{SUBTITLES.profile.GENDER}:
 							</Title>
-							<Text type={TEXTS_TYPES.FIELD}>
-								{currentUser.name} {currentUser.surName}
-							</Text>
+							<Text type={TEXTS_TYPES.FIELD}>{currentUser.gender}</Text>
+						</ProfileField>
+						<ProfileField>
+							<Title type={TITLES_TYPES.SUBTITLE}>
+								{SUBTITLES.profile.DATE}:
+							</Title>
+							<Text type={TEXTS_TYPES.FIELD}>{currentUser.date}</Text>
 						</ProfileField>
 						<ProfileField>
 							<Title type={TITLES_TYPES.SUBTITLE}>

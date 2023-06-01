@@ -45,6 +45,8 @@ export const editUserSchema = yup.object().shape({
 		.required('Surname is required')
 		.min(3, 'Minimum of 3 characteres')
 		.max(20, 'Maximum of 20 characteres'),
+	date: yup.string().required('Date is required'),
+	gender: yup.string().required('Gender is required'),
 	direction: yup
 		.object()
 		.shape({
@@ -80,6 +82,7 @@ export const createProductSchema = yup.object({
 		.min(2, 'Minimum of 2 characteres')
 		.max(50, 'Maximum of 50 characteres'),
 	styles: yup.string().required('This field is required'),
+	dynamicInputs: yup.array().of(yup.string()),
 	mediaCondition: yup.string().required('This field is required'),
 	description: yup
 		.string()
