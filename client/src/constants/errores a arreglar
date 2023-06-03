@@ -1,7 +1,5 @@
 El size del profile image sacarlo a una constante
 
-Hacer disabled en el boton de crear producto hasta que no elija una imagen
-
 hacer componentte loading
 
 Comprobaciones de no poder vender sin el perfil creado
@@ -12,7 +10,7 @@ hacer deletes
 
 marquee revisar
 
-TODOS LOS TITULOS EN CONSTANTES , FALTAN ALGUNO DE LOS DE PAGES
+TODOS LOS TITULOS EN CONSTANTES , FALTAN ALGUNO DE LOS DE PAGES y en la lista de productos
 
 poner cruz en pages para volver atras
 
@@ -20,15 +18,9 @@ lista de pistas producto hacer pop y que no deje crear mas hasta que no escribas
 
 hacer que en base a un genero puedas elegir estilos
 
-meter año de release , formato y sello discografico
-
 hacer responsive , sobre todo menu
 
 hacer modales de asegurar borrar producto
-
-canvas min width
-
-sacar a utils funciones para los tracks
 
 border radius centralizar
 
@@ -53,3 +45,11 @@ mejorar menu
 preguntar el pop
 
 quitar el seller email y el likes del product
+
+disabled del boton
+
+fecha de subida del post en discos
+
+hacer edit records
+
+animacion notificaciones
