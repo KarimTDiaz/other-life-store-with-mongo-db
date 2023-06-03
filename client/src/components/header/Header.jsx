@@ -22,7 +22,7 @@ const Header = () => {
 	const location = useLocation();
 	const { currentUser } = useContext(AuthContext);
 
-	if (location.pathname !== '/')
+	if (location.pathname !== '/') {
 		return (
 			<StyledHeader>
 				<HeaderTopDark>
@@ -30,6 +30,7 @@ const Header = () => {
 				</HeaderTopDark>
 			</StyledHeader>
 		);
+	}
 
 	return (
 		<StyledHeader>

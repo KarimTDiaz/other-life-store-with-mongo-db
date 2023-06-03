@@ -11,7 +11,8 @@ const StyledButtonBordered = styled.button`
 	align-items: center;
 	gap: 0.5rem;
 	padding: 0.2rem 1rem;
-	background-color: ${COLORS.textDark};
+	background-color: ${({ disabled }) =>
+		disabled ? `${COLORS.background.modal}` : `${COLORS.textDark}`};
 	border-radius: 5px;
 	border: none;
 	pointer-events: ${({ pointer }) => (pointer ? 'none' : 'all')};

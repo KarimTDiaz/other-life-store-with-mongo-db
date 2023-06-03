@@ -3,9 +3,11 @@ import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { v4 } from 'uuid';
 import Button from '../../components/button/Button';
+import ErrorPopUp from '../../components/error-pop-up/ErrorPopUp';
 import Text from '../../components/text/Text';
 import Title from '../../components/title/Title';
 import UploadPhoto from '../../components/upload-photo/UploadPhoto';
+import { ALL_FORMATS } from '../../constants/allFormats';
 import { ALL_GENRES } from '../../constants/allGenres';
 import { BUTTONS } from '../../constants/buttons';
 import { ICONS } from '../../constants/icons';
@@ -36,9 +38,12 @@ const AddProduct = () => {
 	const [file, setFile] = useState('');
 	const [selectValues, setSelectValues] = useState({
 		styles: '',
-		media: ''
+		media: '',
+		format: ''
 	});
 	const [inputs, setInputs] = useState([{ id: 0 }]);
+	const [error, setError] = useState('');
+	const [disabled, setDisabled] = useState(true);
 	const { setFetchInfo } = useFetch();
 	const { currentUser } = useContext(AuthContext);
 
@@ -52,7 +57,7 @@ const AddProduct = () => {
 		<StyledAddProductContainer>
 			<FormAddProduct
 				onSubmit={handleSubmit(data => {
-					onSubmit(data, setFetchInfo, currentUser, file);
+					onSubmit(data, setFetchInfo, currentUser, file, setError);
 				})}
 			>
 				<Title type={TITLES_TYPES.FORM}>{TITLES.formTitles.sellRecord}</Title>
@@ -82,6 +87,44 @@ const AddProduct = () => {
 					<Text type={TEXTS_TYPES.ERROR}>{errors.artist?.message}</Text>
 				</FormFieldAddProduct>
 				<FormFieldAddProduct>
+					<AddProductInput
+						type='text'
+						id='label'
+						placeholder='Label'
+						{...register('label')}
+					/>
+					<AddProductLabel htmlFor='label'>Label</AddProductLabel>
+					<Text type={TEXTS_TYPES.ERROR}>{errors.label?.message}</Text>
+				</FormFieldAddProduct>
+				<FormFieldAddProduct>
+					<label htmlFor='format'>Format</label>
+					<select
+						value={selectValues.format}
+						id='format'
+						{...register('format')}
+						onChange={e =>
+							setSelectValues({ ...selectValues, format: e.target.value })
+						}
+					>
+						{ALL_FORMATS.map(format => (
+							<option key={v4()} value={format}>
+								{format}
+							</option>
+						))}
+					</select>
+					<Text type={TEXTS_TYPES.ERROR}>{errors.format?.message}</Text>
+				</FormFieldAddProduct>
+				<FormFieldAddProduct>
+					<AddProductInput
+						type='text'
+						id='year'
+						placeholder='Year'
+						{...register('year')}
+					/>
+					<AddProductLabel htmlFor='year'>Year</AddProductLabel>
+					<Text type={TEXTS_TYPES.ERROR}>{errors.year?.message}</Text>
+				</FormFieldAddProduct>
+				<FormFieldAddProduct>
 					<label htmlFor='styles'>Styles</label>
 					<select
 						value={selectValues.styles}
@@ -103,7 +146,10 @@ const AddProduct = () => {
 					<Button
 						type={BUTTONS.BORDERED}
 						src={ICONS.addRecordLight}
-						action={() => handleAddInput(inputs, setInputs)}
+						action={() => {
+							handleAddInput(inputs, setInputs), setDisabled(true);
+						}}
+						disabled={disabled}
 					>
 						Add Track
 					</Button>
@@ -115,6 +161,7 @@ const AddProduct = () => {
 							id={input.id}
 							placeholder={`track${input.id}`}
 							{...register(`trackList[${input.id}]`)}
+							onInput={ev => ev.target.value.length >= 4 && setDisabled(false)}
 						/>
 						<AddProductLabel htmlFor='artist'>{`Track${input.id}`}</AddProductLabel>
 						<Button
@@ -163,6 +210,7 @@ const AddProduct = () => {
 					<AddProductLabel htmlFor='price'>Price</AddProductLabel>
 					<Text type={TEXTS_TYPES.ERROR}>{errors.price?.message}</Text>
 				</FormFieldAddProduct>
+				{error && <ErrorPopUp>{error}</ErrorPopUp>}
 				<Button type={BUTTONS.SQUARED} src={ICONS.addRecordLight}>
 					UPLOAD RECORD
 				</Button>
@@ -171,7 +219,11 @@ const AddProduct = () => {
 	);
 };
 
-const onSubmit = async (data, setFetchInfo, currentUser, file) => {
+const onSubmit = async (data, setFetchInfo, currentUser, file, setError) => {
+	if (!file) {
+		setError('Photo is required');
+		return;
+	}
 	const id = v4();
 	const finalName = formatStringWithV4(file.name);
 	const folder = STORAGE_FOLDERS.PRODUCT + id;

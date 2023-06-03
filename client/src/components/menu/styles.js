@@ -19,6 +19,7 @@ const StyledMenu = styled.ul`
 const MenuItem = styled.li`
 	position: relative;
 	margin-bottom: 3rem;
+
 	opacity: ${({ open }) => (open ? 1 : 0)};
 	transition: opacity 0.5s;
 	transition-delay: 0.2s;

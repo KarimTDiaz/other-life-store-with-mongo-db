@@ -19,6 +19,9 @@ const MainTitle = styled.h1`
 		line-height: 6rem;
 	}
 	@media screen and (min-width: 1024px) {
+		font-size: ${FONT_SIZE.xxxxl};
+	}
+	@media screen and (min-width: 1440px) {
 		font-size: ${FONT_SIZE.xxxxxl};
 	}
 `;

@@ -35,6 +35,7 @@ const FormFieldGender = styled.div`
 const ProfileInput = styled.input`
 	padding: 0.5rem;
 	font-family: ${FONT_FAMILY.primary.regular};
+	text-transform: capitalize;
 	background: none;
 	border: ${({ error }) =>
 		error ? '1px solid red' : '1px solid' + `${COLORS.decoration}`};

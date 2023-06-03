@@ -12,11 +12,15 @@ import {
 	StyledButtonUser
 } from './styles';
 
-const Button = ({ action, type, src, children, pointer }) => {
+const Button = ({ action, type, src, children, pointer, disabled }) => {
 	switch (type) {
 		case BUTTONS.BORDERED:
 			return (
-				<StyledButtonBordered onClick={action} pointer={pointer}>
+				<StyledButtonBordered
+					onClick={action}
+					pointer={pointer}
+					disabled={disabled}
+				>
 					<ButtonText>{children}</ButtonText>
 					<Icon src={src} size={ICONS_SIZES.small} />
 				</StyledButtonBordered>

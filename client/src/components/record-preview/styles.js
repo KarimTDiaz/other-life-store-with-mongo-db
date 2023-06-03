@@ -14,6 +14,7 @@ const RecordPreviewImage = styled.img`
 	object-fit: cover;
 	object-position: center;
 	width: 100%;
+	height: 100%;
 `;
 
 const RecordPreviewData = styled.div``;

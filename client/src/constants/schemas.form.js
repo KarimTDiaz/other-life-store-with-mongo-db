@@ -81,7 +81,13 @@ export const createProductSchema = yup.object({
 		.required('This field is required')
 		.min(2, 'Minimum of 2 characteres')
 		.max(50, 'Maximum of 50 characteres'),
+	label: yup.string().required('This field is required'),
+	format: yup.string().required('This field is required'),
 	styles: yup.string().required('This field is required'),
+	year: yup
+		.number()
+		.required('This field is required')
+		.typeError('Only numbers allowed'),
 	dynamicInputs: yup.array().of(yup.string()),
 	mediaCondition: yup.string().required('This field is required'),
 	description: yup
@@ -89,5 +95,8 @@ export const createProductSchema = yup.object({
 		.required('This field is required')
 		.min(3, 'Minimum of 3 characteres')
 		.max(300, 'Maximum of 100 characteres'),
-	price: yup.number().required('This field is required')
+	price: yup
+		.number()
+		.required('This field is required')
+		.typeError('Only numbers allowed')
 });

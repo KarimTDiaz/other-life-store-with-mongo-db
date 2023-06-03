@@ -1,19 +1,46 @@
 import styled from 'styled-components';
+import { COLORS, FONT_SIZE } from '../../constants/variables';
 
 const ProductInfoContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
 	padding: 2rem;
+	@media screen and (min-width: 640px) {
+		flex-direction: row;
+		gap: 5rem;
+		align-items: start;
+		justify-content: center;
+	}
+	@media screen and (min-width: 1024px) {
+		flex-direction: row;
+		gap: 5rem;
+	}
 `;
 
-const ProductInfoData = styled.div``;
+const ProductInfoData = styled.div`
+	@media screen and (min-width: 640px) {
+		width: 400px;
+	}
+	@media screen and (min-width: 1024px) {
+		width: 500px;
+	}
+`;
 const ProductInfoHead = styled.div`
 	display: flex;
 	justify-content: center;
 	gap: 0.5rem;
 `;
-const ProductInfoTitle = styled.h2``;
+const ProductInfoTitle = styled.h2`
+	margin-top: 0;
+	font-size: ${FONT_SIZE.xxs};
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	@media screen and (min-width: 640px) {
+		font-size: ${FONT_SIZE.s};
+	}
+`;
 
 const ProductInfoField = styled.div`
 	display: grid;
@@ -22,11 +49,34 @@ const ProductInfoField = styled.div`
 `;
 const PriceField = styled.div``;
 
+const TrackListContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	margin-bottom: 2rem;
+`;
+const TrackListField = styled.div`
+	display: flex;
+	gap: 0.5rem;
+	position: relative;
+
+	&::after {
+		content: '';
+		position: absolute;
+		bottom: -0.5rem;
+		display: block;
+		width: 80%;
+		height: 1px;
+		background-color: ${COLORS.decoration};
+	}
+`;
 export {
 	ProductInfoContainer,
 	ProductInfoData,
 	ProductInfoField,
 	ProductInfoHead,
 	ProductInfoTitle,
+	TrackListContainer,
+	TrackListField,
 	PriceField
 };

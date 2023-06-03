@@ -37,6 +37,7 @@ const FormFieldAddTrack = styled.div`
 const AddProductInput = styled.input`
 	padding: 0.5rem;
 	font-family: ${FONT_FAMILY.primary.regular};
+	text-transform: capitalize;
 	background: none;
 	border: ${({ error }) =>
 		error ? '1px solid red' : '1px solid' + `${COLORS.decoration}`};
@@ -48,6 +49,7 @@ const AddProductInput = styled.input`
 `;
 const AddProductInputTrack = styled(AddProductInput)`
 	width: 300vw;
+	text-transform: capitalize;
 `;
 const AddProductLabel = styled.label`
 	position: absolute;

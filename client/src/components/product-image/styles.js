@@ -9,6 +9,15 @@ const ProductImageContainer = styled.div`
 const StyledProductImage = styled.img`
 	width: 200px;
 	height: 200px;
+	@media screen and (min-width: 640px) {
+		width: 250px;
+		height: 250px;
+		padding-top: 1rem;
+	}
+	@media screen and (min-width: 1024px) {
+		width: 500px;
+		height: 500px;
+	}
 `;
 
 export { ProductImageContainer, StyledProductImage };
