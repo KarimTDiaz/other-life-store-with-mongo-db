@@ -8,6 +8,7 @@ import Login from '../pages/login/Login';
 import ProductInfo from '../pages/product-info/ProductInfo';
 import Profile from '../pages/profile/Profile';
 import Register from '../pages/register/Register';
+import SellerProducts from '../pages/seller-products/SellerProducts';
 import UserProducts from '../pages/user-products/UserProducts';
 import ProtectedRoute from './ProtectedRoute';
 
@@ -59,6 +60,7 @@ const Router = () => {
 						</ProtectedRoute>
 					}
 				/>
+				<Route path='/seller-products' element={<SellerProducts />} />
 			</Route>
 		</Routes>
 	);

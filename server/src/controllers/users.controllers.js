@@ -1,3 +1,4 @@
+const ProductModel = require('../schemas/product.schema');
 const UserModel = require('../schemas/user.schema');
 const controller = {};
 
@@ -32,6 +33,7 @@ controller.createUser = async (req, res) => {
     name,
     surName,
     date,
+    sales,
     email,
     gender,
     direction,
@@ -59,6 +61,7 @@ controller.createUser = async (req, res) => {
     surName,
     email,
     date,
+    sales,
     gender,
     direction,
     favorites,
@@ -81,15 +84,22 @@ controller.updateUser = async (req, res) => {
 
 controller.likeProduct = async (req, res) => {
   try {
+    const product = await ProductModel.findById(req.body._id);
     const userLikingProduct = await UserModel.findById(req.params.id);
     const index = userLikingProduct.favorites.indexOf(req.body._id);
+    console.log(product.likes);
     if (index !== -1) {
       userLikingProduct.favorites.splice(index, 1);
+      if (product.likes > 0) {
+        product.likes = product.likes - 1;
+      }
     } else {
       await userLikingProduct.favorites.push(req.body._id);
+      product.likes = product.likes + 1;
+      console.log(product);
     }
-
     await userLikingProduct.save();
+    await product.save();
     res.end();
   } catch (error) {
     console.log(error);

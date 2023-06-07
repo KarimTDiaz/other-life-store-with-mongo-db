@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const StyledRecordPreviewContainer = styled.div`
 	position: relative;
+	cursor: pointer;
 `;
 const RecordPreviewToClick = styled.div``;
 

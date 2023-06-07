@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FONT_FAMILY, FONT_SIZE } from '../../constants/variables';
+import { COLORS, FONT_FAMILY, FONT_SIZE } from '../../constants/variables';
 
 const HomeContainer = styled.div`
 	padding: 1rem;
@@ -12,7 +12,7 @@ const MainTitle = styled.h1`
 	font-size: ${FONT_SIZE.xxxl};
 	font-family: ${FONT_FAMILY.secondary};
 	color: transparent;
-	-webkit-text-stroke: 2px black;
+	-webkit-text-stroke: 2px ${COLORS.textDark};
 	@media screen and (min-width: 640px) {
 		padding-top: 7rem;
 		font-size: ${FONT_SIZE.xxxxl};

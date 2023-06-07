@@ -6,6 +6,15 @@ export const TITLES = {
 		login: 'LOGIN TO YOUR ACCOUNT',
 		editUser: 'EDIT PROFILE',
 		sellRecord: 'SELL RECORD'
+	},
+	pagesTitles: {
+		userProducts: 'YOUR RECORDS',
+		favorites: 'YOUR FAVORITES',
+		profile: 'PROFILE'
+	},
+	gridTitles: {
+		home: 'Latest Additions',
+		seller: 'Records on Sale'
 	}
 };
 

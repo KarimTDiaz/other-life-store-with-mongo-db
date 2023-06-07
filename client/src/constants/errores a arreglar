@@ -1,16 +1,4 @@
-El size del profile image sacarlo a una constante
-
-hacer componentte loading
-
-Comprobaciones de no poder vender sin el perfil creado
-
-cambiar el nombre a uploaduserfile en utils
-
 hacer deletes
-
-marquee revisar
-
-TODOS LOS TITULOS EN CONSTANTES , FALTAN ALGUNO DE LOS DE PAGES y en la lista de productos
 
 poner cruz en pages para volver atras
 
@@ -18,33 +6,9 @@ lista de pistas producto hacer pop y que no deje crear mas hasta que no escribas
 
 hacer que en base a un genero puedas elegir estilos
 
-hacer responsive , sobre todo menu
-
 hacer modales de asegurar borrar producto
 
-border radius centralizar
-
-cambiar titulo grid
-
-animaciones
-
-colores del webkit troke en variable
-
-sacar botones de google
-
-box shadows buttons
-
 estilos selects de formularios
-
-sacar a una constante el create user object
-
-cambiar corazon por estrella
-
-mejorar menu
-
-preguntar el pop
-
-quitar el seller email y el likes del product
 
 disabled del boton
 
@@ -52,4 +16,17 @@ fecha de subida del post en discos
 
 hacer edit records
 
+hacer que tus productos no se vean en el home
+
+preguntar likes
+
+TODOS LOS TITULOS EN CONSTANTES , FALTAN ALGUNO DE LOS DE PAGES y en la lista de productos
+hacer responsive , sobre todo menu
+El size del profile image sacarlo a una constante
+animaciones
+box shadows buttons
+cambiar corazon por estrella
+mejorar menu
+marquee revisar
+preguntar el pop
 animacion notificaciones

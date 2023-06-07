@@ -41,7 +41,6 @@ controller.createProduct = async (req, res) => {
     description,
     price,
     likes,
-    sellerEmail,
     sellerId,
     sellerUserName
   } = req.body;
@@ -62,7 +61,6 @@ controller.createProduct = async (req, res) => {
     date: new Date().toLocaleString(),
     price,
     likes,
-    sellerEmail,
     sellerId,
     sellerUserName
   });

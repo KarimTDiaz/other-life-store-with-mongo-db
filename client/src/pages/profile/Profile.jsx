@@ -7,7 +7,7 @@ import Title from '../../components/title/Title';
 import { BUTTONS } from '../../constants/buttons';
 import { ICONS } from '../../constants/icons';
 import { TEXTS_TYPES } from '../../constants/texts';
-import { SUBTITLES, TITLES_TYPES } from '../../constants/titles';
+import { SUBTITLES, TITLES, TITLES_TYPES } from '../../constants/titles';
 import { AuthContext } from '../../contexts/Auth.context';
 
 import {
@@ -25,7 +25,7 @@ const Profile = () => {
 			{currentUser && (
 				<StyledProfileContainer>
 					<StyledProfileCard>
-						<Title type={TITLES_TYPES.PAGE}>PROFILE</Title>
+						<Title type={TITLES_TYPES.PAGE}>{TITLES.pagesTitles.profile}</Title>
 						<ProfileImage src={currentUser.profileImage} />
 						<ProfileField>
 							<Title type={TITLES_TYPES.SUBTITLE}>

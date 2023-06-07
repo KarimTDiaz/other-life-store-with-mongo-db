@@ -9,6 +9,7 @@ const UserSchema = mongoose.Schema({
   date: String,
   email: String,
   gender: String,
+  sales: Number,
   direction: {
     country: String,
     city: String,

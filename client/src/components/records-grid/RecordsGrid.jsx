@@ -3,11 +3,12 @@ import { URLS } from '../../constants/requests';
 import { TITLES_TYPES } from '../../constants/titles';
 import { AuthContext } from '../../contexts/Auth.context';
 import { useFetch } from '../../hooks/useFetch';
+import Loading from '../loading/Loading';
 import RecordPreview from '../record-preview/RecordPreview';
 import Title from '../title/Title';
 import { StyledRecordsGrid } from './styles';
 
-const RecordsGrid = ({ records }) => {
+const RecordsGrid = ({ records, title }) => {
 	const { currentUser, loadingFirebase } = useContext(AuthContext);
 	const {
 		finalData: allUsers,
@@ -15,12 +16,12 @@ const RecordsGrid = ({ records }) => {
 		wrong
 	} = useFetch({ url: URLS.ALL_USERS });
 
-	if (load) return <h1>Loading...</h1>;
+	if (load) return <Loading />;
 	if (wrong) return <h1>Wrong...</h1>;
 	if (loadingFirebase || !records) return;
 	return (
 		<>
-			<Title type={TITLES_TYPES.SECTION}>Latest Additions</Title>
+			<Title type={TITLES_TYPES.SECTION}>{title}</Title>
 			<StyledRecordsGrid>
 				{records.map(record => {
 					const isLike =

@@ -10,6 +10,7 @@ import UploadPhoto from '../../components/upload-photo/UploadPhoto';
 import { ALL_FORMATS } from '../../constants/allFormats';
 import { ALL_GENRES } from '../../constants/allGenres';
 import { BUTTONS } from '../../constants/buttons';
+import { HEADERS } from '../../constants/formDefaultValues';
 import { ICONS } from '../../constants/icons';
 import { MEDIA_CONDITION } from '../../constants/mediaCondition';
 import { URLS } from '../../constants/requests';
@@ -238,12 +239,10 @@ const onSubmit = async (data, setFetchInfo, currentUser, file, setError) => {
 				...data,
 				_id: id,
 				likes: 0,
-				sellerEmail: currentUser.email,
 				sellerId: currentUser.uid
 			}),
 			headers: {
-				Accept: '*/*',
-				'Content-Type': 'application/json'
+				...HEADERS
 			}
 		},
 		redirectTo: '/your-products'

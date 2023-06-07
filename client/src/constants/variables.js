@@ -40,9 +40,14 @@ export const FONT_SIZE = {
 export const PADDING = {};
 
 export const BORDER_RADIUS = {
-	formCards: '0.625rem'
+	formCards: '0.625rem',
+	profileImage: '50%',
+	xs: '2px',
+	s: '5px',
+	m: '10px'
 };
 
 export const BOX_SHADOWS = {
-	formCards: '0px 0px 33px 3px rgba(0, 0, 0, 0.10);'
+	formCards: '0px 0px 33px 3px rgba(0, 0, 0, 0.10);',
+	userCards: '0px 0px 33px 3px rgba(0, 0, 0, 0.30);'
 };

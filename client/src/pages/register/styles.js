@@ -14,12 +14,13 @@ const StyledRegisterContainer = styled.div`
 	margin-right: auto;
 	background-color: ${COLORS.background.body};
 `;
-
-const FormRegister = styled.form`
+const SubContainer = styled.div`
 	padding: 1.5rem 2rem;
 	border-radius: ${BORDER_RADIUS.formCards};
 	box-shadow: ${BOX_SHADOWS.formCards};
 `;
+
+const FormRegister = styled.form``;
 
 const FormFieldRegister = styled.div`
 	position: relative;
@@ -67,5 +68,6 @@ export {
 	FormFieldRegister,
 	RegisterLabel,
 	RegisterInput,
-	RegisterText
+	RegisterText,
+	SubContainer
 };

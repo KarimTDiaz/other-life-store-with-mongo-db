@@ -57,7 +57,8 @@ const EditProfile = () => {
 		setCurrentCountry(currentUser.direction.country);
 	}, [currentUser]);
 
-	if (loadingFirebase) return <h1>lOADING...</h1>;
+	if (loadingFirebase) return <Loading />;
+	if (load) return <Loading />;
 
 	return (
 		<StyledProfileContainer>

@@ -7,17 +7,16 @@ const UserProductsContainer = styled.div`
 const UserProductsHeader = styled.div`
 	display: flex;
 	flex-direction: column;
-	align-items: center;
 	justify-content: center;
 	gap: 1rem;
 	@media screen and (min-width: 640px) {
-		flex-direction: row;
 	}
 `;
 
 const ProductButtonsContainer = styled.div`
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 	gap: 0.5rem;
 `;
 

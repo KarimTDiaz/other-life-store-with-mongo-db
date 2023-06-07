@@ -2,8 +2,9 @@ import styled from 'styled-components';
 import { COLORS, FONT_FAMILY, FONT_SIZE } from '../../constants/variables';
 
 const StyledHeader = styled.header`
+	position: relative;
 	@media screen and (min-width: 640px) {
-		margin-bottom: 2rem;
+		margin-bottom: 1rem;
 	}
 `;
 

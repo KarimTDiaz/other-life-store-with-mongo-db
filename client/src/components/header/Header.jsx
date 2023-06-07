@@ -4,6 +4,7 @@ import { BUTTONS } from '../../constants/buttons';
 import { ICONS, ICONS_SIZES } from '../../constants/icons';
 import { AuthContext } from '../../contexts/Auth.context';
 import Button from '../button/Button';
+import ErrorPopUp from '../error-pop-up/ErrorPopUp';
 import Icon from '../icon/Icon';
 import Logo from '../logo/Logo';
 import Menu from '../menu/Menu';
@@ -18,6 +19,7 @@ import {
 
 const Header = () => {
 	const [open, setOpen] = useState(false);
+	const [error, setError] = useState('');
 	const navigate = useNavigate();
 	const location = useLocation();
 	const { currentUser } = useContext(AuthContext);
@@ -60,6 +62,22 @@ const Header = () => {
 								<Icon src={ICONS.cart} size={ICONS_SIZES.big} />
 								<CartCounter>(0)</CartCounter>
 							</CartContainer>
+							<Button
+								type={BUTTONS.BORDERED}
+								src={ICONS.addRecordLight}
+								action={() => {
+									!currentUser.name
+										? setError('You must complete your profile')
+										: navigate('/add-product');
+								}}
+							>
+								Sell new record
+							</Button>
+							{error && (
+								<ErrorPopUp action={() => navigate('/edit-profile')}>
+									{error}
+								</ErrorPopUp>
+							)}
 						</HeaderIcons>
 					</>
 				)}

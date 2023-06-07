@@ -13,9 +13,10 @@ const StyledButtonBordered = styled.button`
 	padding: 0.2rem 1rem;
 	background-color: ${({ disabled }) =>
 		disabled ? `${COLORS.background.modal}` : `${COLORS.textDark}`};
-	border-radius: 5px;
+	border-radius: ${BORDER_RADIUS.s};
 	border: none;
 	pointer-events: ${({ pointer }) => (pointer ? 'none' : 'all')};
+	cursor: pointer;
 `;
 const StyledButtonSquared = styled.button`
 	display: flex;
@@ -25,12 +26,14 @@ const StyledButtonSquared = styled.button`
 	width: 100%;
 	padding: 0.6rem 1rem;
 	background-color: ${COLORS.textDark};
-	border-radius: 2px;
+	border-radius: ${BORDER_RADIUS.xs};
 	border: none;
+	cursor: pointer;
 `;
 const StyledButtonSocial = styled(StyledButtonSquared)`
 	background-color: transparent;
 	border: 1px solid ${COLORS.textDark};
+	cursor: pointer;
 `;
 const StyledButtonThin = styled.button`
 	display: flex;
@@ -42,19 +45,22 @@ const StyledButtonThin = styled.button`
 	font-family: ${FONT_FAMILY.primary.medium};
 	border: none;
 	background-color: transparent;
+	cursor: pointer;
 `;
 const StyledButtonUser = styled(StyledButtonThin)`
 	width: max-content;
 	padding: 0.1rem 1rem;
 	font-family: ${FONT_FAMILY.primary.regular};
+	font-size: ${FONT_SIZE.xxxs};
 	border: 1px solid ${COLORS.textDark};
+	cursor: pointer;
 `;
 
 const StyledButtonAdd = styled(StyledButtonThin)`
 	width: max-content;
 	font-family: ${FONT_FAMILY.primary.regular};
-	border-radius: ${BORDER_RADIUS.formCards};
 	border: 1px solid ${COLORS.textDark};
+	cursor: pointer;
 `;
 const ButtonText = styled.p`
 	margin: 0;

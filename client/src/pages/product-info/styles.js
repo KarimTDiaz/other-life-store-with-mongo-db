@@ -39,6 +39,8 @@ const ProductInfoTitle = styled.h2`
 	white-space: nowrap;
 	@media screen and (min-width: 640px) {
 		font-size: ${FONT_SIZE.s};
+		overflow: visible;
+		white-space: wrap;
 	}
 `;
 
@@ -70,6 +72,22 @@ const TrackListField = styled.div`
 		background-color: ${COLORS.decoration};
 	}
 `;
+
+const LikesAndDate = styled.div`
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 1rem;
+	position: relative;
+	padding: 0.5rem;
+	border-top: 1px solid ${COLORS.decoration};
+	border-bottom: 1px solid ${COLORS.decoration};
+`;
+const LikesAndDateIcons = styled.div`
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+`;
+
 export {
 	ProductInfoContainer,
 	ProductInfoData,
@@ -78,5 +96,7 @@ export {
 	ProductInfoTitle,
 	TrackListContainer,
 	TrackListField,
-	PriceField
+	PriceField,
+	LikesAndDate,
+	LikesAndDateIcons
 };

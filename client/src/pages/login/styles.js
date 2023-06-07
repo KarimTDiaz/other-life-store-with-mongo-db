@@ -15,11 +15,12 @@ const StyledLoginContainer = styled.div`
 	background-color: ${COLORS.background.body};
 `;
 
-const FormLogin = styled.form`
+const SubContainer = styled.div`
 	padding: 1.5rem 2rem;
 	border-radius: ${BORDER_RADIUS.formCards};
 	box-shadow: ${BOX_SHADOWS.formCards};
 `;
+const FormLogin = styled.form``;
 
 const FormFieldLogin = styled.div`
 	position: relative;
@@ -73,5 +74,6 @@ export {
 	FormFieldLogin,
 	LoginLabel,
 	LoginInput,
-	LoginText
+	LoginText,
+	SubContainer
 };

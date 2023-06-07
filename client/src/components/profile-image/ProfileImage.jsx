@@ -1,8 +1,8 @@
 import { ProfileImageContainer, StyledProfileImage } from './styles';
 
-const ProfileImage = ({ src, size }) => {
+const ProfileImage = ({ src, size, bottom }) => {
 	return (
-		<ProfileImageContainer>
+		<ProfileImageContainer bottom={bottom}>
 			<StyledProfileImage src={src} alt='Imagen de perfil' size={size} />
 		</ProfileImageContainer>
 	);

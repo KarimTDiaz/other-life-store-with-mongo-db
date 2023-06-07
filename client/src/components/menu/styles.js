@@ -4,25 +4,26 @@ import { COLORS, FONT_FAMILY, FONT_SIZE } from '../../constants/variables';
 
 const StyledMenu = styled.ul`
 	position: fixed;
-	top: 100px;
+	top: 80px;
 	left: 0;
 	z-index: 10;
 	width: 100vw;
 	height: ${({ open }) => (open ? '100vh' : '0')};
-	padding: ${({ open }) => (open ? '3.5rem' : '0')};
 	overflow: hidden;
 	background-color: ${COLORS.background.body};
-	/* 	transform: scaleY(${({ open }) => (open ? '100%' : '0')}); */
-	transition: height 1s, padding 1s;
+	transition: height 0.3s;
 	transform-origin: top;
+	@media screen and (min-width: 640px) {
+		top: 110px;
+	}
+`;
+
+const MenuContainer = styled.div`
+	padding: 3.5rem;
 `;
 const MenuItem = styled.li`
 	position: relative;
 	margin-bottom: 3rem;
-
-	opacity: ${({ open }) => (open ? 1 : 0)};
-	transition: opacity 0.5s;
-	transition-delay: 0.2s;
 	&::after {
 		content: '';
 		position: absolute;
@@ -39,7 +40,8 @@ const MenuLink = styled(NavLink)`
 	font-family: ${FONT_FAMILY.secondary};
 	font-size: ${FONT_SIZE.s};
 	color: transparent;
-	-webkit-text-stroke: 1px black;
+	-webkit-text-stroke: 1px ${COLORS.textDark};
+	cursor: pointer;
 `;
 
-export { StyledMenu, MenuItem, MenuLink };
+export { StyledMenu, MenuContainer, MenuItem, MenuLink };

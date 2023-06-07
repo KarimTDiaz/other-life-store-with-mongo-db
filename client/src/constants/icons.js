@@ -60,6 +60,14 @@ export const ICONS = {
 	photo: {
 		src: '/assets/icons/camera.svg',
 		alt: 'Icono de Cámara'
+	},
+	sales: {
+		src: '/assets/icons/sales.svg',
+		alt: 'Icono de Bolsa'
+	},
+	shops: {
+		src: '/assets/icons/coins.svg',
+		alt: 'Icono de Monedas'
 	}
 };
 

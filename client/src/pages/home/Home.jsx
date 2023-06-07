@@ -1,3 +1,4 @@
+import Loading from '../../components/loading/Loading';
 import MarqueePhotos from '../../components/marquee/Marquee';
 import RecordsGrid from '../../components/records-grid/RecordsGrid';
 import { URLS } from '../../constants/requests';
@@ -13,7 +14,7 @@ const Home = () => {
 		setFetchInfo
 	} = useFetch({ url: URLS.ALL_PRODUCTS });
 
-	if (load) return <h1>Loading...</h1>;
+	if (load) return <Loading />;
 	if (wrong) return <h1>Wrong...</h1>;
 
 	return (
@@ -22,7 +23,7 @@ const Home = () => {
 				<MarqueePhotos />
 				<MainTitle>{TITLES.mainTitle}</MainTitle>
 				<MainSubTitle>{TITLES.mainSubTitle}</MainSubTitle>
-				<RecordsGrid records={allProducts} />
+				<RecordsGrid records={allProducts} title={TITLES.gridTitles.home} />
 			</HomeContainer>
 		</>
 	);

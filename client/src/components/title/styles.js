@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FONT_FAMILY, FONT_SIZE } from '../../constants/variables';
+import { COLORS, FONT_FAMILY, FONT_SIZE } from '../../constants/variables';
 
 const FormTitle = styled.h1`
 	margin-bottom: 2.5rem;
@@ -7,7 +7,7 @@ const FormTitle = styled.h1`
 	font-family: ${FONT_FAMILY.secondary};
 	font-size: ${FONT_SIZE.s};
 	color: transparent;
-	-webkit-text-stroke: 1.5px black;
+	-webkit-text-stroke: 1.5px ${COLORS.textDark};
 `;
 
 const PageTitle = styled.h1`
@@ -15,7 +15,7 @@ const PageTitle = styled.h1`
 	font-family: ${FONT_FAMILY.secondary};
 	font-size: ${FONT_SIZE.l};
 	color: transparent;
-	-webkit-text-stroke: 1.5px black;
+	-webkit-text-stroke: 1.5px ${COLORS.textDark};
 `;
 
 const SubTitle = styled.h3`
@@ -26,7 +26,10 @@ const SubTitle = styled.h3`
 `;
 
 const SectionTitle = styled(SubTitle)`
-	font-size: ${FONT_SIZE.m};
+	font-size: ${FONT_SIZE.s};
+	@media screen and (min-width: 640px) {
+		font-size: ${FONT_SIZE.m};
+	}
 `;
 
 export { FormTitle, PageTitle, SubTitle, SectionTitle };

@@ -5,12 +5,14 @@ import { useForm } from 'react-hook-form';
 import { Navigate, useNavigate } from 'react-router-dom';
 import Button from '../../components/button/Button';
 import ErrorPopUp from '../../components/error-pop-up/ErrorPopUp';
+import Loading from '../../components/loading/Loading';
 import SocialLogin from '../../components/social-login/SocialLogin';
 import Text from '../../components/text/Text';
 import Title from '../../components/title/Title';
 import { auth } from '../../config/firebase.config';
 import { AUTH_ERRORS } from '../../constants/auth.errors';
 import { BUTTONS } from '../../constants/buttons';
+import { HEADERS } from '../../constants/formDefaultValues';
 import { ICONS } from '../../constants/icons';
 import { URLS } from '../../constants/requests';
 import { registerSchema } from '../../constants/schemas.form';
@@ -25,7 +27,8 @@ import {
 	RegisterInput,
 	RegisterLabel,
 	RegisterText,
-	StyledRegisterContainer
+	StyledRegisterContainer,
+	SubContainer
 } from './styles';
 
 const Register = () => {
@@ -47,57 +50,59 @@ const Register = () => {
 
 	if (currentUser) return <Navigate to='/' />;
 
-	if (load) return <h1>Loading...</h1>;
+	if (load) return <Loading />;
 	if (wrong) return <h1>Something went wrong</h1>;
 
 	return (
 		<StyledRegisterContainer>
-			<FormRegister
-				onSubmit={handleSubmit((data, ev) => {
-					onSubmit(data, ev, setError, setFetchInfo, allUsers, navigate);
-				})}
-			>
-				<Title type={TITLES_TYPES.FORM}>{TITLES.formTitles.register}</Title>
-				<FormFieldRegister>
-					<RegisterInput
-						type='text'
-						id='userName'
-						placeholder='User Name'
-						error={errors.userName}
-						onFocus={() => setError('')}
-						{...register('userName')}
-						required
-					/>
-					<RegisterLabel htmlFor='userName'>User Name</RegisterLabel>
-					<Text type={TEXTS_TYPES.ERROR}>{errors.userName?.message}</Text>
-				</FormFieldRegister>
-				<FormFieldRegister>
-					<RegisterInput
-						type='email'
-						id='email'
-						placeholder='Email'
-						error={errors.email}
-						onFocus={() => setError('')}
-						{...register('email')}
-						required
-					/>
-					<RegisterLabel htmlFor='email'>Email</RegisterLabel>
-					<Text type={TEXTS_TYPES.ERROR}>{errors.email?.message}</Text>
-				</FormFieldRegister>
-				<FormFieldRegister>
-					<RegisterInput
-						type='password'
-						id='password'
-						placeholder='Password'
-						error={errors.password}
-						{...register('password')}
-						required
-					/>
-					<RegisterLabel htmlFor='password'>Password</RegisterLabel>
-					<Text type={TEXTS_TYPES.ERROR}>{errors.password?.message}</Text>
-				</FormFieldRegister>
-				<Button type={BUTTONS.SQUARED}>CREATE ACCOUNT</Button>
-				{error && <ErrorPopUp>{error}</ErrorPopUp>}
+			<SubContainer>
+				<FormRegister
+					onSubmit={handleSubmit((data, ev) => {
+						onSubmit(data, ev, setError, setFetchInfo, allUsers, navigate);
+					})}
+				>
+					<Title type={TITLES_TYPES.FORM}>{TITLES.formTitles.register}</Title>
+					<FormFieldRegister>
+						<RegisterInput
+							type='text'
+							id='userName'
+							placeholder='User Name'
+							error={errors.userName}
+							onFocus={() => setError('')}
+							{...register('userName')}
+							required
+						/>
+						<RegisterLabel htmlFor='userName'>User Name</RegisterLabel>
+						<Text type={TEXTS_TYPES.ERROR}>{errors.userName?.message}</Text>
+					</FormFieldRegister>
+					<FormFieldRegister>
+						<RegisterInput
+							type='email'
+							id='email'
+							placeholder='Email'
+							error={errors.email}
+							onFocus={() => setError('')}
+							{...register('email')}
+							required
+						/>
+						<RegisterLabel htmlFor='email'>Email</RegisterLabel>
+						<Text type={TEXTS_TYPES.ERROR}>{errors.email?.message}</Text>
+					</FormFieldRegister>
+					<FormFieldRegister>
+						<RegisterInput
+							type='password'
+							id='password'
+							placeholder='Password'
+							error={errors.password}
+							{...register('password')}
+							required
+						/>
+						<RegisterLabel htmlFor='password'>Password</RegisterLabel>
+						<Text type={TEXTS_TYPES.ERROR}>{errors.password?.message}</Text>
+					</FormFieldRegister>
+					<Button type={BUTTONS.SQUARED}>CREATE ACCOUNT</Button>
+					{error && <ErrorPopUp>{error}</ErrorPopUp>}
+				</FormRegister>
 				<RegisterText>OR</RegisterText>
 				<SocialLogin setFetchInfo={setFetchInfo} />
 				<RegisterText>Do you alredy have an account?</RegisterText>
@@ -108,7 +113,7 @@ const Register = () => {
 				>
 					Log In
 				</Button>
-			</FormRegister>
+			</SubContainer>
 		</StyledRegisterContainer>
 	);
 };
@@ -139,26 +144,11 @@ const onSubmit = async (
 					_id: user.user.uid,
 					profileImage: STORAGE_FILES.DEFAULT_IMG,
 					userName: data.userName,
-					name: '',
-					surName: '',
 					email: data.email,
-					gender: '',
-					date: '',
-					direction: {
-						country: '',
-						city: '',
-						poblation: '',
-						address: '',
-						zipCode: 0
-					},
-					favorites: [],
-					products: [],
-					purchases: [],
-					cart: []
+					...USER_DEFAULT_VALUES
 				}),
 				headers: {
-					Accept: '*/*',
-					'Content-Type': 'application/json'
+					...HEADERS
 				}
 			}
 		});

@@ -48,7 +48,7 @@ const Button = ({ action, type, src, children, pointer, disabled }) => {
 			);
 		case BUTTONS.USER:
 			return (
-				<StyledButtonUser>
+				<StyledButtonUser onClick={action}>
 					{children}
 					<Icon src={ICONS.userVinyl} size={ICONS_SIZES.small} />
 				</StyledButtonUser>
@@ -57,7 +57,7 @@ const Button = ({ action, type, src, children, pointer, disabled }) => {
 			return (
 				<StyledButtonAdd onClick={action}>
 					{children}
-					<Icon src={ICONS.addRecord} size={ICONS_SIZES.regular} />
+					<Icon src={ICONS.addRecord} size={ICONS_SIZES.small} />
 				</StyledButtonAdd>
 			);
 		default:

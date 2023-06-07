@@ -6,12 +6,13 @@ import {
 import { useContext } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { auth } from '../../config/firebase.config';
+import { HEADERS } from '../../constants/formDefaultValues';
 import { ICONS } from '../../constants/icons';
 import { URLS } from '../../constants/requests';
+import { STORAGE_FILES } from '../../constants/storage.files';
 import { AuthContext } from '../../contexts/Auth.context';
 import Button from '../button/Button';
 import { SocialLoginContainer } from './styles';
-import { STORAGE_FILES } from '../../constants/storage.files';
 
 const SocialLogin = ({ setFetchInfo }) => {
 	const navigate = useNavigate();
@@ -52,23 +53,10 @@ const loginWithGoogle = async ({ setFetchInfo, navigate }) => {
 					userName: result.user.email,
 					email: result.user.email,
 					profileImage: STORAGE_FILES.DEFAULT_IMG,
-					name: '',
-					surName: '',
-					gender: '',
-					direction: {
-						country: '',
-						city: '',
-						poblation: '',
-						address: '',
-						zipCode: 0
-					},
-					favorites: [],
-					products: [],
-					purchases: []
+					...USER_DEFAULT_VALUES
 				}),
 				headers: {
-					Accept: '*/*',
-					'Content-Type': 'application/json'
+					...HEADERS
 				}
 			}
 		});
