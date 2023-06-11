@@ -2,10 +2,11 @@ import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/button/Button';
 import Loading from '../../components/loading/Loading';
-import RecordsGrid from '../../components/records-grid/RecordsGrid';
+import RecordsList from '../../components/records-list/RecordsList';
 import Title from '../../components/title/Title';
 import UserHeaderCard from '../../components/user-header-card/UserHeaderCard';
 import { BUTTONS } from '../../constants/buttons';
+import { LIST_ITEMS_OPTION } from '../../constants/listItemsOptions';
 import { URLS } from '../../constants/requests';
 import { TITLES, TITLES_TYPES } from '../../constants/titles';
 import { AuthContext } from '../../contexts/Auth.context';
@@ -46,7 +47,10 @@ const UserProducts = () => {
 					{error}
 				</ErrorPopUp>
 			)}
-			<RecordsGrid records={myProducts} />
+			<RecordsList
+				records={myProducts}
+				type={LIST_ITEMS_OPTION.USER_PRODUCTS}
+			/>
 		</UserProductsContainer>
 	);
 };

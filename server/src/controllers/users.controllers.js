@@ -39,7 +39,9 @@ controller.createUser = async (req, res) => {
     direction,
     favorites,
     products,
-    purchases
+    purchases,
+    cart,
+    ratings
   } = req.body;
 
   const userCheck = await UserModel.findById(req.body._id);
@@ -66,7 +68,9 @@ controller.createUser = async (req, res) => {
     direction,
     favorites,
     products,
-    purchases
+    purchases,
+    cart,
+    ratings
   });
 
   const userCreated = await newUser.save();
@@ -78,7 +82,6 @@ controller.updateUser = async (req, res) => {
     { _id: req.params.id },
     { $set: { ...req.body } }
   );
-  console.log(userUpdated);
   res.send(userUpdated);
 };
 
@@ -94,7 +97,7 @@ controller.likeProduct = async (req, res) => {
         product.likes = product.likes - 1;
       }
     } else {
-      await userLikingProduct.favorites.push(req.body._id);
+      userLikingProduct.favorites.push(req.body._id);
       product.likes = product.likes + 1;
       console.log(product);
     }
@@ -104,6 +107,26 @@ controller.likeProduct = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
+};
+
+controller.addToCart = async (req, res) => {
+  const user = await UserModel.findById(req.params.id);
+  const index = user.cart.indexOf(req.body._id);
+  if (index !== -1) {
+    user.cart.splice(index, 1);
+  } else {
+    user.cart.push(req.body._id);
+  }
+
+  await user.save();
+  res.end();
+};
+
+controller.userRating = async (req, res) => {
+  const userRated = await UserModel.findById(req.params.id);
+  userRated.ratings.push(req.body);
+  await userRated.save();
+  res.end();
 };
 
 module.exports = controller;

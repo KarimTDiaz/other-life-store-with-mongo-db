@@ -1,15 +1,24 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { v4 } from 'uuid';
 import Button from '../../components/button/Button';
+import Delete from '../../components/delete/Delete';
 import Icon from '../../components/icon/Icon';
+import Loading from '../../components/loading/Loading';
+import Modal from '../../components/modal/Modal';
 import ProductImage from '../../components/product-image/ProductImage';
 import Text from '../../components/text/Text';
 import Title from '../../components/title/Title';
 import { BUTTONS } from '../../constants/buttons';
+import { HEADERS } from '../../constants/formDefaultValues';
 import { ICONS, ICONS_SIZES } from '../../constants/icons';
+import { URLS } from '../../constants/requests';
 import { TEXTS_TYPES } from '../../constants/texts';
 import { TITLES_TYPES } from '../../constants/titles';
+import { AuthContext } from '../../contexts/Auth.context';
+import { useFetch } from '../../hooks/useFetch';
 import {
+	ButtonsContainer,
 	LikesAndDate,
 	LikesAndDateIcons,
 	PriceField,
@@ -24,8 +33,16 @@ import {
 
 const ProductInfo = () => {
 	const { state } = useLocation();
+	const [content, setContent] = useState(null);
+	const [inCart, setInCart] = useState(state.isInCart);
 	const navigate = useNavigate();
+	const { currentUser, firebaseLoading } = useContext(AuthContext);
+	const { setFetchInfo } = useFetch();
 	const date = state.currentRecord.date.split(',');
+
+	if (firebaseLoading) return <Loading />;
+	if (state.isInCart !== inCart) return <Navigate to={'/'} />;
+
 	return (
 		<ProductInfoContainer>
 			<div>
@@ -50,10 +67,13 @@ const ProductInfo = () => {
 					<Text type={TEXTS_TYPES.FIELD}>{state.currentRecord.year}</Text>
 				</ProductInfoField>
 				<ProductInfoField>
-					<Title type={TITLES_TYPES.SUBTITLE}>Genres:</Title>
+					<Title type={TITLES_TYPES.SUBTITLE}>Genre:</Title>
+					<Text type={TEXTS_TYPES.FIELD}>{state.currentRecord.genre}</Text>
+				</ProductInfoField>
+				<ProductInfoField>
+					<Title type={TITLES_TYPES.SUBTITLE}>Styles:</Title>
 					<Text type={TEXTS_TYPES.FIELD}>{state.currentRecord.styles}</Text>
 				</ProductInfoField>
-
 				<ProductInfoField>
 					<Title type={TITLES_TYPES.SUBTITLE}>Condition:</Title>
 					<Text type={TEXTS_TYPES.FIELD}>
@@ -97,16 +117,81 @@ const ProductInfo = () => {
 						<Text type={TEXTS_TYPES.FIELD}>{state.currentRecord.likes}</Text>
 					</LikesAndDateIcons>
 				</LikesAndDate>
-
 				<PriceField>
 					<Text type={TEXTS_TYPES.FIELD} price>
 						{state.currentRecord.price} €
 					</Text>
+					{!state.isYours && (
+						<Button
+							type={BUTTONS.CART}
+							src={ICONS.cart}
+							action={() =>
+								handleFetchCart(
+									setFetchInfo,
+									currentUser.uid,
+									state.currentRecord._id,
+									inCart,
+									setInCart
+								)
+							}
+						>
+							{!inCart ? 'ADD TO CART' : 'REMOVE FROM CART'}
+						</Button>
+					)}
 				</PriceField>
-				{state.isYours && <Button type={BUTTONS.SQUARED}>Edit Record</Button>}
+				{state.isYours && (
+					<ButtonsContainer>
+						<Button type={BUTTONS.SQUARED} src={ICONS.edit}>
+							Edit Record
+						</Button>
+						<Button
+							type={BUTTONS.SQUARED}
+							src={ICONS.trash}
+							action={() =>
+								showModal(
+									setContent,
+									<Delete
+										id={state.currentRecord._id}
+										setContent={setContent}
+									/>
+								)
+							}
+						>
+							Delete Record
+						</Button>
+					</ButtonsContainer>
+				)}
 			</ProductInfoData>
+			<Modal>{content}</Modal>
 		</ProductInfoContainer>
 	);
+};
+
+const showModal = (setContent, component) => {
+	setContent(component);
+};
+
+const handleFetchCart = async (
+	setFetchInfo,
+	userId,
+	productId,
+	inCart,
+	setInCart
+) => {
+	await setFetchInfo({
+		url: URLS.ADD_CART + userId,
+		options: {
+			method: 'PATCH',
+			body: JSON.stringify({
+				_id: productId
+			}),
+			headers: {
+				...HEADERS
+			}
+		},
+		redirectTo: '/your-products'
+	});
+	setInCart(!inCart);
 };
 
 export default ProductInfo;

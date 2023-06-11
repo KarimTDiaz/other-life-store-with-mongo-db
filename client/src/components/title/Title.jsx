@@ -1,5 +1,11 @@
 import { TITLES_TYPES } from '../../constants/titles';
-import { FormTitle, PageTitle, SectionTitle, SubTitle } from './styles';
+import {
+	FooterTitle,
+	FormTitle,
+	PageTitle,
+	SectionTitle,
+	SubTitle
+} from './styles';
 
 const Title = ({ type, children, dark }) => {
 	switch (type) {
@@ -11,6 +17,8 @@ const Title = ({ type, children, dark }) => {
 			return <SubTitle dark={dark}>{children}</SubTitle>;
 		case TITLES_TYPES.SECTION:
 			return <SectionTitle>{children}</SectionTitle>;
+		case TITLES_TYPES.FOOTER:
+			return <FooterTitle>{children}</FooterTitle>;
 	}
 };
 

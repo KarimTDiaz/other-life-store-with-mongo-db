@@ -28,6 +28,7 @@ const RecordsGrid = ({ records, title }) => {
 						currentUser && currentUser.favorites.includes(record._id);
 					const isYours =
 						currentUser && currentUser.products.includes(record._id);
+					const isInCart = currentUser && currentUser.cart.includes(record._id);
 					const seller = allUsers.find(
 						seller => seller._id === record.sellerId
 					);
@@ -37,6 +38,7 @@ const RecordsGrid = ({ records, title }) => {
 							record={record}
 							isLike={isLike}
 							isYours={isYours}
+							isInCart={isInCart}
 							seller={seller.userName}
 						/>
 					);

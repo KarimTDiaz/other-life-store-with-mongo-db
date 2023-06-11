@@ -83,6 +83,7 @@ export const createProductSchema = yup.object({
 		.max(50, 'Maximum of 50 characteres'),
 	label: yup.string().required('This field is required'),
 	format: yup.string().required('This field is required'),
+	genre: yup.string().required('This field is required'),
 	styles: yup.string().required('This field is required'),
 	year: yup
 		.number()

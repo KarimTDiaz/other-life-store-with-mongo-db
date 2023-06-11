@@ -1,10 +1,4 @@
-hacer deletes
-
 poner cruz en pages para volver atras
-
-lista de pistas producto hacer pop y que no deje crear mas hasta que no escribas
-
-hacer que en base a un genero puedas elegir estilos
 
 hacer modales de asegurar borrar producto
 
@@ -12,13 +6,13 @@ estilos selects de formularios
 
 disabled del boton
 
-fecha de subida del post en discos
-
 hacer edit records
 
 hacer que tus productos no se vean en el home
 
-preguntar likes
+areglar el delete
+
+hay que asegurarse de que sino se mete el user en mongo no se meta en ningun lado
 
 TODOS LOS TITULOS EN CONSTANTES , FALTAN ALGUNO DE LOS DE PAGES y en la lista de productos
 hacer responsive , sobre todo menu
@@ -28,5 +22,20 @@ box shadows buttons
 cambiar corazon por estrella
 mejorar menu
 marquee revisar
-preguntar el pop
 animacion notificaciones
+mejorar profile
+mejorar icono y boton de comprar
+
+preguntass:
+delete,
+likes,
+tracklist pop array en buttons y al esceribir solo 4 letras
+el menu hace scrolling
+default en switch
+footer,
+addtocart navigate,
+controller purchase
+
+para hoy:
+
+cart con rating

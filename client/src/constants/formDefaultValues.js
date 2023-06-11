@@ -14,7 +14,8 @@ export const USER_DEFAULT_VALUES = {
 	favorites: [],
 	products: [],
 	purchases: [],
-	cart: []
+	cart: [],
+	ratings: []
 };
 
 export const HEADERS = {

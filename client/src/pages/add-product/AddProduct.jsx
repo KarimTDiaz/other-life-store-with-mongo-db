@@ -38,6 +38,7 @@ import {
 const AddProduct = () => {
 	const [file, setFile] = useState('');
 	const [selectValues, setSelectValues] = useState({
+		genre: '',
 		styles: '',
 		media: '',
 		format: ''
@@ -53,6 +54,10 @@ const AddProduct = () => {
 		handleSubmit,
 		formState: { errors }
 	} = useForm({ mode: 'onBlur', resolver: yupResolver(createProductSchema) });
+
+	const currentStyles = ALL_GENRES.find(
+		genre => genre.genre === selectValues.genre
+	);
 
 	return (
 		<StyledAddProductContainer>
@@ -126,23 +131,44 @@ const AddProduct = () => {
 					<Text type={TEXTS_TYPES.ERROR}>{errors.year?.message}</Text>
 				</FormFieldAddProduct>
 				<FormFieldAddProduct>
-					<label htmlFor='styles'>Styles</label>
+					<label htmlFor='styles'>Genre</label>
 					<select
-						value={selectValues.styles}
-						id='styles'
-						{...register('styles')}
+						value={selectValues.genre}
+						id='genre'
+						{...register('genre')}
 						onChange={e =>
-							setSelectValues({ ...selectValues, styles: e.target.value })
+							setSelectValues({ ...selectValues, genre: e.target.value })
 						}
 					>
 						{ALL_GENRES.map(genre => (
-							<option key={v4()} value={genre}>
-								{genre}
+							<option key={v4()} value={genre.genre}>
+								{genre.genre}
 							</option>
 						))}
 					</select>
-					<Text type={TEXTS_TYPES.ERROR}>{errors.styles?.message}</Text>
+					<Text type={TEXTS_TYPES.ERROR}>{errors.genre?.message}</Text>
 				</FormFieldAddProduct>
+				{selectValues.genre && (
+					<FormFieldAddProduct>
+						<label htmlFor='styles'>Styles</label>
+						<select
+							value={selectValues.styles}
+							id='styles'
+							{...register('styles')}
+							onChange={e =>
+								setSelectValues({ ...selectValues, styles: e.target.value })
+							}
+						>
+							{currentStyles.styles.map(style => (
+								<option key={v4()} value={style}>
+									{style}
+								</option>
+							))}
+						</select>
+						<Text type={TEXTS_TYPES.ERROR}>{errors.styles?.message}</Text>
+					</FormFieldAddProduct>
+				)}
+
 				<FormFieldAddTrack>
 					<Button
 						type={BUTTONS.BORDERED}

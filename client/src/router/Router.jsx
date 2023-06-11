@@ -7,8 +7,10 @@ import Home from '../pages/home/Home';
 import Login from '../pages/login/Login';
 import ProductInfo from '../pages/product-info/ProductInfo';
 import Profile from '../pages/profile/Profile';
+import RatingForm from '../pages/rating-form/RatingForm';
 import Register from '../pages/register/Register';
 import SellerProducts from '../pages/seller-products/SellerProducts';
+import UserCart from '../pages/user-cart/UserCart';
 import UserProducts from '../pages/user-products/UserProducts';
 import ProtectedRoute from './ProtectedRoute';
 
@@ -61,6 +63,22 @@ const Router = () => {
 					}
 				/>
 				<Route path='/seller-products' element={<SellerProducts />} />
+				<Route
+					path='/user-cart'
+					element={
+						<ProtectedRoute>
+							<UserCart />
+						</ProtectedRoute>
+					}
+				/>
+				<Route
+					path='/rating'
+					element={
+						<ProtectedRoute>
+							<RatingForm />
+						</ProtectedRoute>
+					}
+				/>
 			</Route>
 		</Routes>
 	);

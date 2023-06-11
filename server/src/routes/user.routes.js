@@ -13,4 +13,8 @@ userRoutes.patch('/edit-user/:id', controller.updateUser);
 
 userRoutes.patch('/like-product/:id', controller.likeProduct);
 
+userRoutes.patch('/add-to-cart/:id', controller.addToCart);
+
+userRoutes.patch('/new-rating/:id', controller.userRating);
+
 module.exports = userRoutes;

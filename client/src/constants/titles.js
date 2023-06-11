@@ -10,7 +10,8 @@ export const TITLES = {
 	pagesTitles: {
 		userProducts: 'YOUR RECORDS',
 		favorites: 'YOUR FAVORITES',
-		profile: 'PROFILE'
+		profile: 'PROFILE',
+		cart: 'YOUR CART'
 	},
 	gridTitles: {
 		home: 'Latest Additions',
@@ -46,5 +47,6 @@ export const TITLES_TYPES = {
 	FORM: 'form',
 	PAGE: 'page',
 	SUBTITLE: 'subtitle',
-	SECTION: 'section'
+	SECTION: 'section',
+	FOOTER: 'footer'
 };

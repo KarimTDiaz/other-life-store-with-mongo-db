@@ -12,7 +12,10 @@ import Title from '../../components/title/Title';
 import { auth } from '../../config/firebase.config';
 import { AUTH_ERRORS } from '../../constants/auth.errors';
 import { BUTTONS } from '../../constants/buttons';
-import { HEADERS } from '../../constants/formDefaultValues';
+import {
+	HEADERS,
+	USER_DEFAULT_VALUES
+} from '../../constants/formDefaultValues';
 import { ICONS } from '../../constants/icons';
 import { URLS } from '../../constants/requests';
 import { registerSchema } from '../../constants/schemas.form';

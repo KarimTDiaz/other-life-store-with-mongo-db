@@ -32,4 +32,9 @@ const SectionTitle = styled(SubTitle)`
 	}
 `;
 
-export { FormTitle, PageTitle, SubTitle, SectionTitle };
+const FooterTitle = styled.h3`
+	font-size: ${FONT_SIZE.xxxs};
+	color: ${COLORS.textLight};
+`;
+
+export { FormTitle, PageTitle, SubTitle, SectionTitle, FooterTitle };

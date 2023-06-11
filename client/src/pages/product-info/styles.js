@@ -49,7 +49,15 @@ const ProductInfoField = styled.div`
 	grid-template-columns: 1fr 2fr;
 	margin-bottom: 1rem;
 `;
-const PriceField = styled.div``;
+const PriceField = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	@media screen and (min-width: 640px) {
+		flex-direction: row;
+		gap: 2rem;
+	}
+`;
 
 const TrackListContainer = styled.div`
 	display: flex;
@@ -88,6 +96,12 @@ const LikesAndDateIcons = styled.div`
 	gap: 0.5rem;
 `;
 
+const ButtonsContainer = styled.div`
+	display: flex;
+	gap: 0.5rem;
+	padding-top: 1rem;
+`;
+
 export {
 	ProductInfoContainer,
 	ProductInfoData,
@@ -98,5 +112,6 @@ export {
 	TrackListField,
 	PriceField,
 	LikesAndDate,
-	LikesAndDateIcons
+	LikesAndDateIcons,
+	ButtonsContainer
 };

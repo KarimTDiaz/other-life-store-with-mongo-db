@@ -3,7 +3,7 @@ import { COLORS, FONT_SIZE } from '../../constants/variables';
 
 const FieldText = styled.p`
 	margin: 0;
-	font-size: ${({ price }) => (price ? `${FONT_SIZE.m}` : `${FONT_SIZE.xxs}`)};
+	font-size: ${({ price }) => (price ? `${FONT_SIZE.l}` : `${FONT_SIZE.xxs}`)};
 `;
 const ErrorText = styled.span`
 	font-size: ${FONT_SIZE.xxxxs};
@@ -17,5 +17,9 @@ const PreviewText = styled.p`
 	white-space: nowrap;
 	text-overflow: ellipsis;
 `;
-
-export { FieldText, ErrorText, PreviewText };
+const FooterText = styled.p`
+	margin: 0;
+	font-size: ${FONT_SIZE.xxxxs};
+	color: ${COLORS.textLight};
+`;
+export { FieldText, ErrorText, PreviewText, FooterText };

@@ -68,6 +68,18 @@ export const ICONS = {
 	shops: {
 		src: '/assets/icons/coins.svg',
 		alt: 'Icono de Monedas'
+	},
+	trash: {
+		src: '/assets/icons/trash.svg',
+		alt: 'Icono de Papelera'
+	},
+	edit: {
+		src: '/assets/icons/edit.svg',
+		alt: 'Icono de Lapiz'
+	},
+	creditCard: {
+		src: '/assets/icons/credit-card.svg',
+		alt: 'Icono de Trajeta de credito'
 	}
 };
 

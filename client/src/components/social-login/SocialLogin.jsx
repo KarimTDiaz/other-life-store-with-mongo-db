@@ -6,7 +6,10 @@ import {
 import { useContext } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { auth } from '../../config/firebase.config';
-import { HEADERS } from '../../constants/formDefaultValues';
+import {
+	HEADERS,
+	USER_DEFAULT_VALUES
+} from '../../constants/formDefaultValues';
 import { ICONS } from '../../constants/icons';
 import { URLS } from '../../constants/requests';
 import { STORAGE_FILES } from '../../constants/storage.files';

@@ -37,6 +37,7 @@ a {
 	text-decoration: none;
 	color: inherit;
   }
+ 
 body {
 	margin: 0;
     max-width: 100vw;

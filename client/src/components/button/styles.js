@@ -62,6 +62,26 @@ const StyledButtonAdd = styled(StyledButtonThin)`
 	border: 1px solid ${COLORS.textDark};
 	cursor: pointer;
 `;
+
+const StyledButtonIcon = styled(StyledButtonThin)`
+	width: max-content;
+	padding: 0.5rem;
+	background-color: ${COLORS.textDark};
+	border-radius: ${BORDER_RADIUS.s};
+	cursor: pointer;
+`;
+const StyledButtonCart = styled.div`
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	width: max-content;
+	padding: 0.5rem 1rem;
+	font-size: ${FONT_SIZE.xs};
+	border: 2px solid ${COLORS.textDark};
+	border-radius: ${BORDER_RADIUS.m};
+	cursor: pointer;
+`;
+
 const ButtonText = styled.p`
 	margin: 0;
 	color: ${COLORS.textLight};
@@ -79,6 +99,8 @@ export {
 	StyledButtonThin,
 	StyledButtonUser,
 	StyledButtonAdd,
+	StyledButtonIcon,
+	StyledButtonCart,
 	ButtonText,
 	ButtonTextDark
 };

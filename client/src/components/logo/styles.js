@@ -10,7 +10,7 @@ const LogoContainer = styled.div`
 const StyledLogo = styled.img`
 	width: 52px;
 	@media screen and (min-width: 768px) {
-		width: 80px;
+		width: ${({ footer }) => (footer ? '50px' : '80px')};
 	}
 `;
 

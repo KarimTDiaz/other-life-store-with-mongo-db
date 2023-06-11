@@ -32,6 +32,7 @@ controller.createProduct = async (req, res) => {
     title,
     artist,
     styles,
+    genre,
     mediaCondition,
     trackList,
     format,
@@ -51,6 +52,7 @@ controller.createProduct = async (req, res) => {
     title,
     artist,
     styles,
+    genre,
     mediaCondition,
     description,
     trackList,
@@ -73,7 +75,6 @@ controller.createProduct = async (req, res) => {
 controller.getMyProducts = async (req, res) => {
   const user = await UserModel.findById(req.params.id);
   const products = await ProductModel.find();
-
   const userProducts = products.filter(product =>
     user.products.includes(product._id)
   );
@@ -87,6 +88,43 @@ controller.getMyFavorites = async (req, res) => {
     user.favorites.includes(product._id)
   );
   res.send(userFavorites);
+};
+controller.getMyCart = async (req, res) => {
+  const user = await UserModel.findById(req.params.id);
+  const products = await ProductModel.find();
+  const userCart = products.filter(product => user.cart.includes(product._id));
+  res.send(userCart);
+};
+
+controller.deleteProduct = async (req, res) => {
+  const users = await UserModel.find();
+  users.forEach(async user => {
+    user.favorites = user.favorites.filter(like => like !== req.params.id);
+    user.products = user.products.filter(product => product !== req.params.id);
+    await user.save();
+  });
+
+  await ProductModel.findByIdAndRemove(req.params.id);
+  res.send('Deleted succesfull');
+};
+
+controller.purchaseProduct = async (req, res) => {
+  const users = await UserModel.find();
+  users.forEach(async user => {
+    user.favorites = user.favorites.filter(like => like !== req.params.id);
+    user.products = user.products.filter(product => product !== req.params.id);
+    user.cart = user.cart.filter(product => product !== req.params.id);
+    await user.save();
+  });
+  const userSelling = await UserModel.findById(req.body.sellerId);
+  const userPurchasing = await UserModel.findById(req.body.buyerId);
+  console.log(userSelling);
+  userSelling.sales = userSelling.sales + 1;
+  userPurchasing.purchases.push(req.body.record);
+  await userSelling.save();
+  await userPurchasing.save();
+  await ProductModel.findByIdAndRemove(req.params.id);
+  res.end();
 };
 
 module.exports = controller;

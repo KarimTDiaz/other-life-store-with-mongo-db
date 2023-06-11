@@ -20,7 +20,3 @@ const App = () => {
 };
 
 export default App;
-
-/* dudas:
-porque envuelve el auth provider al router
-*/

@@ -1,5 +1,5 @@
 import { TEXTS_TYPES } from '../../constants/texts';
-import { ErrorText, FieldText, PreviewText } from './styles';
+import { ErrorText, FieldText, FooterText, PreviewText } from './styles';
 
 const Text = ({ type, children, price }) => {
 	switch (type) {
@@ -9,6 +9,8 @@ const Text = ({ type, children, price }) => {
 			return <ErrorText>{children}</ErrorText>;
 		case TEXTS_TYPES.PREVIEW:
 			return <PreviewText>{children}</PreviewText>;
+		case TEXTS_TYPES.FOOTER:
+			return <FooterText>{children}</FooterText>;
 	}
 };
 

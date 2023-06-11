@@ -13,7 +13,7 @@ import {
 	StyledRecordPreviewContainer
 } from './styles';
 
-const RecordPreview = ({ record, isLike, isYours, seller }) => {
+const RecordPreview = ({ record, isLike, isYours, isInCart, seller }) => {
 	const navigate = useNavigate();
 
 	return (
@@ -21,7 +21,12 @@ const RecordPreview = ({ record, isLike, isYours, seller }) => {
 			<RecordPreviewToClick
 				onClick={() =>
 					navigate('/product-info', {
-						state: { currentRecord: record, isYours: isYours, seller: seller }
+						state: {
+							currentRecord: record,
+							isYours: isYours,
+							isInCart: isInCart,
+							seller: seller
+						}
 					})
 				}
 			>

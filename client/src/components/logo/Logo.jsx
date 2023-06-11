@@ -1,7 +1,7 @@
 import { logoUrl } from '../../constants/logoUrl';
 import { LogoContainer, StyledLogo } from './styles';
 
-const Logo = ({ action, theme }) => {
+const Logo = ({ action, theme, footer }) => {
 	return (
 		<>
 			{theme === 'dark' ? (
@@ -10,7 +10,7 @@ const Logo = ({ action, theme }) => {
 				</LogoContainer>
 			) : (
 				<LogoContainer>
-					<StyledLogo {...logoUrl.light} onClick={action} />
+					<StyledLogo {...logoUrl.light} onClick={action} footer={footer} />
 				</LogoContainer>
 			)}
 		</>

@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { v4 } from 'uuid';
 import Button from '../../components/button/Button';
 import ErrorPopUp from '../../components/error-pop-up/ErrorPopUp';
+import Loading from '../../components/loading/Loading';
 import Text from '../../components/text/Text';
 import Title from '../../components/title/Title';
 import UploadPhoto from '../../components/upload-photo/UploadPhoto';

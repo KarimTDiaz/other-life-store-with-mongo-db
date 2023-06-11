@@ -6,6 +6,8 @@ import {
 	ButtonTextDark,
 	StyledButtonAdd,
 	StyledButtonBordered,
+	StyledButtonCart,
+	StyledButtonIcon,
 	StyledButtonSocial,
 	StyledButtonSquared,
 	StyledButtonThin,
@@ -59,6 +61,19 @@ const Button = ({ action, type, src, children, pointer, disabled }) => {
 					{children}
 					<Icon src={ICONS.addRecord} size={ICONS_SIZES.small} />
 				</StyledButtonAdd>
+			);
+		case BUTTONS.ICON:
+			return (
+				<StyledButtonIcon onClick={action}>
+					<Icon src={src} size={ICONS_SIZES.small} />
+				</StyledButtonIcon>
+			);
+		case BUTTONS.CART:
+			return (
+				<StyledButtonCart onClick={action}>
+					{children}
+					<Icon src={src} size={ICONS_SIZES.big} />
+				</StyledButtonCart>
 			);
 		default:
 	}

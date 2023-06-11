@@ -59,8 +59,12 @@ const Header = () => {
 								size={ICONS_SIZES.big}
 							/>
 							<CartContainer>
-								<Icon src={ICONS.cart} size={ICONS_SIZES.big} />
-								<CartCounter>(0)</CartCounter>
+								<Icon
+									src={ICONS.cart}
+									size={ICONS_SIZES.big}
+									action={() => navigate('/user-cart')}
+								/>
+								<CartCounter>({currentUser.cart.length})</CartCounter>
 							</CartContainer>
 							<Button
 								type={BUTTONS.BORDERED}

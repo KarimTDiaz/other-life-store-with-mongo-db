@@ -4,5 +4,7 @@ export const BUTTONS = {
 	SOCIAL: 'social',
 	THIN: 'thin',
 	USER: 'user',
-	ADD: 'add'
+	ADD: 'add',
+	ICON: 'icon',
+	CART: 'cart'
 };

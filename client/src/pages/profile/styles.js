@@ -8,9 +8,18 @@ const StyledProfileContainer = styled.div`
 const StyledProfileCard = styled.div`
 	position: relative;
 	padding: 1rem;
-	background-color: ${COLORS.textLight};
+	background-color: ${COLORS.background.body};
 	border-radius: ${BORDER_RADIUS.formCards};
 	box-shadow: ${BOX_SHADOWS.formCards};
+	@media screen and (min-width: 640px) {
+		display: flex;
+		gap: 3rem;
+		justify-content: space-between;
+		align-items: center;
+		max-width: 700px;
+		margin-left: auto;
+		margin-right: auto;
+	}
 `;
 
 const ProfileField = styled.div`
@@ -29,5 +38,11 @@ const ProfileField = styled.div`
 		background-color: ${COLORS.decoration};
 	}
 `;
+const StyledProfileHeader = styled.div``;
 
-export { StyledProfileContainer, StyledProfileCard, ProfileField };
+export {
+	StyledProfileContainer,
+	StyledProfileCard,
+	ProfileField,
+	StyledProfileHeader
+};
