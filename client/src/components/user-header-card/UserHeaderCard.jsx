@@ -4,6 +4,7 @@ import { TEXTS_TYPES } from '../../constants/texts';
 import Button from '../button/Button';
 import Icon from '../icon/Icon';
 import ProfileImage from '../profile-image/ProfileImage';
+import ReadRating from '../read-rating/ReadRating';
 import Text from '../text/Text';
 import {
 	StyledUserHeaderCard,
@@ -11,14 +12,16 @@ import {
 	UserHeaderCardIcons,
 	UserHeaderCardStatics
 } from './styles';
-
 const UserHeaderCard = ({ user }) => {
 	return (
 		<StyledUserHeaderCard>
 			<UserHeaderCardData>
 				<ProfileImage src={user.profileImage} size='small' bottom />
 				<div>
-					<Button type={BUTTONS.USER}>{user.userName}</Button>
+					<div>
+						<Button type={BUTTONS.USER}>{user.userName}</Button>
+					</div>
+					<ReadRating user={user} />
 				</div>
 			</UserHeaderCardData>
 			<UserHeaderCardStatics>
@@ -30,7 +33,7 @@ const UserHeaderCard = ({ user }) => {
 				</UserHeaderCardIcons>
 				<UserHeaderCardIcons>
 					<Icon src={ICONS.shops} size={ICONS_SIZES.small} />
-					<Text type={TEXTS_TYPES.FIELD}>{user.sales} Sales</Text>
+					<Text type={TEXTS_TYPES.FIELD}>{user.sales.length} Sales</Text>
 				</UserHeaderCardIcons>
 			</UserHeaderCardStatics>
 		</StyledUserHeaderCard>

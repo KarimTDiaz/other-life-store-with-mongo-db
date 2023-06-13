@@ -3,7 +3,7 @@ export const USER_DEFAULT_VALUES = {
 	surName: '',
 	gender: '',
 	date: '',
-	sales: 0,
+	sales: [],
 	direction: {
 		country: '',
 		city: '',

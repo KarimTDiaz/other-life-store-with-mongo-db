@@ -101,3 +101,8 @@ export const createProductSchema = yup.object({
 		.required('This field is required')
 		.typeError('Only numbers allowed')
 });
+
+export const RatingSchema = yup.object({
+	rating: yup.number().required('You must give a rating'),
+	comment: yup.string().required('You must write a message')
+});

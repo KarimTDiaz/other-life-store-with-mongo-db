@@ -97,34 +97,47 @@ controller.getMyCart = async (req, res) => {
 };
 
 controller.deleteProduct = async (req, res) => {
-  const users = await UserModel.find();
-  users.forEach(async user => {
-    user.favorites = user.favorites.filter(like => like !== req.params.id);
-    user.products = user.products.filter(product => product !== req.params.id);
-    await user.save();
-  });
+  try {
+    const users = await UserModel.find();
+    users.forEach(async user => {
+      user.favorites = user.favorites.filter(like => like !== req.params.id);
+      user.products = user.products.filter(
+        product => product !== req.params.id
+      );
+      await user.save();
+    });
 
-  await ProductModel.findByIdAndRemove(req.params.id);
-  res.send('Deleted succesfull');
+    await ProductModel.findByIdAndRemove(req.params.id);
+    res.send('Deleted successfully');
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 };
 
 controller.purchaseProduct = async (req, res) => {
-  const users = await UserModel.find();
-  users.forEach(async user => {
-    user.favorites = user.favorites.filter(like => like !== req.params.id);
-    user.products = user.products.filter(product => product !== req.params.id);
-    user.cart = user.cart.filter(product => product !== req.params.id);
-    await user.save();
-  });
-  const userSelling = await UserModel.findById(req.body.sellerId);
-  const userPurchasing = await UserModel.findById(req.body.buyerId);
-  console.log(userSelling);
-  userSelling.sales = userSelling.sales + 1;
-  userPurchasing.purchases.push(req.body.record);
-  await userSelling.save();
-  await userPurchasing.save();
-  await ProductModel.findByIdAndRemove(req.params.id);
-  res.end();
+  try {
+    const users = await UserModel.find();
+    users.forEach(async user => {
+      user.favorites = user.favorites.filter(like => like !== req.params.id);
+      user.products = user.products.filter(
+        product => product !== req.params.id
+      );
+      user.cart = user.cart.filter(product => product !== req.params.id);
+      await user.save();
+    });
+    const userSelling = await UserModel.findById(req.body.sellerId);
+    const userPurchasing = await UserModel.findById(req.body.buyerId);
+    userSelling.sales.push(req.body.record);
+    userPurchasing.purchases.push(req.body.record);
+    await userSelling.save();
+    await userPurchasing.save();
+    await ProductModel.findByIdAndRemove(req.params.id);
+    res.end();
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 };
 
 module.exports = controller;

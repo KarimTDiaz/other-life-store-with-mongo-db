@@ -1,7 +1,5 @@
 poner cruz en pages para volver atras
 
-hacer modales de asegurar borrar producto
-
 estilos selects de formularios
 
 disabled del boton
@@ -14,6 +12,8 @@ areglar el delete
 
 hay que asegurarse de que sino se mete el user en mongo no se meta en ningun lado
 
+colores en variabkles de estrellas
+
 TODOS LOS TITULOS EN CONSTANTES , FALTAN ALGUNO DE LOS DE PAGES y en la lista de productos
 hacer responsive , sobre todo menu
 El size del profile image sacarlo a una constante
@@ -25,6 +25,7 @@ marquee revisar
 animacion notificaciones
 mejorar profile
 mejorar icono y boton de comprar
+hacer bien el popup de cuando no estas logeado
 
 preguntass:
 delete,
@@ -35,7 +36,6 @@ default en switch
 footer,
 addtocart navigate,
 controller purchase
+los navigates son peligrosos en los await setfetch , pero redirect no funciona
 
-para hoy:
-
-cart con rating
+para hoy : terminar ventana de rating, mirar errores de css y arreglarlos , , terminar la deuda técnica, hacer edit de productos,terminar el cart bien hecho

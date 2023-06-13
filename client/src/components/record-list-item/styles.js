@@ -16,9 +16,10 @@ const ListFlex = styled.div`
 	flex-direction: column;
 	@media screen and (min-width: 640px) {
 		display: grid;
-		grid-template-columns: repeat(2, 150px);
+		grid-template-columns: repeat(2, 250px);
 	}
 `;
+
 const ListImage = styled.img`
 	max-width: 100px;
 	max-height: 100px;

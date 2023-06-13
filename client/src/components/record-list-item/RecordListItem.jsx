@@ -17,7 +17,6 @@ import {
 	ListFlex,
 	ListImage,
 	ListItem,
-	ListSellerContainer,
 	PurchaseIcon
 } from './styles';
 
@@ -37,20 +36,19 @@ const RecordListItem = ({
 			<ListImage
 				src={record.productImage}
 				onClick={ev => {
-					ev.target.alt !== 'Icono de Trajeta de credito' &&
-						navigate('/product-info', {
-							state: {
-								currentRecord: record,
-								isYours: isYours,
-								isInCart: isInCart,
-								seller: seller
-							}
-						});
+					navigate('/product-info', {
+						state: {
+							currentRecord: record,
+							isYours: isYours,
+							isInCart: isInCart,
+							seller: seller
+						}
+					});
 				}}
 			/>
 			<ListFlex>
 				<div>
-					<Text type={TEXTS_TYPES.PREVIEW}>{record.title}</Text>
+					<Text type={TEXTS_TYPES.FIELD}>{record.title}</Text>
 					<Text type={TEXTS_TYPES.FIELD}>{record.price} €</Text>
 				</div>
 				<ListAddedContainer>
@@ -60,11 +58,6 @@ const RecordListItem = ({
 			</ListFlex>
 			{type === LIST_ITEMS_OPTION.CART && (
 				<>
-					<ListSellerContainer>
-						<Title type={TITLES_TYPES.SUBTITLE}>Seller: </Title>
-						<Button type={BUTTONS.USER}>{seller}</Button>
-					</ListSellerContainer>
-
 					<PurchaseIcon
 						{...ICONS.creditCard}
 						onClick={() =>

@@ -10,7 +10,9 @@ export const COLORS = {
 	textDark: '#000000',
 	textLight: '#FFFFFF',
 	decoration: '#A6AFB5',
-	error: 'red'
+	error: 'red',
+	starsOn: '#f39c12',
+	starsOff: 'grey'
 };
 
 export const FONT_FAMILY = {
