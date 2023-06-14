@@ -12,7 +12,7 @@ const fetchData = async (fetchInfo, setFetchStatus, signal, navigate) => {
 	try {
 		const response = await fetch(url, options, signal);
 		const finalData = await response.json();
-		if (redirectTo) navigate(redirectTo);
+		if (redirectTo) navigate(redirectTo.url, redirectTo.state);
 		setFetchStatus({ finalData, load: false, wrong: undefined });
 	} catch (err) {
 		setFetchStatus({ finalData: undefined, load: false, wrong: err });

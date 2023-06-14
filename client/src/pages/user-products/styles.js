@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const UserProductsContainer = styled.div`
 	max-width: 800px;
+	min-height: 100vh;
 	margin-left: auto;
 	margin-right: auto;
 	padding: 1rem 1.5rem;
@@ -23,4 +24,4 @@ const ProductButtonsContainer = styled.div`
 	gap: 0.5rem;
 `;
 
-export { UserProductsContainer, UserProductsHeader, ProductButtonsContainer };
+export { ProductButtonsContainer, UserProductsContainer, UserProductsHeader };

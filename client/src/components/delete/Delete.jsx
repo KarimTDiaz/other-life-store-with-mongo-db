@@ -38,9 +38,9 @@ const handleDelete = async (id, setFetchInfo, navigate) => {
 		url: URLS.DELETE_PRODUCT + id,
 		options: {
 			method: 'DELETE'
-		}
+		},
+		redirectTo: '/your-products'
 	});
-	navigate('/your-products');
 };
 
 export default Delete;

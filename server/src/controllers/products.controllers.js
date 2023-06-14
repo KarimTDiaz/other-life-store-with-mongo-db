@@ -89,6 +89,7 @@ controller.getMyFavorites = async (req, res) => {
   );
   res.send(userFavorites);
 };
+
 controller.getMyCart = async (req, res) => {
   const user = await UserModel.findById(req.params.id);
   const products = await ProductModel.find();
@@ -108,7 +109,7 @@ controller.deleteProduct = async (req, res) => {
     });
 
     await ProductModel.findByIdAndRemove(req.params.id);
-    res.send('Deleted successfully');
+    res.send({ message: 'Deleted succesfully' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal server error' });
@@ -133,7 +134,7 @@ controller.purchaseProduct = async (req, res) => {
     await userSelling.save();
     await userPurchasing.save();
     await ProductModel.findByIdAndRemove(req.params.id);
-    res.end();
+    res.send({ message: 'purchased product succesfull' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal server error' });

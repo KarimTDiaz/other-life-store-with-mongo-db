@@ -119,7 +119,7 @@ controller.addToCart = async (req, res) => {
   }
 
   await user.save();
-  res.end();
+  res.send({ message: 'Added to cart succesfully' });
 };
 
 controller.userRating = async (req, res) => {

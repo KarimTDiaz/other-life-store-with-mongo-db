@@ -39,6 +39,7 @@ a {
   }
  
 body {
+
 	margin: 0;
     max-width: 100vw;
     margin-left: auto;
@@ -48,6 +49,7 @@ body {
 	/* background-color:#f2f2f2; */
 	/* background-color:#E0FF1A ; */
 }
+
 
 ::placeholder{
 	color:transparent

@@ -5,7 +5,7 @@ const StyledFooter = styled.footer`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	margin-top: auto;
+	width: 100%;
 	padding: 1rem;
 	background-color: ${COLORS.textDark};
 	@media screen and (min-width: 640px) {
@@ -26,4 +26,4 @@ const FooterList = styled.ul`
 	}
 `;
 const FooterListItem = styled.li``;
-export { StyledFooter, FooterList, FooterListItem, FooterContainer };
+export { FooterContainer, FooterList, FooterListItem, StyledFooter };

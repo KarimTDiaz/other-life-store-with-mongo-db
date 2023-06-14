@@ -64,10 +64,13 @@ const handlePurchase = async (
 				Accept: '*/*',
 				'Content-Type': 'application/json'
 			}
+		},
+		redirectTo: {
+			url: '/rating',
+			state: {
+				state: sellerId
+			}
 		}
-	});
-	navigate('/rating', {
-		state: sellerId
 	});
 };
 

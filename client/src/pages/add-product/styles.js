@@ -9,6 +9,7 @@ import {
 
 const StyledAddProductContainer = styled.div`
 	max-width: 450px;
+	height: 100%;
 	padding: 1rem;
 	margin-left: auto;
 	margin-right: auto;
@@ -72,12 +73,12 @@ const AddProductText = styled.p`
 `;
 
 export {
-	StyledAddProductContainer,
+	AddProductInput,
+	AddProductInputTrack,
+	AddProductLabel,
+	AddProductText,
 	FormAddProduct,
 	FormFieldAddProduct,
 	FormFieldAddTrack,
-	AddProductLabel,
-	AddProductInput,
-	AddProductInputTrack,
-	AddProductText
+	StyledAddProductContainer
 };

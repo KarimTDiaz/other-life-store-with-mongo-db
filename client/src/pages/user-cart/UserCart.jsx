@@ -1,4 +1,5 @@
 import { useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { v4 } from 'uuid';
 import Button from '../../components/button/Button';
 import Loading from '../../components/loading/Loading';
@@ -35,6 +36,7 @@ const UserCart = () => {
 		setFetchInfo({ url: URLS.MY_CART + currentUser.uid });
 	}, [currentUser]);
 
+	const navigate = useNavigate();
 	if (load || loadCart || firebaseLoading || !userCart || !allUsers)
 		return <Loading />;
 	if (wrong || wrongCard) return <h1>Wrong..</h1>;
@@ -45,11 +47,12 @@ const UserCart = () => {
 		records.map(record => (starterPrice = starterPrice + record.price));
 		if (records.length > 0) {
 			packages.push({
-				user: user.userName,
+				user: user,
 				packages: records,
 				total: starterPrice
 			});
 		}
+
 		return packages;
 	}, []);
 
@@ -67,10 +70,19 @@ const UserCart = () => {
 						<CartSellerData>
 							<Text type={TEXTS_TYPES.FIELD}>
 								You have {item.packages.length} articles from
-								<Button type={BUTTONS.USER}>{item.user}</Button>
+								<Button
+									type={BUTTONS.USER}
+									action={() =>
+										navigate('/seller-products', {
+											state: { seller: item.user._id }
+										})
+									}
+								>
+									{item.user.userName}
+								</Button>
 							</Text>
 						</CartSellerData>
-						<p>TOTAL IS: {item.price}</p>
+						<p>TOTAL IS: {item.total} €</p>
 
 						<button onClick={() => recieve(item.packages)}>send</button>
 						{/* {item.packages.map(item => newIds.push(item._id))}

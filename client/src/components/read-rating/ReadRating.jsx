@@ -1,4 +1,5 @@
 import { FaStar } from 'react-icons/fa';
+import { v4 } from 'uuid';
 import { TEXTS_TYPES } from '../../constants/texts';
 import { COLORS } from '../../constants/variables';
 import { ratingValue } from '../../utils/ratingValue';
@@ -12,6 +13,7 @@ const ReadRating = ({ user }) => {
 			{[...Array(5)].map((star, index) => {
 				return (
 					<FaStar
+						key={v4()}
 						size={20}
 						color={
 							value >= index + 0.5 ? `${COLORS.starsOn}` : `${COLORS.starsOff}`

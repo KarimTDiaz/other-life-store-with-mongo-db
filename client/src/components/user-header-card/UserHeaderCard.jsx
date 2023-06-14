@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { BUTTONS } from '../../constants/buttons';
 import { ICONS, ICONS_SIZES } from '../../constants/icons';
 import { TEXTS_TYPES } from '../../constants/texts';
@@ -13,13 +14,23 @@ import {
 	UserHeaderCardStatics
 } from './styles';
 const UserHeaderCard = ({ user }) => {
+	const navigate = useNavigate();
 	return (
 		<StyledUserHeaderCard>
 			<UserHeaderCardData>
 				<ProfileImage src={user.profileImage} size='small' bottom />
 				<div>
 					<div>
-						<Button type={BUTTONS.USER}>{user.userName}</Button>
+						<Button
+							type={BUTTONS.USER}
+							action={() =>
+								navigate('/seller-products', {
+									state: { seller: user._id }
+								})
+							}
+						>
+							{user.userName}
+						</Button>
 					</div>
 					<ReadRating user={user} />
 				</div>

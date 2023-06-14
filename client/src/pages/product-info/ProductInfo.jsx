@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { v4 } from 'uuid';
 import Button from '../../components/button/Button';
 import Delete from '../../components/delete/Delete';
@@ -41,7 +41,6 @@ const ProductInfo = () => {
 	const date = state.currentRecord.date.split(',');
 
 	if (firebaseLoading) return <Loading />;
-	if (state.isInCart !== inCart) return <Navigate to={'/'} />;
 
 	return (
 		<ProductInfoContainer>
@@ -97,7 +96,7 @@ const ProductInfo = () => {
 				</TrackListContainer>
 				<ProductInfoField>
 					<Title type={TITLES_TYPES.SUBTITLE}>
-						Posted by{' '}
+						Posted by
 						<Button
 							type={BUTTONS.USER}
 							action={() =>
@@ -189,7 +188,7 @@ const handleFetchCart = async (
 				...HEADERS
 			}
 		},
-		redirectTo: '/your-products'
+		redirectTo: { url: '/user-cart' }
 	});
 	setInCart(!inCart);
 };

@@ -271,7 +271,7 @@ const onSubmit = async (data, setFetchInfo, currentUser, file, setError) => {
 				...HEADERS
 			}
 		},
-		redirectTo: '/your-products'
+		redirectTo: { url: '/your-products' }
 	});
 };
 
