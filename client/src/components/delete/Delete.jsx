@@ -39,7 +39,7 @@ const handleDelete = async (id, setFetchInfo, navigate) => {
 		options: {
 			method: 'DELETE'
 		},
-		redirectTo: '/your-products'
+		redirectTo: { url: '/your-products' }
 	});
 };
 

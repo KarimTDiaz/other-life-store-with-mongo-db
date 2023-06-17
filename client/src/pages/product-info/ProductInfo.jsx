@@ -128,9 +128,7 @@ const ProductInfo = () => {
 								handleFetchCart(
 									setFetchInfo,
 									currentUser.uid,
-									state.currentRecord._id,
-									inCart,
-									setInCart
+									state.currentRecord._id
 								)
 							}
 						>
@@ -190,7 +188,7 @@ const handleFetchCart = async (
 		},
 		redirectTo: { url: '/user-cart' }
 	});
-	setInCart(!inCart);
+	/* setInCart(!inCart); */
 };
 
 export default ProductInfo;

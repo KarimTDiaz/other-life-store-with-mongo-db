@@ -13,6 +13,7 @@ import {
 	UserHeaderCardIcons,
 	UserHeaderCardStatics
 } from './styles';
+
 const UserHeaderCard = ({ user }) => {
 	const navigate = useNavigate();
 	return (
@@ -32,7 +33,7 @@ const UserHeaderCard = ({ user }) => {
 							{user.userName}
 						</Button>
 					</div>
-					<ReadRating user={user} />
+					<ReadRating user={user} type='calculate' size={20} />
 				</div>
 			</UserHeaderCardData>
 			<UserHeaderCardStatics>

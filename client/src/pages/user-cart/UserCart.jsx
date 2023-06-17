@@ -93,5 +93,9 @@ const UserCart = () => {
 		</>
 	);
 };
-
+const recieve = ids => {
+	const purchased = [];
+	ids.map(id => purchased.push(id._id));
+	console.log(purchased);
+};
 export default UserCart;

@@ -120,17 +120,26 @@ controller.purchaseProduct = async (req, res) => {
   try {
     const users = await UserModel.find();
     users.forEach(async user => {
-      user.favorites = user.favorites.filter(like => like !== req.params.id);
-      user.products = user.products.filter(
-        product => product !== req.params.id
+      const currentUser = await UserModel.findById(user._id);
+      currentUser.cart = currentUser.cart.filter(
+        item => item !== req.body.recordId
       );
-      user.cart = user.cart.filter(product => product !== req.params.id);
-      await user.save();
+      await currentUser.save();
+      currentUser.favorites = currentUser.favorites.filter(
+        item => item !== req.body.recordId
+      );
+      console.log(currentUser.cart);
+      await currentUser.save();
     });
+
     const userSelling = await UserModel.findById(req.body.sellerId);
     const userPurchasing = await UserModel.findById(req.body.buyerId);
     userSelling.sales.push(req.body.record);
     userPurchasing.purchases.push(req.body.record);
+    userSelling.products = userSelling.products.filter(
+      product => product._id !== req.body.recordId
+    );
+
     await userSelling.save();
     await userPurchasing.save();
     await ProductModel.findByIdAndRemove(req.params.id);

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { COLORS, FONT_FAMILY, FONT_SIZE } from '../../constants/variables';
 
 const HomeContainer = styled.div`
+	min-height: 100vh;
 	padding: 1rem;
 `;
 
@@ -36,4 +37,4 @@ const MainSubTitle = styled.h2`
 	}
 `;
 
-export { HomeContainer, MainTitle, MainSubTitle };
+export { HomeContainer, MainSubTitle, MainTitle };

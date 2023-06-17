@@ -112,10 +112,10 @@ controller.likeProduct = async (req, res) => {
 controller.addToCart = async (req, res) => {
   const user = await UserModel.findById(req.params.id);
   const index = user.cart.indexOf(req.body._id);
-  if (index !== -1) {
-    user.cart.splice(index, 1);
-  } else {
+  if (index === -1) {
     user.cart.push(req.body._id);
+  } else {
+    user.cart.splice(index, 1);
   }
 
   await user.save();
@@ -126,7 +126,7 @@ controller.userRating = async (req, res) => {
   const userRated = await UserModel.findById(req.params.id);
   userRated.ratings.push(req.body);
   await userRated.save();
-  res.end();
+  res.send({ message: 'Rated succesfullys' });
 };
 
 module.exports = controller;

@@ -8,6 +8,7 @@ import {
 
 const RatingFormContainer = styled.div`
 	max-width: 550px;
+	min-height: 100vh;
 	padding: 1rem;
 	margin-left: auto;
 	margin-right: auto;

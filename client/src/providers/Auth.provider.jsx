@@ -39,7 +39,8 @@ export const AuthProvider = ({ children }) => {
 						currentUser,
 						setCurrentUser,
 						attempts,
-						setAttempts
+						setAttempts,
+						setLoadingFirebase
 					);
 					break;
 				default:
@@ -84,6 +85,7 @@ const getUserInfoFromMongo = async (
 			throw new Error('Error al obtener la información del usuario');
 		}
 	} catch (error) {
+		console.log(error);
 		if (attempts < 5) {
 			// Intenta nuevamente después de un tiempo
 			setTimeout(

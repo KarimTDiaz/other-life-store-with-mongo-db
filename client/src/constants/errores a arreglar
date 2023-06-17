@@ -16,7 +16,7 @@ colores en variabkles de estrellas
 
 navigate en rating
 
-footer 
+footer
 
 TODOS LOS TITULOS EN CONSTANTES , FALTAN ALGUNO DE LOS DE PAGES y en la lista de productos
 hacer responsive , sobre todo menu
@@ -31,7 +31,8 @@ mejorar profile
 mejorar icono y boton de comprar
 hacer bien el popup de cuando no estas logeado
 nan en rating ?
-
+el nombre de user en rating esta mal , unas veces calcula y otras no
+nobre de user en ratingvalue , no siempre sera un user, unas sera un user y otras sera un valor
 
 preguntass:
 delete,

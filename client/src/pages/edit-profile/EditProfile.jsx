@@ -275,7 +275,7 @@ const onSubmit = async (
 					'Content-Type': 'application/json'
 				}
 			},
-			redirectTo: '/profile'
+			redirectTo: { url: '/profile' }
 		});
 	} catch (error) {
 		console.log(error);

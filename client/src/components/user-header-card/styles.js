@@ -12,7 +12,10 @@ const StyledUserHeaderCard = styled.div`
 	border-bottom-left-radius: ${BORDER_RADIUS.m};
 	border-bottom-right-radius: ${BORDER_RADIUS.m};
 	box-shadow: ${BOX_SHADOWS.userCards};
+
 	@media screen and (min-width: 640px) {
+		flex-direction: row;
+		gap: 10rem;
 		top: -2rem;
 		max-width: 600px;
 		margin-left: auto;
@@ -28,6 +31,10 @@ const UserHeaderCardData = styled.div`
 
 const UserHeaderCardStatics = styled(UserHeaderCardData)`
 	justify-content: center;
+	@media screen and (min-width: 640px) {
+		flex-direction: column;
+		align-items: start;
+	}
 `;
 
 const UserHeaderCardIcons = styled.div`
@@ -39,6 +46,6 @@ const UserHeaderCardIcons = styled.div`
 export {
 	StyledUserHeaderCard,
 	UserHeaderCardData,
-	UserHeaderCardStatics,
-	UserHeaderCardIcons
+	UserHeaderCardIcons,
+	UserHeaderCardStatics
 };

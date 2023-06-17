@@ -2,9 +2,13 @@ import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/button/Button';
 import Loading from '../../components/loading/Loading';
+import NothingToShow from '../../components/nothing-to-show/NothingToShow';
 import RecordsList from '../../components/records-list/RecordsList';
 import Title from '../../components/title/Title';
 import UserHeaderCard from '../../components/user-header-card/UserHeaderCard';
+
+import RatingList from '../../components/ratings-list/RatingList';
+import UserSubMenu from '../../components/user-sub-menu/UserSubMenu';
 import { BUTTONS } from '../../constants/buttons';
 import { LIST_ITEMS_OPTION } from '../../constants/listItemsOptions';
 import { URLS } from '../../constants/requests';
@@ -14,17 +18,18 @@ import { useFetch } from '../../hooks/useFetch';
 import { UserProductsContainer } from './styles';
 
 const UserProducts = () => {
+	const [error, setError] = useState('');
+	const [linkSelectedUser, setLinkSelectedUser] = useState('records');
+	const navigate = useNavigate();
 	const { currentUser, firebaseLoading } = useContext(AuthContext);
 	const { finalData: myProducts, load, wrong, setFetchInfo } = useFetch();
-	const [error, setError] = useState('');
-	const navigate = useNavigate();
 
 	useEffect(() => {
 		if (!currentUser) return;
 		setFetchInfo({ url: URLS.MY_PRODUCTS + currentUser.uid });
 	}, [currentUser]);
 
-	if (!currentUser || firebaseLoading) return <Loading />;
+	if (!currentUser || firebaseLoading || !myProducts) return <Loading />;
 	if (load) return <Loading />;
 	if (wrong) return <h1>Loading...</h1>;
 
@@ -47,10 +52,17 @@ const UserProducts = () => {
 					{error}
 				</ErrorPopUp>
 			)}
-			<RecordsList
-				records={myProducts}
-				type={LIST_ITEMS_OPTION.USER_PRODUCTS}
-			/>
+			<UserSubMenu state={linkSelectedUser} setState={setLinkSelectedUser} />
+			{linkSelectedUser === 'records' &&
+				(myProducts.length === 0 ? (
+					<NothingToShow />
+				) : (
+					<RecordsList
+						records={myProducts}
+						type={LIST_ITEMS_OPTION.USER_PRODUCTS}
+					/>
+				))}
+			{linkSelectedUser === 'ratings' && <RatingList user={currentUser} />}
 		</UserProductsContainer>
 	);
 };

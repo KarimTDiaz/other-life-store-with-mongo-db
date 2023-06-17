@@ -3,6 +3,7 @@ import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaStar } from 'react-icons/fa';
 import { useLocation } from 'react-router-dom';
+import { v4 } from 'uuid';
 import Button from '../../components/button/Button';
 import Loading from '../../components/loading/Loading';
 import Text from '../../components/text/Text';
@@ -53,7 +54,7 @@ const RatingForm = () => {
 						const ratingValue = index + 1;
 						return (
 							<>
-								<label>
+								<label key={v4()}>
 									<FormRatingInputRadio
 										type='radio'
 										name='rating'
@@ -101,7 +102,7 @@ const onSubmit = async (data, setFetchInfo, buyer, seller) => {
 				'Content-Type': 'application/json'
 			}
 		},
-		redirectTo: '/your-products'
+		redirectTo: { url: '/' }
 	});
 };
 

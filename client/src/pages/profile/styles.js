@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { BORDER_RADIUS, BOX_SHADOWS, COLORS } from '../../constants/variables';
 
 const StyledProfileContainer = styled.div`
+	min-height: 100vh;
 	padding: 1rem;
 `;
 
@@ -41,8 +42,8 @@ const ProfileField = styled.div`
 const StyledProfileHeader = styled.div``;
 
 export {
-	StyledProfileContainer,
-	StyledProfileCard,
 	ProfileField,
+	StyledProfileCard,
+	StyledProfileContainer,
 	StyledProfileHeader
 };

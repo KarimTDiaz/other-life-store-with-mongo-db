@@ -58,6 +58,7 @@ const handlePurchase = async (
 			body: JSON.stringify({
 				sellerId: sellerId,
 				buyerId: userId,
+				recordId: recordId,
 				record: record
 			}),
 			headers: {
