@@ -10,15 +10,21 @@
 
 Other Life Store es una tienda online de segunda mano, donde los usuarios pueden comprar y vender discos de música. Podrás registrarte y vender tus antiguos discos, así como comprar otros que desees, puedes guardar en favoritos subir y editar productos, e incluso hacer ratings. El proyecto está adaptado para móvil , tablet y desktop.
 
+![Project image](https://raw.githubusercontent.com/KarimTDiaz/other-life-store-with-mongo-db/main/client/public/assets/images/readme/readme-1.png)
+
 ## ¿Que he aprendido en este proyecto?
 
 Es el proyecto más grande que he realizado hasta la fecha, gestionando conjuntamente la parte de front-end y la de back-end.
 
 Por un lado, he utilizado la autenticación de Firebase para el login y el registro así como el gestor de archivos FireStore. Para la base de datos he utilizado MongoDB junto con NodeJS, creando controladores para realizar operaciones de CRUD tanto en la información de usuarios como la de productos, también se ha abierto un puerto socket para escuchar cambios en la base de datos y así poder juntar la información del usuario de mongo con la de firebase, lo que ha resultado en un mejor manejo de la información al navegar por diferentes páginas.
 
+![Project image](https://raw.githubusercontent.com/KarimTDiaz/other-life-store-with-mongo-db/main/client/public/assets/images/readme/readme-2.png)
+
 El manejo y control de formularios se ha realizado con React-hook-form y yup, validando todos los campos antes de ser enviados.
 
 También se ha creado un hook para las operaciones de petición de datos (fetch) donde se controla cada petición, este hook también fusiona la información del usuario traída desde MongoDB con la de Firebase.
+
+![Project image](https://raw.githubusercontent.com/KarimTDiaz/other-life-store-with-mongo-db/main/client/public/assets/images/readme/readme-3.png)
 
 Hay inputs dinámicos, rating para cada venta, carrito de compras y mucho mas!!!
 
