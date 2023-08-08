@@ -1,6 +1,6 @@
 # Other Life Store
 
-![Project image](https://raw.githubusercontent.com/KarimTDiaz/other-life-store-with-mongo-db/main/client/public/assets/images/readme-0.png)
+![Project image](https://raw.githubusercontent.com/KarimTDiaz/other-life-store-with-mongo-db/main/client/public/assets/images/readme/readme-0.png)
 
 <!-- ## Live Demo
 
