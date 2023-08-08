@@ -4,23 +4,23 @@
 
 <!-- ## Live Demo
 
-- [Live Demo](https://portable-stereo.onrender.com/)
+- [Live Demo](https://portable-stereo.onrender.com/) -->
 
-## Description
+## Descripción
 
-Portable Stereo App is an online music streaming application in which you can create and edit mixtapes (playlists) save favorite songs, create and edit the user as well as play the saved songs.
+Other Life Store es una tienda online de segunda mano, donde los usuarios pueden comprar y vender discos de música. Podrás registrarte y vender tus antiguos discos, así como comprar otros que desees, puedes guardar en favoritos subir y editar productos, e incluso hacer ratings. El proyecto está adaptado para móvil , tablet y desktop.
 
-## What have I learned in this project?
+## ¿Que he aprendido en este proyecto?
 
-This project is the most ambitious and hardest project I have ever faced. In this project I learned to manage users with Firebase while managing the database in MongoDB and the files stored in FireStorage, you have to take into account when testing the application that Google's free services are limited and can collapse the app if too many requests are made.
+Es el proyecto más grande que he realizado hasta la fecha, gestionando conjuntamente la parte de front-end y la de back-end.
 
-I have learned to manage the back-end to request and return the necessary data and print them in an appropriate way on the front-end. I learned how to manage the user data continuously, thanks to Socket.IO which is able to maintain an open channel with the server to receive continuous response to changes, in the Mongo database.
+Por un lado, he utilizado la autenticación de Firebase para el login y el registro así como el gestor de archivos FireStore. Para la base de datos he utilizado MongoDB junto con NodeJS, creando controladores para realizar operaciones de CRUD tanto en la información de usuarios como la de productos, también se ha abierto un puerto socket para escuchar cambios en la base de datos y así poder juntar la información del usuario de mongo con la de firebase, lo que ha resultado en un mejor manejo de la información al navegar por diferentes páginas.
 
-I have learned to restrict routes of the app depending on whether there is a registered user using a provider and a context to be able to use the user data anywhere in the application. And for the development of the audio player I have used an external custom hook.
+El manejo y control de formularios se ha realizado con React-hook-form y yup, validando todos los campos antes de ser enviados.
 
-I have also learned to manage a custom hook which i used to requests to the database in addition to managing its asynchronous state so that if it fails or is loading, the application does not fail.
+También se ha creado un hook para las operaciones de petición de datos (fetch) donde se controla cada petición, este hook también fusiona la información del usuario traída desde MongoDB con la de Firebase.
 
-To all this it should be said that the code can be cleaned and structured in a better way, but after a month of work for the development of the application, I will start a new one and try to write more organized from the beginning. Also I would like to add the function to save the progress of the song and its variables such as volume and time of playback, but due to the limitations of firestore it is not possible.
+Hay inputs dinámicos, rating para cada venta, carrito de compras y mucho mas!!!
 
 ## Technologies
 
