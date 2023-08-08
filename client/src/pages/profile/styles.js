@@ -8,24 +8,32 @@ const StyledProfileContainer = styled.div`
 
 const StyledProfileCard = styled.div`
 	position: relative;
+	max-width: 600px;
+	margin-left: auto;
+	margin-right: auto;
 	padding: 1rem;
 	background-color: ${COLORS.background.body};
 	border-radius: ${BORDER_RADIUS.formCards};
 	box-shadow: ${BOX_SHADOWS.formCards};
+`;
+const ProfileDataContainer = styled.div`
 	@media screen and (min-width: 640px) {
 		display: flex;
-		gap: 3rem;
 		justify-content: space-between;
-		align-items: center;
+		align-items: baseline;
 		max-width: 700px;
 		margin-left: auto;
 		margin-right: auto;
 	}
 `;
-
+const ProfileDataItem = styled.div`
+	@media screen and (min-width: 640px) {
+		width: 250px;
+	}
+`;
 const ProfileField = styled.div`
 	display: flex;
-	align-items: center;
+	align-items: baseline;
 	justify-content: space-between;
 	gap: 1rem;
 	position: relative;
@@ -42,6 +50,8 @@ const ProfileField = styled.div`
 const StyledProfileHeader = styled.div``;
 
 export {
+	ProfileDataContainer,
+	ProfileDataItem,
 	ProfileField,
 	StyledProfileCard,
 	StyledProfileContainer,

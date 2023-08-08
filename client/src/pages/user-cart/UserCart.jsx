@@ -83,10 +83,6 @@ const UserCart = () => {
 							</Text>
 						</CartSellerData>
 						<p>TOTAL IS: {item.total} €</p>
-
-						<button onClick={() => recieve(item.packages)}>send</button>
-						{/* {item.packages.map(item => newIds.push(item._id))}
-						{console.log(newIds)} */}
 					</UserCartSeller>
 				))}
 			</UserCartContainer>

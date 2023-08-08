@@ -48,7 +48,7 @@ const Register = () => {
 	const {
 		register,
 		handleSubmit,
-		formState: { errors }
+		formState: { errors, isValid }
 	} = useForm({ mode: 'onBlur', resolver: yupResolver(registerSchema) });
 
 	if (currentUser) return <Navigate to='/' />;
@@ -103,7 +103,9 @@ const Register = () => {
 						<RegisterLabel htmlFor='password'>Password</RegisterLabel>
 						<Text type={TEXTS_TYPES.ERROR}>{errors.password?.message}</Text>
 					</FormFieldRegister>
-					<Button type={BUTTONS.SQUARED}>CREATE ACCOUNT</Button>
+					<Button type={BUTTONS.SQUARED} disabled={!isValid}>
+						CREATE ACCOUNT
+					</Button>
 					{error && <ErrorPopUp>{error}</ErrorPopUp>}
 				</FormRegister>
 				<RegisterText>OR</RegisterText>

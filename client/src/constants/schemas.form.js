@@ -31,17 +31,20 @@ export const loginSchema = yup.object({
 export const editUserSchema = yup.object().shape({
 	userName: yup
 		.string()
+		.trim()
 		.matches(
 			REGEX_USERNAME,
 			'Only letters or numbers allowed, no spaces, max 16'
 		),
 	name: yup
 		.string()
+		.trim()
 		.required('Your name is required')
 		.min(3, 'Minimum of 3 characteres')
 		.max(12, 'Maximum of 12 characteres'),
 	surName: yup
 		.string()
+		.trim()
 		.required('Surname is required')
 		.min(3, 'Minimum of 3 characteres')
 		.max(20, 'Maximum of 20 characteres'),
@@ -52,15 +55,18 @@ export const editUserSchema = yup.object().shape({
 		.shape({
 			address: yup
 				.string()
+				.trim()
 				.required('Address is required')
 				.max(100, 'Maximum of 100 characteres'),
 			city: yup
 				.string()
+				.trim()
 				.required('City is required')
 				.min(3, 'Minimum of 3 characteres')
 				.max(25, 'Maximum of 20 characteres'),
 			poblation: yup
 				.string()
+				.trim()
 				.required('Poblation is required')
 				.min(3, 'Minimum of 3 characteres')
 				.max(25, 'Maximum of 25 characteres'),
@@ -73,26 +79,29 @@ export const editUserSchema = yup.object().shape({
 export const createProductSchema = yup.object({
 	title: yup
 		.string()
+		.trim()
 		.required('This field is required')
 		.min(1, 'Minimum of 1 characteres')
 		.max(100, 'Maximum of 100 characteres'),
 	artist: yup
 		.string()
+		.trim()
 		.required('This field is required')
 		.min(2, 'Minimum of 2 characteres')
 		.max(50, 'Maximum of 50 characteres'),
-	label: yup.string().required('This field is required'),
-	format: yup.string().required('This field is required'),
-	genre: yup.string().required('This field is required'),
-	styles: yup.string().required('This field is required'),
+	label: yup.string().trim().required('This field is required'),
+	format: yup.string().trim().required('This field is required'),
+	genre: yup.string().trim().required('This field is required'),
+	styles: yup.string().trim().required('This field is required'),
 	year: yup
 		.number()
 		.required('This field is required')
 		.typeError('Only numbers allowed'),
-	dynamicInputs: yup.array().of(yup.string()),
-	mediaCondition: yup.string().required('This field is required'),
+	trackList: yup.array().of(yup.string().trim()),
+	mediaCondition: yup.string().trim().required('This field is required'),
 	description: yup
 		.string()
+		.trim()
 		.required('This field is required')
 		.min(3, 'Minimum of 3 characteres')
 		.max(300, 'Maximum of 100 characteres'),
@@ -104,5 +113,5 @@ export const createProductSchema = yup.object({
 
 export const RatingSchema = yup.object({
 	rating: yup.number().required('You must give a rating'),
-	comment: yup.string().required('You must write a message')
+	comment: yup.string().trim().required('You must write a message')
 });

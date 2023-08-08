@@ -138,7 +138,13 @@ const ProductInfo = () => {
 				</PriceField>
 				{state.isYours && (
 					<ButtonsContainer>
-						<Button type={BUTTONS.SQUARED} src={ICONS.edit}>
+						<Button
+							type={BUTTONS.SQUARED}
+							src={ICONS.edit}
+							action={() =>
+								navigate('/edit-product', { state: state.currentRecord })
+							}
+						>
 							Edit Record
 						</Button>
 						<Button

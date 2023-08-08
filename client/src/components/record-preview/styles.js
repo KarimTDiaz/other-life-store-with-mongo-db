@@ -16,6 +16,16 @@ const RecordPreviewImage = styled.img`
 	object-position: center;
 	width: 100%;
 	height: 100%;
+	max-height: 165px;
+	min-height: 165px;
+	@media screen and (min-width: 1024px) {
+		max-height: 200px;
+		min-height: 200px;
+	}
+	@media screen and (min-width: 1440px) {
+		max-height: 265px;
+		min-height: 265px;
+	}
 `;
 
 const RecordPreviewData = styled.div``;
@@ -27,10 +37,10 @@ const RecordPreviewField = styled.div`
 `;
 
 export {
-	StyledRecordPreviewContainer,
+	RecordPreviewData,
+	RecordPreviewField,
+	RecordPreviewImage,
 	RecordPreviewImageContainer,
 	RecordPreviewToClick,
-	RecordPreviewImage,
-	RecordPreviewData,
-	RecordPreviewField
+	StyledRecordPreviewContainer
 };

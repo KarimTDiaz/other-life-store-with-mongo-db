@@ -75,7 +75,11 @@ const RecordListItem = ({
 			)}
 			{type === LIST_ITEMS_OPTION.USER_PRODUCTS && (
 				<ListButtons>
-					<Button type={BUTTONS.ICON} src={ICONS.edit}></Button>
+					<Button
+						type={BUTTONS.ICON}
+						src={ICONS.edit}
+						action={() => navigate('/edit-product')}
+					></Button>
 					<Button
 						type={BUTTONS.ICON}
 						src={ICONS.trash}

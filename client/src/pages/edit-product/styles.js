@@ -7,7 +7,7 @@ import {
 	FONT_SIZE
 } from '../../constants/variables';
 
-const StyledAddProductContainer = styled.div`
+const StyledEditProductContainer = styled.div`
 	max-width: 450px;
 	height: 100%;
 	padding: 1rem;
@@ -19,26 +19,26 @@ const StyledAddProductContainer = styled.div`
 	}
 `;
 
-const FormAddProduct = styled.form`
+const FormEditProduct = styled.form`
 	padding: 1.5rem 2rem;
 	border-radius: ${BORDER_RADIUS.formCards};
 	box-shadow: ${BOX_SHADOWS.formCards};
 `;
 
-const FormFieldAddProduct = styled.div`
+const FormFieldEditProduct = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	position: relative;
 	margin-bottom: 1.5rem;
 `;
-const FormFieldAddTrack = styled.div`
+const FormFieldEditTrack = styled.div`
 	display: flex;
 	position: relative;
 	margin-bottom: 1.5rem;
 `;
 
-const AddProductInput = styled.input`
+const EditProductInput = styled.input`
 	padding: 0.5rem;
 	font-family: ${FONT_FAMILY.primary.regular};
 	text-transform: capitalize;
@@ -51,11 +51,11 @@ const AddProductInput = styled.input`
 		border-color: ${COLORS.textDark};
 	}
 `;
-const AddProductInputTrack = styled(AddProductInput)`
+const EditProductInputTrack = styled(EditProductInput)`
 	width: 300vw;
 	text-transform: capitalize;
 `;
-const AddProductLabel = styled.label`
+const EditProductLabel = styled.label`
 	position: absolute;
 	left: 10px;
 	top: 7px;
@@ -63,25 +63,25 @@ const AddProductLabel = styled.label`
 	color: ${COLORS.background.modal};
 	pointer-events: none;
 	transition: 0.3s ease all;
-	${AddProductInput}:focus ~ &, ${AddProductInput}:not(:placeholder-shown) ~ & {
+	${EditProductInput}:focus ~ &, ${EditProductInput}:not(:placeholder-shown) ~ & {
 		top: -18px;
 		left: 0;
 		font-size: ${FONT_SIZE.xxxxs};
 		color: ${COLORS.textDark};
 	}
 `;
-const AddProductText = styled.p`
+const EditProductText = styled.p`
 	font-family: ${FONT_FAMILY.primary.regular};
 	text-align: center;
 `;
 
 export {
-	AddProductInput,
-	AddProductInputTrack,
-	AddProductLabel,
-	AddProductText,
-	FormAddProduct,
-	FormFieldAddProduct,
-	FormFieldAddTrack,
-	StyledAddProductContainer
+	EditProductInput,
+	EditProductInputTrack,
+	EditProductLabel,
+	EditProductText,
+	FormEditProduct,
+	FormFieldEditProduct,
+	FormFieldEditTrack,
+	StyledEditProductContainer
 };

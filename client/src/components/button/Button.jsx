@@ -29,48 +29,48 @@ const Button = ({ action, type, src, children, pointer, disabled }) => {
 			);
 		case BUTTONS.SQUARED:
 			return (
-				<StyledButtonSquared onClick={action}>
+				<StyledButtonSquared onClick={action} disabled={disabled}>
 					<ButtonText>{children}</ButtonText>
 					{src && <Icon src={src} size={ICONS_SIZES.small} />}
 				</StyledButtonSquared>
 			);
 		case BUTTONS.SOCIAL:
 			return (
-				<StyledButtonSocial onClick={action}>
+				<StyledButtonSocial onClick={action} disabled={disabled}>
 					<Icon src={src} size={ICONS_SIZES.medium} />
 					<ButtonTextDark>{children}</ButtonTextDark>
 				</StyledButtonSocial>
 			);
 		case BUTTONS.THIN:
 			return (
-				<StyledButtonThin onClick={action}>
+				<StyledButtonThin onClick={action} disabled={disabled}>
 					{children}
 					<Icon src={src} size={ICONS_SIZES.small} />
 				</StyledButtonThin>
 			);
 		case BUTTONS.USER:
 			return (
-				<StyledButtonUser onClick={action}>
+				<StyledButtonUser onClick={action} disabled={disabled}>
 					{children}
 					<Icon src={ICONS.userVinyl} size={ICONS_SIZES.small} />
 				</StyledButtonUser>
 			);
 		case BUTTONS.ADD:
 			return (
-				<StyledButtonAdd onClick={action}>
+				<StyledButtonAdd onClick={action} disabled={disabled}>
 					{children}
 					<Icon src={ICONS.addRecord} size={ICONS_SIZES.small} />
 				</StyledButtonAdd>
 			);
 		case BUTTONS.ICON:
 			return (
-				<StyledButtonIcon onClick={action}>
+				<StyledButtonIcon onClick={action} disabled={disabled}>
 					<Icon src={src} size={ICONS_SIZES.small} />
 				</StyledButtonIcon>
 			);
 		case BUTTONS.CART:
 			return (
-				<StyledButtonCart onClick={action}>
+				<StyledButtonCart onClick={action} disabled={disabled}>
 					{children}
 					<Icon src={src} size={ICONS_SIZES.big} />
 				</StyledButtonCart>

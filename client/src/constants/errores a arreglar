@@ -2,47 +2,38 @@ poner cruz en pages para volver atras
 
 estilos selects de formularios
 
-disabled del boton
-
-hacer edit records
-
 hacer que tus productos no se vean en el home
 
 areglar el delete
 
 hay que asegurarse de que sino se mete el user en mongo no se meta en ningun lado
 
-colores en variabkles de estrellas
-
-navigate en rating
+los likes no funciona bien del todo
 
 footer
+
+cambiar el nombre de createproductschema
+
+al borrar un producto tengo que eliminar en el storage tambien
+
+en el feedback navega aunque no este echo
+
+contexto del currentcountry
 
 TODOS LOS TITULOS EN CONSTANTES , FALTAN ALGUNO DE LOS DE PAGES y en la lista de productos
 hacer responsive , sobre todo menu
 El size del profile image sacarlo a una constante
 animaciones
 box shadows buttons
-cambiar corazon por estrella
-mejorar menu
-marquee revisar
 animacion notificaciones
-mejorar profile
 mejorar icono y boton de comprar
 hacer bien el popup de cuando no estas logeado
-nan en rating ?
-el nombre de user en rating esta mal , unas veces calcula y otras no
-nobre de user en ratingvalue , no siempre sera un user, unas sera un user y otras sera un valor
 
 preguntass:
 delete,
-likes,
 tracklist pop array en buttons y al esceribir solo 4 letras
 el menu hace scrolling
-default en switch
-footer,
-addtocart navigate,
-controller purchase
-los navigates son peligrosos en los await setfetch , pero redirect no funciona
 
-para hoy : terminar ventana de rating, mirar errores de css y arreglarlos , , terminar la deuda técnica, hacer edit de productos,terminar el cart bien hecho
+para hoy : mirar errores de css y arreglarlos , , terminar la deuda técnica,terminar el cart bien hecho
+
+para hoy: ratings link users, globo de cuando no estas logeado, hacer el popup mejor

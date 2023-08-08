@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { BUTTONS } from '../../constants/buttons';
 import { URLS } from '../../constants/requests';
 import { TEXTS_TYPES } from '../../constants/texts';
@@ -15,7 +16,7 @@ import {
 } from './styles';
 
 const RatingList = ({ user }) => {
-	console.log(user);
+	const navigate = useNavigate();
 	const {
 		finalData: allUsers,
 		load,
@@ -41,7 +42,16 @@ const RatingList = ({ user }) => {
 							</div>
 						</RatingFlex>
 						<Text type={TEXTS_TYPES.FIELD}>Published by:</Text>
-						<Button type={BUTTONS.USER}>{buyer[0].userName}</Button>
+						<Button
+							type={BUTTONS.USER}
+							action={() =>
+								navigate('/seller-products', {
+									state: { seller: buyer[0]._id }
+								})
+							}
+						>
+							{buyer[0].userName}
+						</Button>
 					</RatingListItem>
 				);
 			})}

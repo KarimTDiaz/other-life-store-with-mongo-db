@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import Layout from '../layouts/Layout';
 import AddProduct from '../pages/add-product/AddProduct';
+import EditProduct from '../pages/edit-product/EditProduct';
 import EditProfile from '../pages/edit-profile/EditProfile';
 import Favorites from '../pages/favorites/Favorites';
 import Home from '../pages/home/Home';
@@ -76,6 +77,14 @@ const Router = () => {
 					element={
 						<ProtectedRoute>
 							<RatingForm />
+						</ProtectedRoute>
+					}
+				/>
+				<Route
+					path='/edit-product'
+					element={
+						<ProtectedRoute>
+							<EditProduct />
 						</ProtectedRoute>
 					}
 				/>

@@ -90,20 +90,20 @@ controller.likeProduct = async (req, res) => {
     const product = await ProductModel.findById(req.body._id);
     const userLikingProduct = await UserModel.findById(req.params.id);
     const index = userLikingProduct.favorites.indexOf(req.body._id);
-    console.log(product.likes);
     if (index !== -1) {
       userLikingProduct.favorites.splice(index, 1);
       if (product.likes > 0) {
         product.likes = product.likes - 1;
       }
     } else {
-      userLikingProduct.favorites.push(req.body._id);
       product.likes = product.likes + 1;
+      userLikingProduct.favorites.push(req.body._id);
       console.log(product);
     }
-    await userLikingProduct.save();
     await product.save();
-    res.end();
+    await userLikingProduct.save();
+
+    res.send({ message: 'liked succesfully' });
   } catch (error) {
     console.log(error);
   }

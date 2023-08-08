@@ -14,6 +14,8 @@ productRoutes.get('/my-cart/:id', controller.getMyCart);
 
 productRoutes.post('/new-product/:id', controller.createProduct);
 
+productRoutes.patch('/edit-product/:id', controller.updateProduct);
+
 productRoutes.delete('/delete-product/:id', controller.deleteProduct);
 
 productRoutes.delete('/purchase-product/:id', controller.purchaseProduct);

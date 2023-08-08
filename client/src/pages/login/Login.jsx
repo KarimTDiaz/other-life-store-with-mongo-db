@@ -32,7 +32,7 @@ const Login = () => {
 	const {
 		register,
 		handleSubmit,
-		formState: { errors }
+		formState: { errors, isValid }
 	} = useForm({ mode: 'onBlur', resolver: yupResolver(loginSchema) });
 	const { setFetchInfo } = useFetch();
 	return (
@@ -68,7 +68,7 @@ const Login = () => {
 						<LoginLabel htmlFor='password'>Password</LoginLabel>
 						<Text type={TEXTS_TYPES.ERROR}>{errors.password?.message}</Text>
 					</FormFieldLogin>
-					<Button type={BUTTONS.SQUARED} src={ICONS.login}>
+					<Button type={BUTTONS.SQUARED} src={ICONS.login} disabled={!isValid}>
 						Log In
 					</Button>
 					{error && <ErrorPopUp>{error}</ErrorPopUp>}

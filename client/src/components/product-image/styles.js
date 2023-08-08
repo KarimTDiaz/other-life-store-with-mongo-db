@@ -15,8 +15,6 @@ const StyledProductImage = styled.img`
 		padding-top: 1rem;
 	}
 	@media screen and (min-width: 1024px) {
-		width: 500px;
-		height: 500px;
 	}
 `;
 

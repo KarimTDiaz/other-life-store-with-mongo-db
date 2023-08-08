@@ -5,7 +5,8 @@ export const TITLES = {
 		register: 'CREATE AN ACCOUNT',
 		login: 'LOGIN TO YOUR ACCOUNT',
 		editUser: 'EDIT PROFILE',
-		sellRecord: 'SELL RECORD'
+		sellRecord: 'SELL RECORD',
+		editRecord: 'EDIT RECORD'
 	},
 	pagesTitles: {
 		userProducts: 'YOUR RECORDS',

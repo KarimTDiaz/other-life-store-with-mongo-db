@@ -72,6 +72,13 @@ controller.createProduct = async (req, res) => {
   res.send(newProduct);
 };
 
+controller.updateProduct = async (req, res) => {
+  const productUpdated = await ProductModel.updateOne(
+    { _id: req.params.id },
+    { $set: { ...req.body } }
+  );
+  res.send(productUpdated);
+};
 controller.getMyProducts = async (req, res) => {
   const user = await UserModel.findById(req.params.id);
   const products = await ProductModel.find();

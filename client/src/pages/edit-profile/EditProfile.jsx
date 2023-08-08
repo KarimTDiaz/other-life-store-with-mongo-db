@@ -43,7 +43,7 @@ const EditProfile = () => {
 	const {
 		register,
 		handleSubmit,
-		formState: { errors }
+		formState: { errors, isValid }
 	} = useForm({ mode: 'onBlur', resolver: yupResolver(editUserSchema) });
 
 	const {
@@ -60,7 +60,7 @@ const EditProfile = () => {
 
 	if (loadingFirebase) return <Loading />;
 	if (load) return <Loading />;
-
+	console.log(currentUser.direction.country);
 	return (
 		<StyledProfileContainer>
 			<FormProfile

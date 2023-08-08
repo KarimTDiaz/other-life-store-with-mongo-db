@@ -14,7 +14,7 @@ import { SellerProductsContainer } from './styles';
 const SellerProducts = () => {
 	const { state } = useLocation();
 	const [linkSelectedSeller, setLinkSelectedSeller] = useState('records');
-
+	console.log(state);
 	const {
 		finalData: seller,
 		load,

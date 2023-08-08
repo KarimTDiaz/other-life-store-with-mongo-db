@@ -29,6 +29,9 @@ const StyledButtonSquared = styled.button`
 	border-radius: ${BORDER_RADIUS.xs};
 	border: none;
 	cursor: pointer;
+	&:disabled {
+		background-color: ${COLORS.background.modal};
+	}
 `;
 const StyledButtonSocial = styled(StyledButtonSquared)`
 	background-color: transparent;
@@ -93,14 +96,14 @@ const ButtonTextDark = styled(ButtonText)`
 `;
 
 export {
-	StyledButtonBordered,
-	StyledButtonSquared,
-	StyledButtonSocial,
-	StyledButtonThin,
-	StyledButtonUser,
-	StyledButtonAdd,
-	StyledButtonIcon,
-	StyledButtonCart,
 	ButtonText,
-	ButtonTextDark
+	ButtonTextDark,
+	StyledButtonAdd,
+	StyledButtonBordered,
+	StyledButtonCart,
+	StyledButtonIcon,
+	StyledButtonSocial,
+	StyledButtonSquared,
+	StyledButtonThin,
+	StyledButtonUser
 };

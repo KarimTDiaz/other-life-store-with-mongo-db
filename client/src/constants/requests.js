@@ -6,6 +6,7 @@ export const URLS = {
 	SINGLE_USER: API_URL + 'other-life-store/users',
 	LIKE: API_URL + 'other-life-store/users/like-product/',
 	EDIT_USER: API_URL + 'other-life-store/users/edit-user/',
+	EDIT_PRODUCT: API_URL + 'other-life-store/products/edit-product/',
 	NEW_PRODUCT: API_URL + 'other-life-store/products/new-product/',
 	ALL_PRODUCTS: API_URL + 'other-life-store/products/all',
 	MY_PRODUCTS: API_URL + 'other-life-store/products/my-products/',
