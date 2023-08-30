@@ -10,11 +10,12 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const { MongoClient } = require('mongodb');
 const { Server } = require('socket.io');
-const server = require('http').Server(app);
+const server = require('http').createServer(app);
 const io = new Server(server, {
   cors: {
     origin: '*',
     methods: ['GET', 'POST'],
+    credentials: true,
     allowedHeaders: ['Content-Type', 'Authorization']
   }
 });

@@ -32,7 +32,7 @@ Hay inputs dinámicos, rating para cada venta, carrito de compras y mucho mas!!!
 
 <!-- Icons taken from: https://github.com/hendrasob/badges/blob/master/README.md and https://github.com/alexandresanlim/Badges4-README.md-Profile -->
 
-<!-- [![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://es.wikipedia.org/wiki/HTML5)
+[![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://es.wikipedia.org/wiki/HTML5)
 [![JS](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://es.wikipedia.org/wiki/JavaScript)
 [![REACT](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://es.wikipedia.org/wiki/React)
 [![REACT ROUTER](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)](https://es.wikipedia.org/wiki/React)
@@ -41,7 +41,8 @@ Hay inputs dinámicos, rating para cada venta, carrito de compras y mucho mas!!!
 [![SOCKET.IO](https://img.shields.io/badge/Socket.io-010101?&style=for-the-badge&logo=Socket.io&logoColor=white)](https://en.wikipedia.org/wiki/Socket.IO)
 [![MONGODB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)](https://en.wikipedia.org/wiki/MongoDB)
 [![FIREBASE](https://img.shields.io/badge/firebase-ffca28?style=for-the-badge&logo=firebase&logoColor=black)](https://en.wikipedia.org/wiki/Firebase)
- -->
+[![VITE](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)](https://vitejs.dev/guide/)
+
 <!-- ## Project preview
 
 If you want to take a look at the project, I recommend:
