@@ -1,4 +1,4 @@
-const API_URL = 'https://other-life-store.onrender.com/';
+const API_URL = 'https://other-life-store-server.onrender.com/';
 
 export const URLS = {
 	NEW_USER: API_URL + 'other-life-store/users/new-user',
