@@ -67,12 +67,12 @@ const startServer = async () => {
   } catch (err) {
     console.error('Connection error');
   }
-  app.listen(
+  server.listen(
     PORT_EXPRESS,
     console.log(`Server listen on port ${PORT_EXPRESS}`)
   );
   // Maneja la desconexión del cliente
-  server.listen(PORT_SOCKET, () => {
+  io.listen(PORT_SOCKET, () => {
     console.log(`Servidor Socket.io escuchando en el puerto ${PORT_SOCKET}`);
   });
 };
