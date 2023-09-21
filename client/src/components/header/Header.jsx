@@ -23,6 +23,7 @@ const Header = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
 	const { currentUser } = useContext(AuthContext);
+	console.log(currentUser);
 
 	if (location.pathname !== '/') {
 		return (

@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
 	}, []);
 
 	useEffect(() => {
-		const socket = io('http://localhost:4000');
+		const socket = io('https://other-life-store-server.onrender.com');
 
 		socket.on('collectionUsersChange', async change => {
 			switch (change.operationType) {
@@ -71,7 +71,7 @@ const getUserInfoFromMongo = async (
 ) => {
 	try {
 		const response = await fetch(
-			`http://localhost:3000/other-life-store/users/${user.uid}`
+			`https://other-life-store-server.onrender.com/other-life-store/users/${user.uid}`
 		);
 		if (response.ok) {
 			const userInfo = await response.json();
