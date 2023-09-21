@@ -1,4 +1,5 @@
-import { Route, Routes } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import Layout from '../layouts/Layout';
 import AddProduct from '../pages/add-product/AddProduct';
 import EditProduct from '../pages/edit-product/EditProduct';
@@ -16,6 +17,11 @@ import UserProducts from '../pages/user-products/UserProducts';
 import ProtectedRoute from './ProtectedRoute';
 
 const Router = () => {
+	const location = useLocation();
+
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, [location.pathname]);
 	return (
 		<Routes>
 			<Route path='/' element={<Layout />}>
