@@ -154,7 +154,8 @@ const onSubmit = async (
 				}),
 				headers: {
 					...HEADERS
-				}
+				},
+				redirectTo: { url: '/' }
 			}
 		});
 	} catch (error) {

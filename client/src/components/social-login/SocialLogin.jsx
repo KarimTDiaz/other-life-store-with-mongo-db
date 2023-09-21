@@ -61,7 +61,8 @@ const loginWithGoogle = async ({ setFetchInfo, navigate }) => {
 				headers: {
 					...HEADERS
 				}
-			}
+			},
+			redirectTo: { url: '/' }
 		});
 	} catch (err) {
 		console.log(err);
