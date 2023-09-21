@@ -14,13 +14,11 @@ import SellerProducts from '../pages/seller-products/SellerProducts';
 import UserCart from '../pages/user-cart/UserCart';
 import UserProducts from '../pages/user-products/UserProducts';
 import ProtectedRoute from './ProtectedRoute';
-import ScrollToTop from './scrollToTop';
 
 const Router = () => {
 	return (
 		<Routes>
 			<Route path='/' element={<Layout />}>
-				<ScrollToTop />
 				<Route index element={<Home />} />
 				<Route path='/register' element={<Register />} />
 				<Route path='/login' element={<Login />} />
