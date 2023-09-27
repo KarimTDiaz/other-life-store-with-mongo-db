@@ -2,9 +2,11 @@
 
 ![Project image](https://raw.githubusercontent.com/KarimTDiaz/other-life-store-with-mongo-db/main/client/public/assets/images/readme/readme-0.png)
 
-<!-- ## Live Demo
+## Live Demo
 
-- [Live Demo](https://portable-stereo.onrender.com/) -->
+- [Live Demo](https://other-life-store.onrender.com/)
+
+El proyecto está alojado en un hosting gratuito, con lo cual el tiempo de carga puede ser mayor debido a esto.
 
 ## Descripción
 
